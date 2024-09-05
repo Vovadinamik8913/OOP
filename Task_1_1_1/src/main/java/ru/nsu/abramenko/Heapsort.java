@@ -44,12 +44,12 @@ public class Heapsort {
         return arr;
     }
 
-    /** 
+    /** main
      *
      * @param args
      */
     public static void main(String[] args) {
-        for (int i : heapsort(new int[] {5, 4, 3, 2, 1})){
+        for (int i : heapsort(new int[] {5, 4, 3, 2, 1})) {
             System.out.print(i + " ");
         }
         System.out.print("\n");

@@ -1,7 +1,7 @@
 package ru.nsu.abramenko;
 
 public class Heapsort {
-    /**
+    /** Преобразование кучи относительно некоторого элемента
      *
      * @param arr
      * @param n
@@ -11,10 +11,10 @@ public class Heapsort {
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;
-        if (l < n && arr[l] > arr[largest]){
+        if (l < n && arr[l] > arr[largest]) {
             largest = l;
         }
-        if (r < n && arr[r] > arr[largest]){
+        if (r < n && arr[r] > arr[largest]) {
             largest = r;
         }
         if (largest != i) {
@@ -25,17 +25,17 @@ public class Heapsort {
         }
     }
 
-    /**
+    /** Сортировка массива, чрезе создание кучи и перестраивание через heapify
      *
      * @param arr
      * @return
      */
     public static int[] heapsort(int[] arr) {
         int n = arr.length;
-        for (int i = n / 2 - 1; i >= 0; i--){
+        for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(arr, n, i);
         }
-        for (int i = n-1; i >= 0; i--){
+        for (int i = n-1; i >= 0; i--) {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;

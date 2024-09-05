@@ -1,5 +1,9 @@
 package ru.nsu.abramenko;
 
+/** Класс пирамидальной сортировки с функциями heartsort (основная) и heapify (вспомогательная).
+ *
+ * @author Абраменко Владимир
+ */
 public class Heapsort {
     /** Преобразование кучи относительно некоторого элемента
      *
@@ -7,7 +11,7 @@ public class Heapsort {
      * @param n
      * @param i
      */
-    public static void heapify(int[] arr, int n, int i) {
+    private static void heapify(int[] arr, int n, int i) {
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;

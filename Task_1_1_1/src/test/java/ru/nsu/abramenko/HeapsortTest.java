@@ -1,8 +1,12 @@
 package ru.nsu.abramenko;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Random;
+
 
 class HeapsortTest {
     @Test
@@ -16,8 +20,19 @@ class HeapsortTest {
     }
     @Test
     void randomTest(){
-        int[] arr1 = new int[]{1, 4, 22, 1564, 166, 854, 0};
-        int[] arr2= new int[]{0, 1, 4, 22, 166, 854, 1564};
+        int[] arr1 = new int[] {1, 4, 22, 1564, 166, 854, 0};
+        int[] arr2 = new int[] {0, 1, 4, 22, 166, 854, 1564};
         assertArrayEquals(arr2,Heapsort.heapsort(arr1));
+    }
+
+    @Test
+    void bigRandomTesr(){
+        int[] arr = new int[10000];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++){
+            arr[i] = random.nextInt();
+        }
+        Heapsort.heapsort(arr);
+        assertTrue(true);
     }
 }

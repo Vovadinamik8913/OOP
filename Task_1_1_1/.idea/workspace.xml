@@ -5,32 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13028084-1100-4260-a571-a10e76d10f1d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Heapsort.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/allclasses-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/allpackages-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/element-list" beforeDir="false" afterPath="$PROJECT_DIR$/element-list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index-all.html" beforeDir="false" afterPath="$PROJECT_DIR$/index-all.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/member-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/package-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Heapsort.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Heapsort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/HeapsortTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/type-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_please.sh" beforeDir="false" afterPath="$PROJECT_DIR$/work_please.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/nsu/abramenko/HeapsortTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/nsu/abramenko/HeapsortTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -24,7 +24,7 @@ public class Heapsort {
         for (int i = n / 2 - 1; i >= 0; i--){
             heapify(arr, n, i);
         }
-        for (int i=n-1; i>=0; i--) {
+        for (int i = n-1; i >= 0; i--) {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
@@ -35,7 +35,7 @@ public class Heapsort {
 
     public static void main(String[] args) {
         for (int i: heapsort(new int[] {5, 4, 3, 2, 1})){
-            System.out.print(i+" ");
+            System.out.print(i + " ");
         }
     }
 }

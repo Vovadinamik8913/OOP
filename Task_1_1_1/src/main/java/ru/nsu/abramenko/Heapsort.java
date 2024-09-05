@@ -1,5 +1,7 @@
+package ru.nsu.abramenko;
+
 public class Heapsort {
-    public static void heapify(int arr[], int n, int i) {
+    public static void heapify(int[] arr, int n, int i) {
         int largest = i;
         int l = 2*i + 1;
         int r = 2*i + 2;
@@ -17,7 +19,7 @@ public class Heapsort {
         }
     }
 
-    public static int[] heapsort(int arr[]) {
+    public static int[] heapsort(int[] arr) {
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--){
             heapify(arr, n, i);
@@ -32,7 +34,7 @@ public class Heapsort {
     }
 
     public static void main(String[] args) {
-        for (int i: heapsort(new int[]{5,4,3,2,1})){
+        for (int i: heapsort(new int[] {5, 4, 3, 2, 1})){
             System.out.print(i+" ");
         }
     }

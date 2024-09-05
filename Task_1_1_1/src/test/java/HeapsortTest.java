@@ -14,8 +14,8 @@ class HeapsortTest {
     }
     @Test
     void randomTest(){
-        int arr1[] = new int[]{1,4,22,1564,166,854,0};
-        int arr2[]= new int[]{0,1,4,22,166,854,1564};
+        int[] arr1 = new int[]{1,4,22,1564,166,854,0};
+        int[] arr2= new int[]{0,1,4,22,166,854,1564};
         assertArrayEquals(arr2,Heapsort.heapsort(arr1));
     }
 }

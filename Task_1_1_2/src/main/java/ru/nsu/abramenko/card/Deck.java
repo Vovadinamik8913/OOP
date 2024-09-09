@@ -3,13 +3,19 @@ package ru.nsu.abramenko.card;
 import java.util.ArrayList;
 import java.util.Random;
 
+/** 52 cards in deck
+ *
+ */
 public class Deck {
     private final ArrayList<Card> cards;
 
+    /** generate deck with 52 cards
+     *
+     */
     public Deck() {
         cards = new ArrayList<>();
-        Suit[] suits = new Suit[]{Suit.CLUB, Suit.HEART, Suit.DIAMOND, Suit.SPADE};
-        Rank[] ranks = new Rank[]{Rank.ACE, Rank.KING, Rank.QUEEN, Rank.JACK, Rank.TEN, Rank.NINE,
+        Suit[] suits = new Suit[] {Suit.CLUB, Suit.HEART, Suit.DIAMOND, Suit.SPADE};
+        Rank[] ranks = new Rank[]{ Rank.ACE, Rank.KING, Rank.QUEEN, Rank.JACK, Rank.TEN, Rank.NINE,
                 Rank.EIGHT, Rank.SEVEN, Rank.SIX, Rank.FIVE, Rank.FOUR, Rank.THREE, Rank.TWO};
         for (Suit suit : suits) {
             for (Rank rank : ranks) {
@@ -19,6 +25,9 @@ public class Deck {
         shuffle();
     }
 
+    /** shuffle deck
+     *
+     */
     private void shuffle() {
         Random random = new Random();
         int ind = 0;
@@ -30,6 +39,9 @@ public class Deck {
         }
     }
 
+    /** get card from the top of deck
+     * @return card
+     */
     public Card getCard() {
         return cards.remove(0);
     }

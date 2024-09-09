@@ -5,7 +5,7 @@ import ru.nsu.abramenko.card.Rank;
 import ru.nsu.abramenko.card.Card;
 
 public class Player {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
     private int sum;
     private int cntAce;
     private int firstAce = -1;
@@ -83,7 +83,6 @@ public class Player {
 
 
     public int getSum() {
-        //count();
         return sum;
     }
 }

@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.card;
 
+/** Rank of card
+ *
+ */
 public enum Rank {
     ACE,
     JACK,
@@ -15,6 +18,9 @@ public enum Rank {
     THREE,
     TWO;
 
+    /** convert rank to string
+     * @return
+     */
     @Override
     public String toString() {
         switch (this) {
@@ -35,6 +41,9 @@ public enum Rank {
         }
     }
 
+    /** get value of Rank
+     * @return
+     */
     public int getValue() {
         switch (this) {
             case ACE: return 11;

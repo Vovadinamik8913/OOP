@@ -1,11 +1,17 @@
 package ru.nsu.abramenko.card;
 
+/** suit of card
+ *
+ */
 public enum Suit{
     SPADE,
     DIAMOND,
     HEART,
     CLUB;
 
+    /** suit to string
+     * @return
+     */
     @Override
     public String toString() {
         switch (this) {

@@ -21,7 +21,7 @@ public class Main {
         Blackjack blackjack = new Blackjack();
 
         System.out.print("Добро пожаловать в Блэкджек!\n");
-        while (maxRounds >blackjack.getCntOfRounds()) {
+        while (maxRounds > blackjack.getCntOfRounds()) {
             res = 0;
             blackjack.newRound();
             //region Print

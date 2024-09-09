@@ -1,8 +1,7 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.game.Blackjack;
-
 import java.util.Scanner;
+import ru.nsu.abramenko.game.Blackjack;
 
 public class Main {
 
@@ -51,7 +50,7 @@ public class Main {
                             break;
                     }
                 }
-                if (ch ==2) {
+                if (ch == 2) {
                     continue;
                 }
                 if (!blackjack.isRoundEnded()) {

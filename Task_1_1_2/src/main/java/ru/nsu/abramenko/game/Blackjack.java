@@ -1,11 +1,11 @@
 package ru.nsu.abramenko.game;
 
+import javax.swing.plaf.synth.Region;
+import java.util.ArrayList;
+
 import ru.nsu.abramenko.card.Card;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.player.Player;
-
-import javax.swing.plaf.synth.Region;
-import java.util.ArrayList;
 
 public class Blackjack {
     private Player player;

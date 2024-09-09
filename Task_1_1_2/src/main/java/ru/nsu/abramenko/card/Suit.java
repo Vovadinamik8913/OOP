@@ -8,12 +8,12 @@ public enum Suit{
 
     @Override
     public String toString() {
-        return switch (this) {
-            case CLUB -> "♣";
-            case HEART -> "♥";
-            case DIAMOND -> "♦";
-            case SPADE -> "♠";
-            default -> throw new IllegalArgumentException();
-        };
+        switch (this) {
+            case CLUB: return "♣";
+            case HEART: return "♥";
+            case DIAMOND: return "♦";
+            case SPADE: return "♠";
+            default: throw new IllegalArgumentException();
+        }
     }
 }

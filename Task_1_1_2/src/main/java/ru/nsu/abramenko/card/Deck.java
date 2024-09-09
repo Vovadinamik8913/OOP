@@ -31,6 +31,6 @@ public class Deck {
     }
 
     public Card getCard() {
-        return cards.removeFirst();
+        return cards.remove(0);
     }
 }

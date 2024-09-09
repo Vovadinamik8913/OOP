@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13028084-1100-4260-a571-a10e76d10f1d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Task_1_1_2/src/main/java/ru/nsu/abramenko/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,8 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "Task__1__1__1",
     "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "last_opened_file_path": "/home/abrikosjr/Desktop/OOPworkspace/OOP/Task_1_1_1",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">

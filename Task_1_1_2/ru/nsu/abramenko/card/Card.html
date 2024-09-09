@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -133,6 +133,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Card</span>
 extends java.lang.Object</pre>
+<div class="block">class Card with Rank, suit and Value</div>
 </li>
 </ul>
 </div>
@@ -155,13 +156,9 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.abramenko.card.Suit,ru.nsu.abramenko.card.Rank)">Card</a></span>&#8203;(<a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a>&nbsp;suit,
     <a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;rank)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.abramenko.card.Suit,ru.nsu.abramenko.card.Rank,boolean)">Card</a></span>&#8203;(<a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a>&nbsp;suit,
-    <a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;rank,
-    boolean&nbsp;isOpen)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor of closed Cart</div>
+</td>
 </tr>
 </table>
 </li>
@@ -184,37 +181,44 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeValue()">changeValue</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">change value For Ace from 11 to 1</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRank()">getRank</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">rank of card</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSuit()">getSuit</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue()">getValue</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">get Value of Card</div>
+</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOpen()">isOpen</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">is this card open</div>
+</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#open()">open</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">open this card</div>
+</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">convert card to string</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -243,22 +247,17 @@ extends java.lang.Object</pre>
 <a id="&lt;init&gt;(ru.nsu.abramenko.card.Suit,ru.nsu.abramenko.card.Rank)">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Card</h4>
-<pre>public&nbsp;Card&#8203;(<a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a>&nbsp;suit,
-            <a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;rank)</pre>
-</li>
-</ul>
-<a id="&lt;init&gt;(ru.nsu.abramenko.card.Suit,ru.nsu.abramenko.card.Rank,boolean)">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Card</h4>
 <pre>public&nbsp;Card&#8203;(<a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a>&nbsp;suit,
-            <a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;rank,
-            boolean&nbsp;isOpen)</pre>
+            <a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;rank)</pre>
+<div class="block">Constructor of closed Cart</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>suit</code> - </dd>
+<dd><code>rank</code> - </dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -271,24 +270,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getSuit()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSuit</h4>
-<pre class="methodSignature">public&nbsp;<a href="Suit.html" title="enum in ru.nsu.abramenko.card">Suit</a>&nbsp;getSuit()</pre>
-</li>
-</ul>
-<a id="getRank()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getRank</h4>
-<pre class="methodSignature">public&nbsp;<a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;getRank()</pre>
-</li>
-</ul>
 <a id="getValue()">
 <!--   -->
 </a>
@@ -296,6 +277,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getValue</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getValue()</pre>
+<div class="block">get Value of Card</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>value of Card</dd>
+</dl>
 </li>
 </ul>
 <a id="changeValue()">
@@ -305,6 +291,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>changeValue</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;changeValue()</pre>
+<div class="block">change value For Ace from 11 to 1</div>
 </li>
 </ul>
 <a id="isOpen()">
@@ -314,6 +301,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isOpen</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isOpen()</pre>
+<div class="block">is this card open</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true or false</dd>
+</dl>
 </li>
 </ul>
 <a id="open()">
@@ -323,18 +315,36 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>open</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;open()</pre>
+<div class="block">open this card</div>
 </li>
 </ul>
 <a id="toString()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">convert card to string</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>string of rank, suit and value</dd>
+</dl>
+</li>
+</ul>
+<a id="getRank()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getRank</h4>
+<pre class="methodSignature">public&nbsp;<a href="Rank.html" title="enum in ru.nsu.abramenko.card">Rank</a>&nbsp;getRank()</pre>
+<div class="block">rank of card</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>rank of card</dd>
 </dl>
 </li>
 </ul>

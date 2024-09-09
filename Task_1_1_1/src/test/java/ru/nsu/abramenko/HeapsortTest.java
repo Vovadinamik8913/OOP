@@ -22,6 +22,12 @@ class HeapsortTest {
     }
 
     @Test
+    @DisplayName("SortedArray")
+    void sortedArrayTest() {
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, Heapsort.heapsort(new int[] {1, 2, 3, 4, 5}));
+    }
+
+    @Test
     @DisplayName("BigSampleArray")
     void bigSampleTest() {
         int[] arr1 = new int[] {1, 4, 22, 1564, 166, 854, 0};

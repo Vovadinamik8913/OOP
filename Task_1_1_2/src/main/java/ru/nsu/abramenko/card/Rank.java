@@ -19,7 +19,7 @@ public enum Rank {
     TWO;
 
     /** convert rank to string
-     * @return
+     * @return rank to string
      */
     @Override
     public String toString() {
@@ -42,7 +42,7 @@ public enum Rank {
     }
 
     /** get value of Rank
-     * @return
+     * @return value
      */
     public int getValue() {
         switch (this) {

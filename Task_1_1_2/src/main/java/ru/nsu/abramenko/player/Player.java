@@ -37,7 +37,7 @@ public class Player {
     }
 
     public String showLastAddedCard() {
-        return cards.getLast().toString();
+        return cards.get(cards.size() - 1).toString();
     }
 
     public String showCards() {
@@ -77,7 +77,7 @@ public class Player {
     }
 
     public void openLastCard() {
-        cards.getLast().open();
+        cards.get(cards.size() - 1).open();
     }
     //endregion
 

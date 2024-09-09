@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.abramenko.game","l":"Blackjack"},{"p":"ru.nsu.abramenko.card","l":"Card"},{"p":"ru.nsu.abramenko.card","l":"Deck"},{"p":"ru.nsu.abramenko","l":"Main"},{"p":"ru.nsu.abramenko.player","l":"Player"},{"p":"ru.nsu.abramenko.card","l":"Rank"},{"p":"ru.nsu.abramenko.card","l":"Suit"}]

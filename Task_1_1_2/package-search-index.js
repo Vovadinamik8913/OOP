@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.abramenko"},{"l":"ru.nsu.abramenko.card"},{"l":"ru.nsu.abramenko.game"},{"l":"ru.nsu.abramenko.player"}]

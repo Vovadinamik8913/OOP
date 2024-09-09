@@ -1,5 +1,6 @@
 package ru.nsu.abramenko;
 
+import java.io.Console;
 import java.util.Scanner;
 import ru.nsu.abramenko.game.Blackjack;
 
@@ -11,25 +12,44 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
+        Console console = System.console();
+
+        int maxRounds = 100;
         int ch = 2;
         int res = 0;
-        boolean isGameEnded = false;
-        Scanner scanner = new Scanner(System.in);
         Blackjack blackjack = new Blackjack();
+
         System.out.print("Добро пожаловать в Блэкджек!\n");
-        while (!isGameEnded) {
+        while (maxRounds >blackjack.getCntOfRounds()) {
             res = 0;
             blackjack.newRound();
+            //region Print
             System.out.print("Раунд " + blackjack.getCntOfRounds() + "\n");
             System.out.print("Дилер раздал карты\n");
             showCards(blackjack.getPlayerCards(), blackjack.getDealerCards());
             System.out.println();
+            //endregion
             if (!blackjack.isRoundEnded()) {
                 System.out.print("Ваш ход\n" + "-------\n");
                 while (blackjack.isPlayerMove() && !blackjack.doesPlayerHaveBlackjack()) {
                     System.out.print("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться, и “2”, чтобы закончить игру...\n");
-                    ch = scanner.nextInt();
+
+                    if (console == null) {
+                        ch = 2;
+                    } else {
+                        String command = System.console().readLine();
+                        if (command == null) {
+                            if (blackjack.getPlayerSum() < 17) {
+                                ch = 1;
+                            } else {
+                                ch = 0;
+                            }
+                        } else {
+                            ch = Integer.parseInt(command);
+                        }
+                    }
+
                     System.out.println();
                     switch (ch) {
                         case 1:
@@ -43,16 +63,17 @@ public class Main {
                         case 0:
                             blackjack.move(ch);
                             break;
-                        case 2:
-                            isGameEnded = true;
-                            break;
                         default:
                             break;
                     }
+                    if (ch == 2) {
+                        break;
+                    }
                 }
                 if (ch == 2) {
-                    continue;
+                    break;
                 }
+
                 if (!blackjack.isRoundEnded()) {
                     System.out.print("Ход Дилера\n" + "-------\n");
                     System.out.print("Дилер открывает закрытую карту\n");
@@ -92,7 +113,6 @@ public class Main {
                     System.out.print("\n");
                     System.out.println();
                 }
-                Thread.sleep(1500);
             }
         }
     }

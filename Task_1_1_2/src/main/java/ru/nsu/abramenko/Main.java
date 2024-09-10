@@ -48,15 +48,23 @@ public class Main {
                     System.out.print("Введите “1”, чтобы взять карту, и “0”," +
                             " чтобы остановиться, и “2”, чтобы закончить игру...\n");
 
-                    String command = System.console().readLine();
-                    if (command == null) {
+                    if (console == null) {
                         if (blackjack.getPlayerSum() < 17) {
                             ch = 1;
                         } else {
                             ch = 0;
                         }
                     } else {
-                        ch = Integer.parseInt(command);
+                        String command = System.console().readLine();
+                        if (command == null) {
+                            if (blackjack.getPlayerSum() < 17) {
+                                ch = 1;
+                            } else {
+                                ch = 0;
+                            }
+                        } else {
+                            ch = Integer.parseInt(command);
+                        }
                     }
 
                     System.out.println();

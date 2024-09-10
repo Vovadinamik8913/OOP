@@ -4,7 +4,7 @@ package ru.nsu.abramenko.game;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.player.Player;
 
-/** blackjack the Game.
+/** blackjack the Game big.
  *
  */
 public class Blackjack {

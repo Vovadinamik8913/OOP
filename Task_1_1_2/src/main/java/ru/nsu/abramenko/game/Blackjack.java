@@ -66,7 +66,7 @@ public class Blackjack {
      * 1 - adding card to curren player card
      * 0 - ending the current player move
      *
-     * @param move
+     * @param move 1 or 0
      */
     public void move(int move) {
         switch (move) {

@@ -11,8 +11,8 @@ public class Main {
 
     /** showing player and dealer cards.
      *
-     * @param player
-     * @param dealer
+     * @param player player
+     * @param dealer dealer
      */
     public static void  showCards(String player, String dealer) {
         System.out.print("\tВаши карты: " + player + "\n");
@@ -22,7 +22,7 @@ public class Main {
 
     /** menu of the game.
      *
-     * @param args
+     * @param args arguments
      */
     public static void main(String[] args){
         Console console = System.console();

@@ -11,8 +11,8 @@ public class Card {
 
     /** Constructor of closed Card.
      *
-     * @param suit
-     * @param rank
+     * @param suit suit
+     * @param rank rank
      */
     public Card(Suit suit, Rank rank) {
         this.suit = suit;

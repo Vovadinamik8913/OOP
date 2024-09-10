@@ -22,7 +22,7 @@ public enum Rank {
 
     /** set name of rank.
      *
-     * @param rankname
+     * @param rankname rankname
      */
     Rank(String rankname) {
         this.rankname = rankname;

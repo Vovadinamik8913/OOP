@@ -25,7 +25,7 @@ public class Player {
 
     /** adds one card and count the cum.
      *
-     * @param card
+     * @param card card
      */
     public void addCard(Card card) {
         cards.add(card);
@@ -102,7 +102,7 @@ public class Player {
 
     /** open only one card.
      *
-     * @param position
+     * @param position position in cards
      */
     public void openCard(int position) {
         cards.get(position).open();

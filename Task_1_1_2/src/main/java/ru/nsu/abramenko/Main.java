@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         Console console = System.console();
 
-        int maxRounds = 200;
+        int maxRounds = 300;
         int ch = 2;
         int res = 0;
         Blackjack blackjack = new Blackjack();
@@ -48,19 +48,15 @@ public class Main {
                     System.out.print("Введите “1”, чтобы взять карту, и “0”," +
                             " чтобы остановиться, и “2”, чтобы закончить игру...\n");
 
-                    if (console == null) {
-                        ch = 2;
-                    } else {
-                        String command = System.console().readLine();
-                        if (command == null) {
-                            if (blackjack.getPlayerSum() < 17) {
-                                ch = 1;
-                            } else {
-                                ch = 0;
-                            }
+                    String command = System.console().readLine();
+                    if (command == null) {
+                        if (blackjack.getPlayerSum() < 17) {
+                            ch = 1;
                         } else {
-                            ch = Integer.parseInt(command);
+                            ch = 0;
                         }
+                    } else {
+                        ch = Integer.parseInt(command);
                     }
 
                     System.out.println();
@@ -78,14 +74,8 @@ public class Main {
                             blackjack.move(ch);
                             break;
                         default:
-                            break;
+                            return;
                     }
-                    if (ch == 2) {
-                        break;
-                    }
-                }
-                if (ch == 2) {
-                    break;
                 }
 
                 if (!blackjack.isRoundEnded()) {

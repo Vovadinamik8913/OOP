@@ -4,28 +4,32 @@ package ru.nsu.abramenko.card;
  *
  */
 public enum Rank {
-    ACE("Туз"),
-    JACK("Валет"),
-    QUEEN("Дама"),
-    KING("Король"),
-    TEN("Десятка"),
-    NINE("Девятка"),
-    EIGHT("Восьмерка"),
-    SEVEN("Семерка"),
-    SIX("Шестерка"),
-    FIVE("Пятерка"),
-    FOUR("Четверка"),
-    THREE("Тройка"),
-    TWO("Двойка");
+    ACE("Туз", 11),
+    JACK("Валет", 10),
+    QUEEN("Дама", 10),
+    KING("Король", 10),
+    TEN("Десятка", 10),
+    NINE("Девятка", 9),
+    EIGHT("Восьмерка", 8),
+    SEVEN("Семерка", 7),
+    SIX("Шестерка", 6),
+    FIVE("Пятерка", 5),
+    FOUR("Четверка", 4),
+    THREE("Тройка", 3),
+    TWO("Двойка", 2);
 
     private final String rankname;
+    private final  int value;
 
-    /** set name of rank.
+    /**
+     * set name of rank.
      *
      * @param rankname rankname
+     * @param value value
      */
-    Rank(String rankname) {
+    Rank(String rankname, int value) {
         this.rankname = rankname;
+        this.value = value;
     }
 
     /** convert rank to string.
@@ -42,21 +46,6 @@ public enum Rank {
      * @return value
      */
     public int getValue() {
-        switch (this) {
-            case ACE: return 11;
-            case JACK: return 10;
-            case QUEEN: return 10;
-            case KING: return 10;
-            case TEN: return 10;
-            case NINE: return 9;
-            case EIGHT: return 8;
-            case SEVEN: return 7;
-            case SIX: return 6;
-            case FIVE: return 5;
-            case FOUR: return 4;
-            case THREE: return 3;
-            case TWO: return 2;
-            default: throw new IllegalArgumentException();
-        }
+        return value;
     }
 }

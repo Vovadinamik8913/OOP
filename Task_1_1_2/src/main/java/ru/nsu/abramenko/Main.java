@@ -6,16 +6,23 @@ import ru.nsu.abramenko.game.Blackjack;
 
 public class Main {
 
+    /** showing player and dealer cards
+     * @param player
+     * @param dealer
+     */
     public static void  showCards(String player, String dealer) {
         System.out.print("\tВаши карты: " + player + "\n");
         System.out.print("\tКарты дилера: " +  dealer + "\n");
     }
 
 
+    /** menu of the game
+     * @param args
+     */
     public static void main(String[] args){
         Console console = System.console();
 
-        int maxRounds = 100;
+        int maxRounds = 200;
         int ch = 2;
         int res = 0;
         Blackjack blackjack = new Blackjack();

@@ -1,12 +1,12 @@
 package ru.nsu.abramenko.game;
 
-import javax.swing.plaf.synth.Region;
-import java.util.ArrayList;
 
-import ru.nsu.abramenko.card.Card;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.player.Player;
 
+/** blackjack the Game
+ *
+ */
 public class Blackjack {
     private Player player;
     private Player dealer;
@@ -19,12 +19,18 @@ public class Blackjack {
     private boolean isRoundEnded;
     private Deck deck;
 
+    /** constructor
+     *
+     */
     public Blackjack() {
         playerWins = 0;
         dealerWins = 0;
         cntOfRounds = 0;
     }
 
+    /** starting new round
+     *
+     */
     public void newRound() {
         deck =  new Deck();
         player = new Player();
@@ -44,6 +50,9 @@ public class Blackjack {
         cntOfRounds++;
     }
 
+    /** get last added card
+     * @return  card to stiring
+     */
     public String getLastAddedCard() {
         if (isPlayerMove) {
             return player.showLastAddedCard();
@@ -52,6 +61,11 @@ public class Blackjack {
         }
     }
 
+    /**moves in game
+     * 1 - adding card to curren player card
+     * 0 - ending the current player move
+     * @param move
+     */
     public void move(int move) {
             switch (move) {
                 case 1:
@@ -78,6 +92,9 @@ public class Blackjack {
 
     //region Logic
 
+    /** is player sum == 21
+     * @return true or false
+     */
     public boolean doesPlayerHaveBlackjack() {
         if (player.getSum() == 21) {
             isPlayerMove = false;
@@ -87,6 +104,9 @@ public class Blackjack {
         return false;
     }
 
+    /** is player sum > 21
+     * @return true or false
+     */
     public boolean doesPlayerHaveOver() {
         if (player.getSum() > 21) {
             isPlayerMove = false;
@@ -96,6 +116,9 @@ public class Blackjack {
         return false;
     }
 
+    /** is dealer sum == 21
+     * @return true or false
+     */
     public boolean doesDealerHaveBlackjack() {
         if (dealer.getSum() == 21) {
             isRoundEnded = true;
@@ -104,6 +127,9 @@ public class Blackjack {
         return false;
     }
 
+    /** is player sum > 21
+     * @return true or false
+     */
     public boolean doesDealerHaveOver() {
         if (dealer.getSum() > 21) {
             isRoundEnded = true;
@@ -112,6 +138,12 @@ public class Blackjack {
         return false;
     }
 
+    /** return:
+     * 1 - player is winner
+     * -1 - dealer is winner
+     * 0 - draw
+     * @return who is winner
+     */
     public int whoIsWinner() {
         if (doesPlayerHaveBlackjack()) {
             playerWins++;
@@ -147,37 +179,67 @@ public class Blackjack {
     //endregion
 
     //region Getters
+
+    /** get player cards in string format
+     * @return cards
+     */
     public String getPlayerCards() {
         return player.showCards();
     }
+
+    /** get player sum
+     * @return sum
+     */
     public int getPlayerSum() {
         return player.getSum();
     }
 
+    /** get dealer cards in string format
+     * @return cards
+     */
     public String getDealerCards() {
         return dealer.showCards();
     }
 
+    /** get dealer sum
+     * @return sum
+     */
     public int getDealerSum() {
         return dealer.getSum();
     }
 
+    /** how many times did player win
+     * @return player wins
+     */
     public int getPlayerWins() {
         return playerWins;
     }
 
+    /** how many times did dealer win
+     * @return dealer wins
+     */
     public int getDealerWins() {
         return dealerWins;
     }
 
+    /** is player move now
+     * @return true or false
+     */
     public boolean isPlayerMove() {
         return isPlayerMove;
     }
 
+
+    /** is current round ended
+     * @return true or false
+     */
     public boolean isRoundEnded() {
         return isRoundEnded;
     }
 
+    /** get all cnt of rounds
+     * @return cnt of rounds
+     */
     public int getCntOfRounds() {
         return cntOfRounds;
     }

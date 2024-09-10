@@ -94,7 +94,7 @@ public class Blackjack {
 
     //region Logic
 
-    /** is player sum == 21.
+    /** is player sum equals 21.
      *
      * @return true or false
      */
@@ -107,7 +107,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is player sum > 21.
+    /** is player sum more than 21.
      *
      * @return true or false
      */
@@ -120,7 +120,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is dealer sum == 21.
+    /** is dealer sum equals 21.
      *
      * @return true or false
      */
@@ -132,7 +132,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is player sum > 21.
+    /** is dealer sum more than 21.
      *
      * @return true or false
      */

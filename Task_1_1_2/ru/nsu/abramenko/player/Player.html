@@ -133,6 +133,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Player</span>
 extends java.lang.Object</pre>
+<div class="block">player.</div>
 </li>
 </ul>
 </div>
@@ -154,7 +155,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Player</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">create player with 0 cards.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -177,42 +180,58 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addCard(ru.nsu.abramenko.card.Card)">addCard</a></span>&#8203;(<a href="../card/Card.html" title="class in ru.nsu.abramenko.card">Card</a>&nbsp;card)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">adds one card and count the cum.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSum()">getSum</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">return sum of card values.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAllCardsOpen()">isAllCardsOpen</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">checks if all player cards is open.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openCard(int)">openCard</a></span>&#8203;(int&nbsp;position)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">open only one card.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openCards()">openCards</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">open all cards.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openLastCard()">openLastCard</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">opens last card.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showCards()">showCards</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">returns all cards in string format.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showLastAddedCard()">showLastAddedCard</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">return the last added card.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -245,6 +264,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Player</h4>
 <pre>public&nbsp;Player()</pre>
+<div class="block">create player with 0 cards.</div>
 </li>
 </ul>
 </li>
@@ -264,6 +284,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addCard</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addCard&#8203;(<a href="../card/Card.html" title="class in ru.nsu.abramenko.card">Card</a>&nbsp;card)</pre>
+<div class="block">adds one card and count the cum.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>card</code> - card</dd>
+</dl>
 </li>
 </ul>
 <a id="showLastAddedCard()">
@@ -273,6 +298,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showLastAddedCard</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;showLastAddedCard()</pre>
+<div class="block">return the last added card.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>last card to string</dd>
+</dl>
 </li>
 </ul>
 <a id="showCards()">
@@ -282,6 +312,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showCards</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;showCards()</pre>
+<div class="block">returns all cards in string format.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>string of all cards</dd>
+</dl>
 </li>
 </ul>
 <a id="isAllCardsOpen()">
@@ -291,6 +326,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isAllCardsOpen</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isAllCardsOpen()</pre>
+<div class="block">checks if all player cards is open.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true or false</dd>
+</dl>
 </li>
 </ul>
 <a id="openCards()">
@@ -300,6 +340,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>openCards</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;openCards()</pre>
+<div class="block">open all cards.</div>
 </li>
 </ul>
 <a id="openCard(int)">
@@ -309,6 +350,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>openCard</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;openCard&#8203;(int&nbsp;position)</pre>
+<div class="block">open only one card.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>position</code> - position in cards</dd>
+</dl>
 </li>
 </ul>
 <a id="openLastCard()">
@@ -318,6 +364,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>openLastCard</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;openLastCard()</pre>
+<div class="block">opens last card.</div>
 </li>
 </ul>
 <a id="getSum()">
@@ -327,6 +374,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getSum</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getSum()</pre>
+<div class="block">return sum of card values.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>sum of card values</dd>
+</dl>
 </li>
 </ul>
 </li>

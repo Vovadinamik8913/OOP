@@ -20,7 +20,7 @@ public class Main {
     }
 
 
-    /** menu of the game.
+    /** menu of the blackjack game.
      *
      * @param args arguments
      */

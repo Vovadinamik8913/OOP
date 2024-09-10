@@ -24,7 +24,7 @@ public class Main {
      *
      * @param args arguments
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Console console = System.console();
 
         int maxRounds = 200;
@@ -45,7 +45,8 @@ public class Main {
             if (!blackjack.isRoundEnded()) {
                 System.out.print("Ваш ход\n" + "-------\n");
                 while (blackjack.isPlayerMove() && !blackjack.doesPlayerHaveBlackjack()) {
-                    System.out.print("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться, и “2”, чтобы закончить игру...\n");
+                    System.out.print("Введите “1”, чтобы взять карту, и “0”," +
+                            " чтобы остановиться, и “2”, чтобы закончить игру...\n");
 
                     if (console == null) {
                         ch = 2;
@@ -69,7 +70,8 @@ public class Main {
                             if (!blackjack.doesPlayerHaveBlackjack()) {
                                 blackjack.doesPlayerHaveOver();
                             }
-                            System.out.print("Вы открыли карту " + blackjack.getLastAddedCard() + "\n");
+                            System.out.print("Вы открыли карту " +
+                                    blackjack.getLastAddedCard() + "\n");
                             showCards(blackjack.getPlayerCards(), blackjack.getDealerCards());
                             break;
                         case 0:
@@ -95,7 +97,8 @@ public class Main {
                         if (!blackjack.doesDealerHaveBlackjack()) {
                             blackjack.doesDealerHaveOver();
                         }
-                        System.out.print("Дилер открыл карту " + blackjack.getLastAddedCard() + "\n");
+                        System.out.print("Дилер открыл карту " +
+                                blackjack.getLastAddedCard() + "\n");
                         showCards(blackjack.getPlayerCards(), blackjack.getDealerCards());
                         System.out.println();
                     }
@@ -112,7 +115,8 @@ public class Main {
                         System.out.print("Ничья! ");
                     }
 
-                    System.out.print("Счет " + blackjack.getPlayerWins() + ":" + blackjack.getDealerWins() + " ");
+                    System.out.print("Счет " + blackjack.getPlayerWins() +
+                            ":" + blackjack.getDealerWins() + " ");
 
                     if (blackjack.getPlayerWins() > blackjack.getDealerWins()) {
                         System.out.print("в вашу пользу.");

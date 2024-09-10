@@ -1,9 +1,9 @@
 package ru.nsu.abramenko.player;
 
 import java.util.ArrayList;
-
-import ru.nsu.abramenko.card.Rank;
 import ru.nsu.abramenko.card.Card;
+import ru.nsu.abramenko.card.Rank;
+
 
 /** player.
  *

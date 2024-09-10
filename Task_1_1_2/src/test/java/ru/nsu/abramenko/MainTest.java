@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 class MainTest {
     @Test
     void mainCheck() {
-            Main.main(null);
-            assertTrue(true);
-
+        Main.main(null);
+        assertTrue(true);
     }
 }

@@ -47,7 +47,7 @@ public class Card {
         return isOpen;
     }
 
-    /** open this card
+    /** open this card.
      *
      */
     public void open() {

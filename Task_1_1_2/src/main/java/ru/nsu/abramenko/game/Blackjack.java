@@ -80,15 +80,15 @@ public class Blackjack {
                 }
                 break;
             case 0:
-                    if (isPlayerMove) {
-                        isPlayerMove = false;
-                        dealer.openCard(1);
-                    } else {
-                        isRoundEnded = true;
-                    }
-                    break;
+                if (isPlayerMove) {
+                    isPlayerMove = false;
+                    dealer.openCard(1);
+                } else {
+                    isRoundEnded = true;
+                }
+                break;
             default:
-                    break;
+                break;
         }
     }
 

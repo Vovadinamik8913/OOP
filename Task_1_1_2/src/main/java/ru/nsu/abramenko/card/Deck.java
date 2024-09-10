@@ -3,13 +3,13 @@ package ru.nsu.abramenko.card;
 import java.util.ArrayList;
 import java.util.Random;
 
-/** 52 cards in deck
+/** 52 cards in deck.
  *
  */
 public class Deck {
     private final ArrayList<Card> cards;
 
-    /** generate deck with 52 cards
+    /** generate deck with 52 cards.
      *
      */
     public Deck() {
@@ -25,7 +25,7 @@ public class Deck {
         shuffle();
     }
 
-    /** shuffle deck
+    /** shuffle deck.
      *
      */
     private void shuffle() {
@@ -39,7 +39,7 @@ public class Deck {
         }
     }
 
-    /** get card from the top of deck
+    /** get card from the top of deck.
      *
      * @return card
      */

@@ -1,6 +1,6 @@
 package ru.nsu.abramenko.card;
 
-/** suit of card
+/** suit of card.
  *
  */
 public enum Suit{
@@ -9,7 +9,7 @@ public enum Suit{
     HEART,
     CLUB;
 
-    /** suit to string
+    /** suit to string.
      *
      * @return
      */

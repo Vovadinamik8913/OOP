@@ -1,6 +1,6 @@
 package ru.nsu.abramenko.card;
 
-/** Rank of card
+/** Rank of card.
  *
  */
 public enum Rank {
@@ -20,7 +20,7 @@ public enum Rank {
 
     private final String rankname;
 
-    /** set name of rank
+    /** set name of rank.
      *
      * @param rankname
      */
@@ -28,7 +28,8 @@ public enum Rank {
         this.rankname = rankname;
     }
 
-    /** convert rank to string
+    /** convert rank to string.
+     *
      * @return rank to string
      */
     @Override
@@ -36,7 +37,7 @@ public enum Rank {
         return  rankname;
     }
 
-    /** get value of Rank
+    /** get value of Rank.
      *
      * @return value
      */

@@ -4,9 +4,12 @@ import java.io.Console;
 import java.util.Scanner;
 import ru.nsu.abramenko.game.Blackjack;
 
+/** Main where is all work.
+ *
+ */
 public class Main {
 
-    /** showing player and dealer cards
+    /** showing player and dealer cards.
      *
      * @param player
      * @param dealer
@@ -17,7 +20,7 @@ public class Main {
     }
 
 
-    /** menu of the game
+    /** menu of the game.
      *
      * @param args
      */

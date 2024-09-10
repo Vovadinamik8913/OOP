@@ -1,6 +1,6 @@
 package ru.nsu.abramenko.card;
 
-/** class Card with Rank, suit and Value
+/** class Card with Rank, suit and Value.
  *
  */
 public class Card {
@@ -9,7 +9,7 @@ public class Card {
     private int value;
     private boolean isOpen;
 
-    /** Constructor of closed Cart
+    /** Constructor of closed Card.
      *
      * @param suit
      * @param rank
@@ -21,7 +21,7 @@ public class Card {
         value = this.rank.getValue();
     }
 
-    /** get Value of Card
+    /** get Value of Card.
      *
      * @return value of Card
      */
@@ -30,7 +30,7 @@ public class Card {
     }
 
 
-    /** change value For Ace from 11 to 1
+    /** change value For Ace from 11 to 1.
      *
      */
     public void changeValue() {
@@ -39,7 +39,7 @@ public class Card {
         }
     }
 
-    /** is this card open
+    /** is this card open.
      *
      * @return true or false
      */
@@ -54,7 +54,7 @@ public class Card {
         isOpen = true;
     }
 
-    /** convert card to string
+    /** convert card to string.
      *
      * @return string of rank, suit and value
      */
@@ -68,7 +68,7 @@ public class Card {
     }
 
 
-    /** rank of card
+    /** rank of card.
      *
      * @return rank of card
      */

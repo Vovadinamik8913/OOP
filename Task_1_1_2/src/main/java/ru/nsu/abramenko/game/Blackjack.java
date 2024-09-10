@@ -4,7 +4,7 @@ package ru.nsu.abramenko.game;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.player.Player;
 
-/** blackjack the Game
+/** blackjack the Game.
  *
  */
 public class Blackjack {
@@ -19,7 +19,7 @@ public class Blackjack {
     private boolean isRoundEnded;
     private Deck deck;
 
-    /** constructor
+    /** constructor.
      *
      */
     public Blackjack() {
@@ -28,7 +28,7 @@ public class Blackjack {
         cntOfRounds = 0;
     }
 
-    /** starting new round
+    /** starting new round.
      *
      */
     public void newRound() {
@@ -50,7 +50,7 @@ public class Blackjack {
         cntOfRounds++;
     }
 
-    /** get last added card
+    /** get last added card.
      *
      * @return  card to stiring
      */
@@ -62,24 +62,24 @@ public class Blackjack {
         }
     }
 
-    /**moves in game
+    /**moves in game.
      * 1 - adding card to curren player card
      * 0 - ending the current player move
      *
      * @param move
      */
     public void move(int move) {
-            switch (move) {
-                case 1:
-                    if (isPlayerMove) {
-                        player.addCard(deck.getCard());
-                        player.openLastCard();
-                    } else {
-                        dealer.addCard(deck.getCard());
-                        dealer.openLastCard();
-                    }
-                    break;
-                case 0:
+        switch (move) {
+            case 1:
+                if (isPlayerMove) {
+                    player.addCard(deck.getCard());
+                    player.openLastCard();
+                } else {
+                    dealer.addCard(deck.getCard());
+                    dealer.openLastCard();
+                }
+                break;
+            case 0:
                     if (isPlayerMove) {
                         isPlayerMove = false;
                         dealer.openCard(1);
@@ -87,14 +87,14 @@ public class Blackjack {
                         isRoundEnded = true;
                     }
                     break;
-                default:
+            default:
                     break;
-            }
+        }
     }
 
     //region Logic
 
-    /** is player sum == 21
+    /** is player sum == 21.
      *
      * @return true or false
      */
@@ -107,7 +107,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is player sum > 21
+    /** is player sum > 21.
      *
      * @return true or false
      */
@@ -120,7 +120,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is dealer sum == 21
+    /** is dealer sum == 21.
      *
      * @return true or false
      */
@@ -132,7 +132,7 @@ public class Blackjack {
         return false;
     }
 
-    /** is player sum > 21
+    /** is player sum > 21.
      *
      * @return true or false
      */
@@ -144,7 +144,7 @@ public class Blackjack {
         return false;
     }
 
-    /** return:
+    /** return.
      * 1 - player is winner
      * -1 - dealer is winner
      * 0 - draw
@@ -187,7 +187,7 @@ public class Blackjack {
 
     //region Getters
 
-    /** get player cards in string format
+    /** get player cards in string format.
      *
      * @return cards
      */
@@ -195,7 +195,7 @@ public class Blackjack {
         return player.showCards();
     }
 
-    /** get player sum
+    /** get player sum.
      *
      * @return sum
      */
@@ -203,7 +203,7 @@ public class Blackjack {
         return player.getSum();
     }
 
-    /** get dealer cards in string format
+    /** get dealer cards in string format.
      *
      * @return cards
      */
@@ -211,7 +211,7 @@ public class Blackjack {
         return dealer.showCards();
     }
 
-    /** get dealer sum
+    /** get dealer sum.
      *
      * @return sum
      */
@@ -219,7 +219,7 @@ public class Blackjack {
         return dealer.getSum();
     }
 
-    /** how many times did player win
+    /** how many times did player wins.
      *
      * @return player wins
      */
@@ -227,7 +227,7 @@ public class Blackjack {
         return playerWins;
     }
 
-    /** how many times did dealer win
+    /** how many times did dealer wins.
      *
      * @return dealer wins
      */
@@ -235,7 +235,7 @@ public class Blackjack {
         return dealerWins;
     }
 
-    /** is player move now
+    /** is player move now.
      *
      * @return true or false
      */
@@ -244,7 +244,7 @@ public class Blackjack {
     }
 
 
-    /** is current round ended
+    /** is current round ended.
      *
      * @return true or false
      */
@@ -252,7 +252,7 @@ public class Blackjack {
         return isRoundEnded;
     }
 
-    /** get all cnt of rounds
+    /** get all cnt of rounds.
      *
      * @return cnt of rounds
      */

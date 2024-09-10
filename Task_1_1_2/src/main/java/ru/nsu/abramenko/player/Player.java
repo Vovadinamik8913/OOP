@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import ru.nsu.abramenko.card.Rank;
 import ru.nsu.abramenko.card.Card;
 
-/** player
+/** player.
  *
  */
 public class Player {
@@ -14,7 +14,7 @@ public class Player {
     private int cntAce;
     private int firstAce = -1;
 
-    /** create player with 0 cards
+    /** create player with 0 cards.
      *
      */
     public Player() {
@@ -23,7 +23,7 @@ public class Player {
         cntAce = 0;
     }
 
-    /** adds one card and count the cum
+    /** adds one card and count the cum.
      *
      * @param card
      */
@@ -47,7 +47,7 @@ public class Player {
         }
     }
 
-    /** return the last added card
+    /** return the last added card.
      *
      * @return last card to string
      */
@@ -55,7 +55,7 @@ public class Player {
         return cards.get(cards.size() - 1).toString();
     }
 
-    /** returns all cards in string format
+    /** returns all cards in string format.
      *
      * @return string of all cards
      */
@@ -76,7 +76,7 @@ public class Player {
 
     // region Openning Cards
 
-    /** checks if all player cards is open
+    /** checks if all player cards is open.
      *
      * @return true or false
      */
@@ -89,7 +89,7 @@ public class Player {
         return true;
     }
 
-    /** open all cards
+    /** open all cards.
      *
      */
     public void openCards() {
@@ -100,7 +100,7 @@ public class Player {
         }
     }
 
-    /** open only one card
+    /** open only one card.
      *
      * @param position
      */
@@ -108,7 +108,7 @@ public class Player {
         cards.get(position).open();
     }
 
-    /** opens last card
+    /** opens last card.
      *
      */
     public void openLastCard() {
@@ -117,7 +117,7 @@ public class Player {
     //endregion
 
 
-    /** return sum of card values
+    /** return sum of card values.
      *
      * @return sum of card values
      */

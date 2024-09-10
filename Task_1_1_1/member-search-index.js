@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"ru.nsu.abramenko","c":"Heapsort","l":"heapify(int[], int, int)","u":"heapify(int[],int,int)"},{"p":"ru.nsu.abramenko","c":"Heapsort","l":"Heapsort()","u":"%3Cinit%3E()"},{"p":"ru.nsu.abramenko","c":"Heapsort","l":"heapsort(int[])"},{"p":"ru.nsu.abramenko","c":"Heapsort","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();

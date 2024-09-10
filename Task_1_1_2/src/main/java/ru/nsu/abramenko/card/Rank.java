@@ -21,6 +21,7 @@ public enum Rank {
     private final String rankname;
 
     /** set name of rank
+     *
      * @param rankname
      */
     Rank(String rankname) {
@@ -36,6 +37,7 @@ public enum Rank {
     }
 
     /** get value of Rank
+     *
      * @return value
      */
     public int getValue() {

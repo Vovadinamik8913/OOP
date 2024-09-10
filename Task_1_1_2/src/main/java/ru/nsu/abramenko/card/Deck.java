@@ -40,6 +40,7 @@ public class Deck {
     }
 
     /** get card from the top of deck
+     *
      * @return card
      */
     public Card getCard() {

@@ -7,6 +7,7 @@ import ru.nsu.abramenko.game.Blackjack;
 public class Main {
 
     /** showing player and dealer cards
+     *
      * @param player
      * @param dealer
      */
@@ -17,6 +18,7 @@ public class Main {
 
 
     /** menu of the game
+     *
      * @param args
      */
     public static void main(String[] args){

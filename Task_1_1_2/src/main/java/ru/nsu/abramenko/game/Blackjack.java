@@ -51,6 +51,7 @@ public class Blackjack {
     }
 
     /** get last added card
+     *
      * @return  card to stiring
      */
     public String getLastAddedCard() {
@@ -64,6 +65,7 @@ public class Blackjack {
     /**moves in game
      * 1 - adding card to curren player card
      * 0 - ending the current player move
+     *
      * @param move
      */
     public void move(int move) {
@@ -93,6 +95,7 @@ public class Blackjack {
     //region Logic
 
     /** is player sum == 21
+     *
      * @return true or false
      */
     public boolean doesPlayerHaveBlackjack() {
@@ -105,6 +108,7 @@ public class Blackjack {
     }
 
     /** is player sum > 21
+     *
      * @return true or false
      */
     public boolean doesPlayerHaveOver() {
@@ -117,6 +121,7 @@ public class Blackjack {
     }
 
     /** is dealer sum == 21
+     *
      * @return true or false
      */
     public boolean doesDealerHaveBlackjack() {
@@ -128,6 +133,7 @@ public class Blackjack {
     }
 
     /** is player sum > 21
+     *
      * @return true or false
      */
     public boolean doesDealerHaveOver() {
@@ -142,6 +148,7 @@ public class Blackjack {
      * 1 - player is winner
      * -1 - dealer is winner
      * 0 - draw
+     *
      * @return who is winner
      */
     public int whoIsWinner() {
@@ -181,6 +188,7 @@ public class Blackjack {
     //region Getters
 
     /** get player cards in string format
+     *
      * @return cards
      */
     public String getPlayerCards() {
@@ -188,6 +196,7 @@ public class Blackjack {
     }
 
     /** get player sum
+     *
      * @return sum
      */
     public int getPlayerSum() {
@@ -195,6 +204,7 @@ public class Blackjack {
     }
 
     /** get dealer cards in string format
+     *
      * @return cards
      */
     public String getDealerCards() {
@@ -202,6 +212,7 @@ public class Blackjack {
     }
 
     /** get dealer sum
+     *
      * @return sum
      */
     public int getDealerSum() {
@@ -209,6 +220,7 @@ public class Blackjack {
     }
 
     /** how many times did player win
+     *
      * @return player wins
      */
     public int getPlayerWins() {
@@ -216,6 +228,7 @@ public class Blackjack {
     }
 
     /** how many times did dealer win
+     *
      * @return dealer wins
      */
     public int getDealerWins() {
@@ -223,6 +236,7 @@ public class Blackjack {
     }
 
     /** is player move now
+     *
      * @return true or false
      */
     public boolean isPlayerMove() {
@@ -231,6 +245,7 @@ public class Blackjack {
 
 
     /** is current round ended
+     *
      * @return true or false
      */
     public boolean isRoundEnded() {
@@ -238,6 +253,7 @@ public class Blackjack {
     }
 
     /** get all cnt of rounds
+     *
      * @return cnt of rounds
      */
     public int getCntOfRounds() {

@@ -10,6 +10,7 @@ public class Card {
     private boolean isOpen;
 
     /** Constructor of closed Cart
+     *
      * @param suit
      * @param rank
      */
@@ -21,6 +22,7 @@ public class Card {
     }
 
     /** get Value of Card
+     *
      * @return value of Card
      */
     public int getValue() {
@@ -38,6 +40,7 @@ public class Card {
     }
 
     /** is this card open
+     *
      * @return true or false
      */
     public boolean isOpen() {
@@ -52,6 +55,7 @@ public class Card {
     }
 
     /** convert card to string
+     *
      * @return string of rank, suit and value
      */
     @Override
@@ -65,6 +69,7 @@ public class Card {
 
 
     /** rank of card
+     *
      * @return rank of card
      */
     public Rank getRank() {

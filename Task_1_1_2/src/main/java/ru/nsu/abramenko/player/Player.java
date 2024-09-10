@@ -24,6 +24,7 @@ public class Player {
     }
 
     /** adds one card and count the cum
+     *
      * @param card
      */
     public void addCard(Card card) {
@@ -47,6 +48,7 @@ public class Player {
     }
 
     /** return the last added card
+     *
      * @return last card to string
      */
     public String showLastAddedCard() {
@@ -54,6 +56,7 @@ public class Player {
     }
 
     /** returns all cards in string format
+     *
      * @return string of all cards
      */
     public String showCards() {
@@ -74,6 +77,7 @@ public class Player {
     // region Openning Cards
 
     /** checks if all player cards is open
+     *
      * @return true or false
      */
     public boolean isAllCardsOpen() {
@@ -97,6 +101,7 @@ public class Player {
     }
 
     /** open only one card
+     *
      * @param position
      */
     public void openCard(int position) {
@@ -113,6 +118,7 @@ public class Player {
 
 
     /** return sum of card values
+     *
      * @return sum of card values
      */
     public int getSum() {

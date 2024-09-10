@@ -1,0 +1,50 @@
+Index: ../Task_1_1_1/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"13028084-1100-4260-a571-a10e76d10f1d\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n        <option value=\"JUnit5 Test Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 6\n}</component>\n  <component name=\"ProjectId\" id=\"2ldMTVBy9x2WXaW10zndWwajhv9\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Gradle.HeapsortTest.executor\": \"Run\",\n    \"Gradle.Task_1_1_1.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"Shell Script.work_please.sh.executor\": \"Run\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\n    \"git-widget-placeholder\": \"Task__1__1__1\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"settings.editor.selected.configurable\": \"preferences.lookFeel\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateTestDialog.Recents.Supers\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"CreateTestDialog.RecentsKey\">\n      <recent name=\"ru.nsu.abramenko\" />\n    </key>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"13028084-1100-4260-a571-a10e76d10f1d\" name=\"Changes\" comment=\"\" />\n      <created>1725505507706</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1725505507706</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Task_1_1_1/.idea/workspace.xml b/../Task_1_1_1/.idea/workspace.xml
+--- a/../Task_1_1_1/.idea/workspace.xml	(revision ca9a608eeffbdf9470f6258f1ca41f92b3f445b2)
++++ b/../Task_1_1_1/.idea/workspace.xml	(date 1725897096748)
+@@ -4,8 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="13028084-1100-4260-a571-a10e76d10f1d" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/Heapsort.java" afterDir="false" />
++    <list default="true" id="13028084-1100-4260-a571-a10e76d10f1d" name="Changes" comment="last">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -46,6 +46,7 @@
+     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+     "git-widget-placeholder": "Task__1__1__1",
+     "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "/home/abrikosjr/Desktop/OOPworkspace/OOP/Task_1_1_2",
+     "settings.editor.selected.configurable": "preferences.lookFeel"
+   }
+ }]]></component>
+@@ -66,6 +67,19 @@
+       <option name="presentableId" value="Default" />
+       <updated>1725505507706</updated>
+     </task>
++    <task id="LOCAL-00001" summary="last">
++      <option name="closed" value="true" />
++      <created>1725896965316</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1725896965316</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="last" />
++    <option name="LAST_COMMIT_MESSAGE" value="last" />
++  </component>
+ </project>
+\ No newline at end of file

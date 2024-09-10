@@ -7,9 +7,9 @@ package ru.nsu.abramenko;
 public class Heapsort {
     /** Преобразование кучи относительно некоторого элемента.
      *
-     * @param arr
-     * @param n
-     * @param i
+     * @param arr array to heapify
+     * @param n len
+     * @param i pos
      */
     private static void heapify(int[] arr, int n, int i) {
         int largest = i;
@@ -31,15 +31,15 @@ public class Heapsort {
 
     /** Сортировка массива, чрезе создание кучи и перестраивание через heapify.
      *
-     * @param arr
-     * @return sortea array
+     * @param arr array to sort
+     * @return sorted array
      */
     public static int[] heapsort(int[] arr) {
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(arr, n, i);
         }
-        for (int i = n-1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
@@ -50,7 +50,7 @@ public class Heapsort {
 
     /** main.
      *
-     * @param args
+     * @param args arguments from terminal
      */
     public static void main(String[] args) {
         for (int i : heapsort(new int[] {5, 4, 3, 2, 1})) {

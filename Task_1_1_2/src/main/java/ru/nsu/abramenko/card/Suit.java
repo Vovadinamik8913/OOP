@@ -3,7 +3,7 @@ package ru.nsu.abramenko.card;
 /** suit of card.
  *
  */
-public enum Suit{
+public enum Suit {
     SPADE("♠"),
     DIAMOND("♦"),
     HEART("♥"),

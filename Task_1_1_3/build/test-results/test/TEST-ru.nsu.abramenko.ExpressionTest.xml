@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.abramenko.ExpressionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-13T06:48:11" hostname="abrikosjr-lx" time="0.074">
+  <properties/>
+  <testcase name="mainCheck()" classname="ru.nsu.abramenko.ExpressionTest" time="0.074"/>
+  <system-out><![CDATA[(3.0+(2.0*x))
+(0.0+(0.0+2.0))
+23.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

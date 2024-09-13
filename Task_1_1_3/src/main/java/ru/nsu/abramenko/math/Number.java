@@ -1,0 +1,20 @@
+package ru.nsu.abramenko.math;
+
+public class Number extends Expression {
+    private double value;
+
+    public Number(double number) {
+        this.expression = Double.toString(number);
+        value = number;
+    }
+
+    @Override
+    public double eval(String s) {
+        return value;
+    }
+
+    @Override
+    public Expression derivative(String s) {
+        return new Number(0);
+    }
+}

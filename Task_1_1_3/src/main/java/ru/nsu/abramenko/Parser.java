@@ -1,12 +1,13 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.math.Expression;
 import ru.nsu.abramenko.math.Div;
 import ru.nsu.abramenko.math.Mul;
 import ru.nsu.abramenko.math.Sub;
-import ru.nsu.abramenko.math.Variable;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Number;
+import ru.nsu.abramenko.math.Variable;
+import ru.nsu.abramenko.math.Expression;
+
 
 
 /** Parser.
@@ -78,6 +79,7 @@ public class Parser {
     }
 
     /** converts string to expression.
+     *
      * @param str string exp
      * @param pos begin
      * @return expression
@@ -118,7 +120,7 @@ public class Parser {
                     if (containsNumbers(s)) {
                         add = new Number(Double.parseDouble(s) * f);
                     } else {
-                        add = new Variable(s.substring(0, s.length()-1));
+                        add = new Variable(s.substring(0, s.length() - 1));
                     }
                 }
                 s = "";
@@ -127,7 +129,7 @@ public class Parser {
                 if (containsNumbers(s)) {
                     add = new Number(Double.parseDouble(s) * f);
                 } else {
-                    add = new Variable(s.substring(0, s.length()-1));
+                    add = new Variable(s.substring(0, s.length() - 1));
                 }
             }
             res = add;
@@ -135,13 +137,11 @@ public class Parser {
         return res;
     }
 
-    private static Expression parseManom(String str, int[] pos)
-    {
+    private static Expression parseManom(String str, int[] pos) {
         Expression res = parseAtom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
-        while (s.charAt(0) == '*' || s.charAt(0) == '/')
-        {
+        while (s.charAt(0) == '*' || s.charAt(0) == '/') {
             operation = readToken(str, pos);
             Expression add = parseAtom(str, pos);
             res = oper(operation.charAt(0), res, add);
@@ -160,8 +160,7 @@ public class Parser {
                 com[j++] = '-';
                 com[j++] = '1';
                 com[j++] = '*';
-            }
-            else {
+            } else {
                 com[j++] = str.charAt(i);
             }
         }

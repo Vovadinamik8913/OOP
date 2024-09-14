@@ -1,10 +1,17 @@
 package ru.nsu.abramenko.math;
 
+/** sub expression.
+ *
+ */
 public class Sub extends Expression{
 
     private final Expression left;
     private final Expression right;
 
+    /** a sub b.
+     * @param a left
+     * @param b right
+     */
     public Sub(Expression a, Expression b) {
         this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
         left = a;

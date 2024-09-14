@@ -1,9 +1,17 @@
 package ru.nsu.abramenko.math;
 
+
+/** Add expression.
+ *
+ */
 public class Add extends Expression{
     private final Expression left;
     private final Expression right;
 
+    /** a add b expression.
+     * @param a left expr
+     * @param b right expr
+     */
     public Add(Expression a, Expression b) {
         this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
         left = a;

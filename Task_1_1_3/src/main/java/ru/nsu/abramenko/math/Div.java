@@ -1,9 +1,16 @@
 package ru.nsu.abramenko.math;
 
+/** div expression.
+ *
+ */
 public class Div extends Expression {
     private final Expression left;
     private final Expression right;
 
+    /** a div b expression.
+     * @param a left
+     * @param b right
+     */
     public Div(Expression a, Expression b) {
         this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
         left = a;

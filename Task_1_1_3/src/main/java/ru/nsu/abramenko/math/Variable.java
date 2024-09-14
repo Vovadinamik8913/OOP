@@ -1,7 +1,13 @@
 package ru.nsu.abramenko.math;
 
+/** variable.
+ *
+ */
 public class Variable extends Expression {
 
+    /** new var.
+     * @param variable name of var
+     */
     public Variable(String variable) {
         this.expression = variable;
     }

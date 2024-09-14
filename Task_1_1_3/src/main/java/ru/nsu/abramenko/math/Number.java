@@ -1,8 +1,14 @@
 package ru.nsu.abramenko.math;
 
+/** number.
+ *
+ */
 public class Number extends Expression {
-    private double value;
+    private final double value;
 
+    /** number.
+     * @param number number
+     */
     public Number(double number) {
         this.expression = Double.toString(number);
         value = number;

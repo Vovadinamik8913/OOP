@@ -1,11 +1,11 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.math.Number;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Div;
 import ru.nsu.abramenko.math.Mul;
-import ru.nsu.abramenko.math.Sub;
+import ru.nsu.abramenko.math.Number;
 import ru.nsu.abramenko.math.Expression;
+import ru.nsu.abramenko.math.Sub;
 import ru.nsu.abramenko.math.Variable;
 
 
@@ -150,7 +150,7 @@ public class Parser {
         return res;
     }
 
-    public static String ReplaceMinusWithNegative(String str) {
+    /*public static String ReplaceMinusWithNegative(String str) {
         char[] com = new char[100001];
         int len = str.length();
         int j = 0;
@@ -171,5 +171,5 @@ public class Parser {
             res += com[i];
         }
         return res;
-    }
+    }*/
 }

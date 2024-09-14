@@ -25,16 +25,16 @@ public class Variable extends Expression {
                 }
                 int last = key.indexOf(' ', ind, key.length());
                 String arg = key.substring(ind, last);
-                ind = key.indexOf('=') + 1;
-                while (key.charAt(ind) == ' ') {
-                    ind++;
-                }
-                last = key.indexOf(' ', ind, key.length());
-                if (last == -1) {
-                    last = key.length();
-                }
-                String v = key.substring(ind, last);
                 if (arg.equals(expression)) {
+                    ind = key.indexOf('=') + 1;
+                    while (key.charAt(ind) == ' ') {
+                        ind++;
+                    }
+                    last = key.indexOf(' ', ind, key.length());
+                    if (last == -1) {
+                        last = key.length();
+                    }
+                    String v = key.substring(ind, last);
                     val = v;
                     break;
                 }

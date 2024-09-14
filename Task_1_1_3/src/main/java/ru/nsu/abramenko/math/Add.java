@@ -4,12 +4,12 @@ package ru.nsu.abramenko.math;
 /** Add expression.
  *
  */
-public class Add extends Expression{
+public class Add extends Expression {
     private final Expression left;
     private final Expression right;
 
     /** a add b expression.
-     * 
+     *
      * @param a left expr
      * @param b right expr
      */
@@ -36,7 +36,7 @@ public class Add extends Expression{
         if (right == null) {
             return  left.derivative(s);
         }
-        return new Add(left.derivative(s),right.derivative(s));
+        return new Add(left.derivative(s), right.derivative(s));
     }
 
     @Override

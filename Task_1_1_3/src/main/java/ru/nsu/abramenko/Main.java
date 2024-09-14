@@ -27,5 +27,9 @@ public class Main {
         e.print();
         Expression de = e.simplify();
         de.print();
+        de = e.derivative("x");
+        de.print();
+        Expression sde = de.simplify();
+        sde.print();
     }
 }

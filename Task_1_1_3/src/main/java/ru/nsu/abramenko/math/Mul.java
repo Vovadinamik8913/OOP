@@ -20,17 +20,11 @@ public class Mul extends Expression{
 
     @Override
     public double eval(String s) {
-        if (right == null) {
-            return  left.eval(s);
-        }
         return left.eval(s) * right.eval(s);
     }
 
     @Override
     public Expression derivative(String s) {
-        if (right == null) {
-            return  left.derivative(s);
-        }
         return new Add(new Mul(left.derivative(s), right), new Mul(left, right.derivative(s)));
     }
 

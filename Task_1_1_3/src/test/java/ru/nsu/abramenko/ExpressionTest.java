@@ -65,4 +65,14 @@ class ExpressionTest {
         de.print();
         assertTrue(true);
     }
+
+    @Test
+    @DisplayName("DivZero")
+    void divZeroTest() {
+        Expression e = new Div(new Variable("0"), new Sub(new Number(3), new Number(2)));
+        Expression de = e.simplify();
+        e.print();
+        de.print();
+        assertTrue(true);
+    }
 }

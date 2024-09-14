@@ -21,21 +21,11 @@ public class Add extends Expression {
 
     @Override
     public double eval(String s) {
-        double res = 0;
-        if (left != null) {
-            res += left.eval(s);
-        }
-        if (right != null) {
-            res += right.eval(s);
-        }
-        return res;
+        return left.eval(s) + right.eval(s);
     }
 
     @Override
     public Expression derivative(String s) {
-        if (right == null) {
-            return  left.derivative(s);
-        }
         return new Add(left.derivative(s), right.derivative(s));
     }
 

@@ -42,6 +42,10 @@ public class Sub extends Expression {
         } else if (left.getExpression().equals(right.getExpression())) {
             return new Number(0);
         }
-        return  new Sub(left.simplify(), right.simplify());
+        Expression e = new Sub(left.simplify(), right.simplify());
+        if (!this.expression.equals(e.expression)) {
+            return e.simplify();
+        }
+        return  this;
     }
 }

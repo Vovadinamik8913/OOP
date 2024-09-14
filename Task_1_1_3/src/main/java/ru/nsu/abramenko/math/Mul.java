@@ -48,6 +48,10 @@ public class Mul extends Expression{
                 && right.eval(null) == 1) {
             return left.simplify();
         }
-        return  new Mul(left.simplify(), right.simplify());
+        Expression e = new Mul(left.simplify(), right.simplify());
+        if (!this.expression.equals(e.expression)) {
+            return e.simplify();
+        }
+        return  this;
     }
 }

@@ -44,7 +44,11 @@ public class Div extends Expression {
         } else if (left.getClass() == Number.class && left.eval(null) == 0) {
             return new Number(0);
         }
-        return new Div(left.simplify(), right.simplify());
+        Expression e = new Div(left.simplify(), right.simplify());
+        if (!this.expression.equals(e.expression)) {
+            return e.simplify();
+        }
+        return  this;
     }
 }
 

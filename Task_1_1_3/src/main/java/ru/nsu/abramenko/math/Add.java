@@ -44,6 +44,16 @@ public class Add extends Expression {
         if (left.getClass() == Number.class && right.getClass() == Number.class) {
             return new Number(left.eval(null) + right.eval(null));
         }
-        return new Add(left.simplify(), right.simplify());
+        if (left.getClass() == Number.class && left.eval(null) == 0) {
+            return right.simplify();
+        }
+        if (right.getClass() == Number.class && right.eval(null) == 0) {
+            return left.simplify();
+        }
+        Expression e = new Add(left.simplify(), right.simplify());
+        if (!this.expression.equals(e.expression)) {
+            return e.simplify();
+        }
+        return  this;
     }
 }

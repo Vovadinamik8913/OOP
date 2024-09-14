@@ -1,12 +1,18 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.math.*;
+import ru.nsu.abramenko.math.Expression;
+import ru.nsu.abramenko.math.Div;
+import ru.nsu.abramenko.math.Mul;
+import ru.nsu.abramenko.math.Sub;
+import ru.nsu.abramenko.math.Variable;
+import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Number;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/** Parser.
+ * Converts string to expression
+ *
+ */
 public class Parser {
 
     private static boolean containsNumbers(String s) {
@@ -71,8 +77,12 @@ public class Parser {
         return token;
     }
 
-    public static Expression parseExpr(String str, int[] pos)
-    {
+    /** converts string to expression.
+     * @param str string exp
+     * @param pos begin
+     * @return expression
+     */
+    public static Expression parseExpr(String str, int[] pos) {
         Expression res = parseManom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -99,7 +109,9 @@ public class Parser {
             if (s.charAt(0) == '-') {
                 f *= -1;
                 s = peekToken(str, pos);
-                if (s.charAt(0) == '-' || s.charAt(0) == '+' || s.charAt(0) == '/' || s.charAt(0) == '*' || s.charAt(0) == '(') {
+                if (s.charAt(0) == '-' || s.charAt(0) == '+'
+                        || s.charAt(0) == '/' || s.charAt(0) == '*'
+                        || s.charAt(0) == '(') {
                     add = parseExpr(str, pos);
                 } else {
                     s = readToken(str, pos);

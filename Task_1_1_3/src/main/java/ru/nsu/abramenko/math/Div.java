@@ -5,19 +5,9 @@ public class Div extends Expression {
     private final Expression right;
 
     public Div(Expression a, Expression b) {
-        if (a.getClass() == Number.class && b.getClass() == Number.class) {
-            left = new Number(a.eval(null) / b.eval(null));
-            right = null;
-            this.expression = left.getExpression();
-        } else if (a.getClass() == Number.class && a.eval(null) == 0) {
-            left = new Number(0);
-            right = null;
-            this.expression = left.getExpression();
-        } else {
-            this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
-            left = a;
-            right = b;
-        }
+        this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -37,6 +27,16 @@ public class Div extends Expression {
                 new Sub(
                         new Mul(left.derivative(s), right), new Mul(left, right.derivative(s))),
                 new Mul(right, right));
+    }
+
+    @Override
+    public Expression simplify() {
+        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+            return new Number(left.eval(null) / right.eval(null));
+        } else if (left.getClass() == Number.class && left.eval(null) == 0) {
+            return new Number(0);
+        }
+        return new Div(left.simplify(), right.simplify());
     }
 }
 

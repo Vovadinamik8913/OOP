@@ -5,30 +5,9 @@ public class Mul extends Expression{
     private final Expression right;
 
     public Mul(Expression a, Expression b) {
-        if (a.getClass() == Number.class && b.getClass() == Number.class) {
-            left = new Number(a.eval(null) * b.eval(null));
-            right = null;
-            this.expression = left.getExpression();
-        } else if ((a.getClass() == Number.class && a.eval(null) == 0)
-                || (b.getClass() == Number.class && b.eval(null) == 0)) {
-            left = new Number(0);
-            right = null;
-            this.expression = left.getExpression();
-        } else if (a.getClass() == Number.class
-                && a.eval(null) == 1) {
-            left = b;
-            right = null;
-            this.expression = left.getExpression();
-        }  else if (b.getClass() == Number.class
-                && b.eval(null) == 1) {
-            left = a;
-            right = null;
-            this.expression = left.getExpression();
-        } else {
-            this.expression = "(" + a.getExpression() + "*" + b.getExpression() + ")";
-            left = a;
-            right = b;
-        }
+        this.expression = "(" + a.getExpression() + "*" + b.getExpression() + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -45,5 +24,22 @@ public class Mul extends Expression{
             return  left.derivative(s);
         }
         return new Add(new Mul(left.derivative(s), right), new Mul(left, right.derivative(s)));
+    }
+
+    @Override
+    public Expression simplify() {
+        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+            return new Number(left.eval(null) * right.eval(null));
+        } else if ((left.getClass() == Number.class && left.eval(null) == 0)
+                || (right.getClass() == Number.class && right.eval(null) == 0)) {
+            return new Number(0);
+        } else if (left.getClass() == Number.class
+                && left.eval(null) == 1) {
+            return right.simplify();
+        }  else if (right.getClass() == Number.class
+                && right.eval(null) == 1) {
+            return left.simplify();
+        }
+        return  new Mul(left.simplify(), right.simplify());
     }
 }

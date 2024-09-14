@@ -6,19 +6,9 @@ public class Sub extends Expression{
     private final Expression right;
 
     public Sub(Expression a, Expression b) {
-        if (a.getClass() == Number.class && b.getClass() == Number.class) {
-            left = new Number(a.eval(null) - b.eval(null));
-            right = null;
-            this.expression = left.getExpression();
-        } else if (a.getExpression().equals(b.getExpression())) {
-            left = new Number(0);
-            right = null;
-            this.expression = left.getExpression();
-        } else {
-            this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
-            left = a;
-            right = b;
-        }
+        this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -35,5 +25,15 @@ public class Sub extends Expression{
             return  left.derivative(s);
         }
         return new Sub(left.derivative(s), right.derivative(s));
+    }
+
+    @Override
+    public Expression simplify() {
+        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+            return new Number(left.eval(null) - right.eval(null));
+        } else if (left.getExpression().equals(right.getExpression())) {
+            return new Number(0);
+        }
+        return  new Sub(left.simplify(), right.simplify());
     }
 }

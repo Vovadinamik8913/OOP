@@ -43,4 +43,9 @@ public class Variable extends Expression {
         }
         return new Number(0);
     }
+
+    @Override
+    public Expression simplify() {
+        return this;
+    }
 }

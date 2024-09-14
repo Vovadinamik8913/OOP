@@ -5,15 +5,9 @@ public class Add extends Expression{
     private final Expression right;
 
     public Add(Expression a, Expression b) {
-        if (a.getClass() == Number.class && b.getClass() == Number.class) {
-            left = new Number(a.eval(null) + b.eval(null));
-            right = null;
-            this.expression = left.getExpression();
-        } else {
-            this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
-            left = a;
-            right = b;
-        }
+        this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -34,5 +28,13 @@ public class Add extends Expression{
             return  left.derivative(s);
         }
         return new Add(left.derivative(s),right.derivative(s));
+    }
+
+    @Override
+    public Expression simplify() {
+        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+            return new Number(left.eval(null) + right.eval(null));
+        }
+        return new Add(left.simplify(), right.simplify());
     }
 }

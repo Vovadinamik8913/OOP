@@ -1,10 +1,7 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.math.Add;
-import ru.nsu.abramenko.math.Expression;
-import ru.nsu.abramenko.math.Mul;
+import ru.nsu.abramenko.math.*;
 import ru.nsu.abramenko.math.Number;
-import ru.nsu.abramenko.math.Variable;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,5 +14,10 @@ public class Main {
 
         double result = e.eval("x = 10; y = 13");
         System.out.println(result);
+
+        e = new Sub(new Add(new Number(2), new Variable("x")), new Add(new Variable("x"), new Number(2)));
+        de = e.simplify();
+        e.print();
+        de.print();
     }
 }

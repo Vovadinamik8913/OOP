@@ -93,6 +93,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Mul</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span></div>
+<div class="block">multiply expression.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -115,7 +116,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.abramenko.math.Expression,ru.nsu.abramenko.math.Expression)" class="member-name-link">Mul</a><wbr>(<a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;a,
  <a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;b)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">a mul b.</div>
+</div>
 </div>
 </section>
 </li>
@@ -132,13 +135,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">derivative.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.lang.String)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">evluate.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">simplify original.</div>
+</div>
 </div>
 </div>
 </div>
@@ -164,6 +173,12 @@ loadScripts(document, 'script');</script>
 <h3>Mul</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Mul</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;a,
  <a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;b)</span></div>
+<div class="block">a mul b.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - left</dd>
+<dd><code>b</code> - right</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -178,9 +193,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.lang.String)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#eval(java.lang.String)">Expression</a></code></span></div>
+<div class="block">evluate.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#eval(java.lang.String)">eval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>s</code> - arg equals something</dd>
+<dt>Returns:</dt>
+<dd>number</dd>
 </dl>
 </section>
 </li>
@@ -188,9 +209,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
+<div class="block">derivative.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>s</code> - for which arg</dd>
+<dt>Returns:</dt>
+<dd>new expression</dd>
 </dl>
 </section>
 </li>
@@ -198,9 +225,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="simplify()">
 <h3>simplify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#simplify()">Expression</a></code></span></div>
+<div class="block">simplify original.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></dd>
+<dt>Returns:</dt>
+<dd>new expression</dd>
 </dl>
 </section>
 </li>

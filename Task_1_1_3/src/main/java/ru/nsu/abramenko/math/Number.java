@@ -7,6 +7,7 @@ public class Number extends Expression {
     private final double value;
 
     /** number.
+     *
      * @param number number
      */
     public Number(double number) {

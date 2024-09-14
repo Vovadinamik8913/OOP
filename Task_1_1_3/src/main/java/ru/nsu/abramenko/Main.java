@@ -7,7 +7,7 @@ import ru.nsu.abramenko.math.Number;
  *
  */
 public class Main {
-    
+
     /** main.
      * @param args string
      */

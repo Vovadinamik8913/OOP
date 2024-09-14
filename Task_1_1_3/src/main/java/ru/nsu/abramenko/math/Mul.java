@@ -8,6 +8,7 @@ public class Mul extends Expression{
     private final Expression right;
 
     /** a mul b.
+     *
      * @param a left
      * @param b right
      */

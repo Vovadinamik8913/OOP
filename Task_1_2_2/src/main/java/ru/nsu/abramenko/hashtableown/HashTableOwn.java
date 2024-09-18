@@ -1,21 +1,32 @@
 package ru.nsu.abramenko.hashtableown;
 
-
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
+/** My own hashtable.
+ * @param <K> key
+ * @param <V> value
+ */
 public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     private static final double LADEN = 0.7;
     private Node<K, V>[] hashTable;
     private int capacity;
     private int size;
 
+    /** constructor of empty table.
+     *
+     */
     public HashTableOwn() {
         this.hashTable = null;
         this.capacity = 0;
         this.size = 0;
     }
 
+    /** resizing table and saving data.
+     *
+     */
     public void resize() {
         int new_capacity;
         if (capacity == 0) {
@@ -40,6 +51,10 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         capacity = new_capacity;
     }
 
+    /** removing data by key.
+     *
+     * @param key key of node
+     */
     public void remove(K key) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
@@ -59,6 +74,11 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         }
     }
 
+    /** get if exists value of node by key.
+     *
+     * @param key key of node
+     * @return value of node( or null)
+     */
     public V get(K key) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
@@ -73,10 +93,20 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return null;
     }
 
+    /** get index in table by key
+     *
+     * @param key key of node
+     * @return index in table
+     */
     private int getIndex(K key) {
         return Math.abs(key.hashCode()) % capacity;
     }
 
+    /** isThere a node with that key.
+     *
+     * @param key key of node
+     * @return true or false
+     */
     public boolean contains(K key) {
         int hash = key.hashCode() % capacity;
         Node<K, V> current = hashTable[hash];
@@ -91,6 +121,12 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return false;
     }
 
+    /** put new value in table with key.
+     * if exists do nothing
+     *
+     * @param key key of node
+     * @param value value of node
+     */
     public void put(K key, V value) {
         if (capacity == 0 || (double)size / capacity >= LADEN) {
             resize();
@@ -112,6 +148,12 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         size++;
     }
 
+    /** updates old value of node to new.
+     *  if isn`t exists put it
+     *
+     * @param key key of node
+     * @param value value of node
+     */
     public void update(K key, V value) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
@@ -130,6 +172,10 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         size++;
     }
 
+    /** making table iterable.
+     *
+     * @return iterator
+     */
     @Override
     public Iterator<Node<K, V>> iterator() {
         return new Iterator<Node<K, V>>() {
@@ -137,6 +183,10 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
             private Node<K, V> obj = null;
             private int index = 0;
 
+            /** isThere next node in table.
+             *
+             * @return true of false
+             */
             @Override
             public boolean hasNext() {
                 if (obj != null && obj.getNext() != null) {
@@ -151,6 +201,10 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
                 return false;
             }
 
+            /** getting next node.
+             *
+             * @return next node
+             */
             @Override
             public Node<K, V> next() {
                 if (objSize != size) {
@@ -159,12 +213,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
                 if (obj != null && obj.getNext() != null) {
                     obj = obj.next;
                 } else {
-                    while (index < hashTable.length && hashTable[index] == null) {
-                        index++;
-                    }
-                    if (index >= hashTable.length) {
-                        throw new NoSuchElementException();
-                    }
                     obj = hashTable[index++];
                 }
                 return obj;
@@ -172,12 +220,20 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         };
     }
 
+    /** foreach with some action.
+     *
+     * @param action The action to be performed for each element
+     */
     @Override
     public void forEach(Consumer<? super Node<K, V>> action) {
         Iterable.super.forEach(action);
     }
 
 
+    /** returns table in string format.
+     *
+     * @return table to string
+     */
     @Override
     public String toString() {
         String res = "";
@@ -194,9 +250,14 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return res;
     }
 
+    /** isThis obj equals
+     *
+     * @param obj another table
+     * @return true of false
+     */
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || obj.getClass() != HashTableOwn.class) {
             return false;
         }
         HashTableOwn<K, V> table = (HashTableOwn<K, V>) obj;
@@ -229,11 +290,21 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return true;
     }
 
+    /** what the table is made of.
+     *
+     * @param <K> key
+     * @param <V> value
+     */
     public static class Node<K, V> {
         private final K key;
         private V value;
         private Node<K, V> next;
 
+        /** constructor.
+         *
+         * @param key key
+         * @param value value
+         */
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
@@ -241,34 +312,63 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         }
 
 
+        /**set value.
+         *
+         * @param value newValue
+         */
         public void setValue(V value) {
             this.value = value;
         }
 
+        /** get next node.
+         *
+         * @return next node
+         */
         public Node<K, V> getNext() {
             return next;
         }
 
+        /** set next node.
+         *
+         * @param next next node
+         */
         public void setNext(Node<K, V> next) {
             this.next = next;
         }
 
+        /** get key.
+         *
+         * @return key
+         */
         public K getKey() {
             return key;
         }
 
+        /** get value.
+         *
+         * @return value
+         */
         public V getValue() {
             return value;
         }
 
+        /** convert node to string.
+         *
+         * @return node to string
+         */
         @Override
         public String toString() {
             return "(" + key.toString() + " => " + value.toString() + ")";
         }
 
+        /** is obj equals.
+         *
+         * @param obj another node
+         * @return true or false
+         */
         @Override
         public boolean equals(Object obj) {
-            if (obj == null) {
+            if (obj == null || obj.getClass() == Node.class) {
                 return false;
             }
             Node<K, V> node = (Node<K, V>) obj;

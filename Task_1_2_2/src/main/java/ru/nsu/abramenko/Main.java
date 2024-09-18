@@ -2,7 +2,15 @@ package ru.nsu.abramenko;
 
 import ru.nsu.abramenko.hashtableown.HashTableOwn;
 
+/** main class testing with out.
+ *
+ */
 public class Main {
+
+    /** main.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
         HashTableOwn<String, Number> table = new HashTableOwn();
         table.put("one", 1);
@@ -27,5 +35,5 @@ public class Main {
         table1.forEach((s) -> System.out.print(s.getValue() + " "));
         System.out.println();
         System.out.println(table.equals(table1));
-     }
+    }
 }

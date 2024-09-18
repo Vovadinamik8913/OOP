@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.abramenko.hashtableown","l":"HashTableOwn"},{"p":"ru.nsu.abramenko","l":"Main"},{"p":"ru.nsu.abramenko.hashtableown","l":"HashTableOwn.Node"}];updateSearchResults();

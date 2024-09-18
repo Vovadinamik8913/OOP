@@ -89,6 +89,11 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>K</code> - key</dd>
+<dd><code>V</code> - value</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;K,<wbr>V&gt;&gt;</code></dd>
 </dl>
@@ -96,6 +101,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">HashTableOwn&lt;K,<wbr>V&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;K,<wbr>V&gt;&gt;</span></div>
+<div class="block">My own hashtable.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -110,7 +116,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="HashTableOwn.Node.html" class="type-name-link" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;<a href="HashTableOwn.Node.html" title="type parameter in HashTableOwn.Node">K</a>,<wbr><a href="HashTableOwn.Node.html" title="type parameter in HashTableOwn.Node">V</a>&gt;</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">what the table is made of.</div>
+</div>
 </div>
 </section>
 </li>
@@ -123,7 +131,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">HashTableOwn</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">constructor of empty table.</div>
+</div>
 </div>
 </section>
 </li>
@@ -140,36 +150,56 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#contains(K)" class="member-name-link">contains</a><wbr>(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">isThere a node with that key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">isThis obj equals</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#forEach(java.util.function.Consumer)" class="member-name-link">forEach</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>,<wbr><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&gt;&gt;&nbsp;action)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">foreach with some action.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get(K)" class="member-name-link">get</a><wbr>(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">get if exists value of node by key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a><wbr>&lt;<a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>,<wbr><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#iterator()" class="member-name-link">iterator</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">making table iterable.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(K,V)" class="member-name-link">put</a><wbr>(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key,
  <a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">put new value in table with key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove(K)" class="member-name-link">remove</a><wbr>(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">removing data by key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resize()" class="member-name-link">resize</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">resizing table and saving data.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">returns table in string format.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update(K,V)" class="member-name-link">update</a><wbr>(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key,
  <a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">updates old value of node to new.</div>
+</div>
 </div>
 </div>
 </div>
@@ -194,6 +224,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="&lt;init&gt;()">
 <h3>HashTableOwn</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HashTableOwn</span>()</div>
+<div class="block">constructor of empty table.</div>
 </section>
 </li>
 </ul>
@@ -208,24 +239,44 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="resize()">
 <h3>resize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resize</span>()</div>
+<div class="block">resizing table and saving data.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="remove(K)">
 <h3 id="remove(java.lang.Object)">remove</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">remove</span><wbr><span class="parameters">(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</span></div>
+<div class="block">removing data by key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - key of node</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="get(K)">
 <h3 id="get(java.lang.Object)">get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a></span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</span></div>
+<div class="block">get if exists value of node by key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - key of node</dd>
+<dt>Returns:</dt>
+<dd>value of node( or null)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="contains(K)">
 <h3 id="contains(java.lang.Object)">contains</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">contains</span><wbr><span class="parameters">(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key)</span></div>
+<div class="block">isThere a node with that key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - key of node</dd>
+<dt>Returns:</dt>
+<dd>true or false</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -233,6 +284,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <h3 id="put(java.lang.Object,java.lang.Object)">put</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key,
  <a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&nbsp;value)</span></div>
+<div class="block">put new value in table with key.
+ if exists do nothing</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - key of node</dd>
+<dd><code>value</code> - value of node</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -240,15 +298,25 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <h3 id="update(java.lang.Object,java.lang.Object)">update</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span><wbr><span class="parameters">(<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&nbsp;key,
  <a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&nbsp;value)</span></div>
+<div class="block">updates old value of node to new.
+  if isn`t exists put it</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - key of node</dd>
+<dd><code>value</code> - value of node</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="iterator()">
 <h3>iterator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a>&lt;<a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>,<wbr><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&gt;&gt;</span>&nbsp;<span class="element-name">iterator</span>()</div>
+<div class="block">making table iterable.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#iterator()" title="class or interface in java.lang" class="external-link">iterator</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>iterator</dd>
 </dl>
 </section>
 </li>
@@ -256,9 +324,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="forEach(java.util.function.Consumer)">
 <h3>forEach</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">forEach</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="HashTableOwn.Node.html" title="class in ru.nsu.abramenko.hashtableown">HashTableOwn.Node</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>,<wbr><a href="HashTableOwn.html" title="type parameter in HashTableOwn">V</a>&gt;&gt;&nbsp;action)</span></div>
+<div class="block">foreach with some action.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#forEach(java.util.function.Consumer)" title="class or interface in java.lang" class="external-link">forEach</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="HashTableOwn.html" title="type parameter in HashTableOwn">K</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>action</code> - The action to be performed for each element</dd>
 </dl>
 </section>
 </li>
@@ -266,9 +337,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">returns table in string format.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>table to string</dd>
 </dl>
 </section>
 </li>
@@ -276,9 +350,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</span></div>
+<div class="block">isThis obj equals</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>obj</code> - another table</dd>
+<dt>Returns:</dt>
+<dd>true of false</dd>
 </dl>
 </section>
 </li>

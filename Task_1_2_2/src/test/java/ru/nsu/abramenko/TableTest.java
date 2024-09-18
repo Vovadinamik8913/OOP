@@ -5,10 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ConcurrentModificationException;
-import ru.nsu.abramenko.hashtableown.HashTableOwn;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.nsu.abramenko.hashtableown.HashTableOwn;
 
 class TableTest {
     @Test

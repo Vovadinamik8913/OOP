@@ -129,7 +129,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param value value of node
      */
     public void put(K key, V value) {
-        if (capacity == 0 || (double)size / capacity >= LADEN) {
+        if (capacity == 0 || (double) size / capacity >= LADEN) {
             resize();
         }
 
@@ -144,7 +144,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         }
 
         Node<K, V> newNode = new Node<>(key, value);
-        newNode .setNext(hashTable[hash]);
+        newNode.setNext(hashTable[hash]);
         hashTable[hash] = newNode;
         size++;
     }

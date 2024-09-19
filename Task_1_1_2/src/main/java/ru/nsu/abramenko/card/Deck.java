@@ -14,11 +14,8 @@ public class Deck {
      */
     public Deck() {
         cards = new ArrayList<>();
-        Suit[] suits = new Suit[] {Suit.CLUB, Suit.HEART, Suit.DIAMOND, Suit.SPADE};
-        Rank[] ranks = new Rank[] {
-            Rank.ACE, Rank.KING, Rank.QUEEN, Rank.JACK, Rank.TEN, Rank.NINE, Rank.EIGHT,
-            Rank.SEVEN, Rank.SIX, Rank.FIVE, Rank.FOUR, Rank.THREE, Rank.TWO
-        };
+        Suit[] suits = Suit.values();
+        Rank[] ranks = Rank.values();
         for (Suit suit : suits) {
             for (Rank rank : ranks) {
                 cards.add(new Card(suit, rank));

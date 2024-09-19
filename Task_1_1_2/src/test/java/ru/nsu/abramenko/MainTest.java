@@ -10,9 +10,8 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.abramenko.card.Card;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.card.Rank;
-import ru.nsu.abramenko.card.Suit;
 import java.util.ArrayList;
-
+import ru.nsu.abramenko.card.Suit;
 import ru.nsu.abramenko.game.Blackjack;
 import ru.nsu.abramenko.player.Player;
 
@@ -75,6 +74,7 @@ class  MainTest {
             }
         }
         blackjack.whoIsWinner();
-        assertTrue(blackjack.getCntOfRounds() == 1 && blackjack.getDealerWins() != blackjack.getPlayerWins());
+        assertTrue(blackjack.getCntOfRounds() == 1
+                && blackjack.getDealerWins() != blackjack.getPlayerWins());
     }
 }

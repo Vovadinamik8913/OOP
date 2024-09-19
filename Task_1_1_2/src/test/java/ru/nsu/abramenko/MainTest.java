@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 import ru.nsu.abramenko.card.Card;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.card.Rank;
-import java.util.ArrayList;
 import ru.nsu.abramenko.card.Suit;
 import ru.nsu.abramenko.game.Blackjack;
 import ru.nsu.abramenko.player.Player;

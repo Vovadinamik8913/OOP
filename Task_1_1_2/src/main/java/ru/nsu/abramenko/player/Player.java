@@ -81,12 +81,7 @@ public class Player {
      * @return true or false
      */
     public boolean isAllCardsOpen() {
-        for (Card card : cards) {
-            if (!card.isOpen()) {
-                return false;
-            }
-        }
-        return true;
+        return cards.stream().allMatch((card) -> card.isOpen());
     }
 
     /** open all cards.

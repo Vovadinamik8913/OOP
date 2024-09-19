@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37480d3e-567d-4ad7-8156-7b2a16140875" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/card/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/card/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/nsu/abramenko/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/nsu/abramenko/MainTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="37480d3e-567d-4ad7-8156-7b2a16140875" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,8 +31,9 @@
   "keyToString": {
     "Gradle.MainTest.executor": "Run",
     "Gradle.Task_1_1_2 [:Main.main()].executor": "Run",
+    "JUnit.MainTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Task__1__1__2",
+    "git-widget-placeholder": "task__1__1__2",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>

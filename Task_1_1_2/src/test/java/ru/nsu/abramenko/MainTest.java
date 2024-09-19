@@ -1,8 +1,9 @@
 package ru.nsu.abramenko;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,9 +11,11 @@ import ru.nsu.abramenko.card.Card;
 import ru.nsu.abramenko.card.Deck;
 import ru.nsu.abramenko.card.Rank;
 import ru.nsu.abramenko.card.Suit;
+import java.util.ArrayList;
+
+import ru.nsu.abramenko.game.Blackjack;
 import ru.nsu.abramenko.player.Player;
 
-import java.util.ArrayList;
 
 class  MainTest {
     @Test
@@ -56,5 +59,22 @@ class  MainTest {
         player.addCard(deck.getCard());
         player.openLastCard();
         assertTrue(!player.isAllCardsOpen() && player.getSum() >= 2);
+    }
+
+    @Test
+    @DisplayName("GameTest")
+    void gameTest() {
+        Blackjack blackjack = new Blackjack();
+        blackjack.newRound();
+        blackjack.move(1);
+        if (blackjack.isPlayerMove() && !blackjack.isRoundEnded()) {
+            blackjack.move(0);
+            blackjack.move(1);
+            if (!blackjack.isRoundEnded()) {
+                blackjack.move(0);
+            }
+        }
+        blackjack.whoIsWinner();
+        assertTrue(blackjack.getCntOfRounds() == 1 && blackjack.getDealerWins() != blackjack.getPlayerWins());
     }
 }

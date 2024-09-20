@@ -8,6 +8,8 @@ import ru.nsu.abramenko.player.Player;
  *
  */
 public class Blackjack {
+    private static final int MAX_SUM = 21;
+    public static final int AI_LOGIC = 17;
     private Player player;
     private Player dealer;
 
@@ -99,7 +101,7 @@ public class Blackjack {
      * @return true or false
      */
     public boolean doesPlayerHaveBlackjack() {
-        if (player.getSum() == 21) {
+        if (player.getSum() == MAX_SUM) {
             isPlayerMove = false;
             isRoundEnded = true;
             return true;
@@ -112,7 +114,7 @@ public class Blackjack {
      * @return true or false
      */
     public boolean doesPlayerHaveOver() {
-        if (player.getSum() > 21) {
+        if (player.getSum() > MAX_SUM) {
             isPlayerMove = false;
             isRoundEnded = true;
             return true;
@@ -125,7 +127,7 @@ public class Blackjack {
      * @return true or false
      */
     public boolean doesDealerHaveBlackjack() {
-        if (dealer.getSum() == 21) {
+        if (dealer.getSum() == MAX_SUM) {
             isRoundEnded = true;
             return true;
         }
@@ -137,7 +139,7 @@ public class Blackjack {
      * @return true or false
      */
     public boolean doesDealerHaveOver() {
-        if (dealer.getSum() > 21) {
+        if (dealer.getSum() > MAX_SUM) {
             isRoundEnded = true;
             return true;
         }
@@ -170,7 +172,7 @@ public class Blackjack {
             return 1;
         }
 
-        if (player.getSum() < 22 && dealer.getSum() < 22) {
+        if (player.getSum() <= MAX_SUM && dealer.getSum() <= MAX_SUM) {
             if (player.getSum() > dealer.getSum()) {
                 playerWins++;
                 return 1;

@@ -49,7 +49,7 @@ public class Main {
                             + " чтобы остановиться, и “2”, чтобы закончить игру...\n");
 
                     if (console == null) {
-                        if (blackjack.getPlayerSum() < 17) {
+                        if (blackjack.getPlayerSum() < Blackjack.AI_LOGIC) {
                             ch = 1;
                         } else {
                             ch = 0;
@@ -57,7 +57,7 @@ public class Main {
                     } else {
                         String command = System.console().readLine();
                         if (command == null) {
-                            if (blackjack.getPlayerSum() < 17) {
+                            if (blackjack.getPlayerSum() < Blackjack.AI_LOGIC) {
                                 ch = 1;
                             } else {
                                 ch = 0;
@@ -90,7 +90,7 @@ public class Main {
                     System.out.print("Ход Дилера\n" + "-------\n");
                     System.out.print("Дилер открывает закрытую карту\n");
                     showCards(blackjack.getPlayerCards(), blackjack.getDealerCards());
-                    while (blackjack.getDealerSum() < 17) {
+                    while (blackjack.getDealerSum() < Blackjack.AI_LOGIC) {
                         blackjack.move(1);
                         if (!blackjack.doesDealerHaveBlackjack()) {
                             blackjack.doesDealerHaveOver();

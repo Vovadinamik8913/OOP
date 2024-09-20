@@ -3,9 +3,7 @@ package ru.nsu.abramenko.math;
 /** multiply expression.
  *
  */
-public class Mul extends Expression{
-    private final Expression left;
-    private final Expression right;
+public class Mul extends Expression {
 
     /** a mul b.
      *

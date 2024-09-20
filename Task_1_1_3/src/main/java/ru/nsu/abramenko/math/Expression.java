@@ -5,6 +5,8 @@ package ru.nsu.abramenko.math;
  */
 public abstract class Expression {
     protected String expression;
+    protected Expression left;
+    protected Expression right;
 
     /** evluate.
      *

@@ -5,9 +5,6 @@ package ru.nsu.abramenko.math;
  */
 public class Sub extends Expression {
 
-    private final Expression left;
-    private final Expression right;
-
     /** a sub b.
      *
      * @param a left

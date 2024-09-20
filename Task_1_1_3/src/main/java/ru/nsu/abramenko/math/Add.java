@@ -5,8 +5,6 @@ package ru.nsu.abramenko.math;
  *
  */
 public class Add extends Expression {
-    private final Expression left;
-    private final Expression right;
 
     /** a add b expression.
      *

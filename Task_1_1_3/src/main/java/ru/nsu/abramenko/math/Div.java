@@ -4,8 +4,6 @@ package ru.nsu.abramenko.math;
  *
  */
 public class Div extends Expression {
-    private final Expression left;
-    private final Expression right;
 
     /** a div b expression.
      *

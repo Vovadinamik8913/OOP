@@ -7,11 +7,11 @@ import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.nsu.abramenko.math.Expression;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Div;
 import ru.nsu.abramenko.math.Mul;
 import ru.nsu.abramenko.math.Number;
-import ru.nsu.abramenko.math.Expression;
 import ru.nsu.abramenko.math.Sub;
 import ru.nsu.abramenko.math.Variable;
 

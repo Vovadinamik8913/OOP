@@ -1,8 +1,8 @@
 package ru.nsu.abramenko;
 
-import ru.nsu.abramenko.math.Expression;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Div;
+import ru.nsu.abramenko.math.Expression;
 import ru.nsu.abramenko.math.Mul;
 import ru.nsu.abramenko.math.Number;
 import ru.nsu.abramenko.math.Sub;

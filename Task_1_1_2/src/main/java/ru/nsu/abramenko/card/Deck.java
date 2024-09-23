@@ -7,12 +7,19 @@ import java.util.Random;
  *
  */
 public class Deck {
-    private final ArrayList<Card> cards;
+    private ArrayList<Card> cards;
 
     /** generate deck with 52 cards.
      *
      */
     public Deck() {
+        makeDeck();
+    }
+
+    /** init deck and shuffle.
+     *
+     */
+    private void makeDeck() {
         cards = new ArrayList<>();
         Suit[] suits = Suit.values();
         Rank[] ranks = Rank.values();
@@ -44,7 +51,7 @@ public class Deck {
      */
     public Card getCard() {
         if (cards.isEmpty()) {
-            return null;
+            makeDeck();
         }
         return cards.remove(0);
     }

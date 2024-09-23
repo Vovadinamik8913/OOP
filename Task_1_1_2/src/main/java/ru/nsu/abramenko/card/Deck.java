@@ -43,6 +43,9 @@ public class Deck {
      * @return card
      */
     public Card getCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
         return cards.remove(0);
     }
 }

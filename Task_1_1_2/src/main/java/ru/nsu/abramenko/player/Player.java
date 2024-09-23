@@ -60,17 +60,17 @@ public class Player {
      * @return string of all cards
      */
     public String showCards() {
-        String res = "[";
+        StringBuilder res = new StringBuilder("[");
         for (Card card : cards) {
-            res += card.toString() + ", ";
+            res.append(card.toString()).append(", ");
         }
-        res = res.substring(0, res.length() - 2);
-        res += "]";
+        res = new StringBuilder(res.substring(0, res.length() - 2));
+        res.append("]");
         if (isAllCardsOpen()) {
-            res += " => ";
-            res += getSum();
+            res.append(" => ");
+            res.append(getSum());
         }
-        return res;
+        return res.toString();
     }
 
 

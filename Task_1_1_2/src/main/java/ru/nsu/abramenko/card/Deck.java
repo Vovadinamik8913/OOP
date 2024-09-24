@@ -7,12 +7,13 @@ import java.util.Random;
  *
  */
 public class Deck {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     /** generate deck with 52 cards.
      *
      */
     public Deck() {
+        cards = new ArrayList<>();
         makeDeck();
     }
 
@@ -20,7 +21,6 @@ public class Deck {
      *
      */
     private void makeDeck() {
-        cards = new ArrayList<>();
         Suit[] suits = Suit.values();
         Rank[] ranks = Rank.values();
         for (Suit suit : suits) {

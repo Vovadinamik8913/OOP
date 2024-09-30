@@ -129,7 +129,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Expression</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">empty constructor.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(ru.nsu.abramenko.math.Expression,ru.nsu.abramenko.math.Expression)" class="member-name-link">Expression</a><wbr>(<a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;a,
+ <a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;b)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">expression a b.</div>
+</div>
 </div>
 </section>
 </li>
@@ -152,7 +159,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#eval(java.lang.String)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">evluate.</div>
+<div class="block">evaluate.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getExpression()" class="member-name-link">getExpression</a>()</code></div>
@@ -216,6 +223,20 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Expression</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Expression</span>()</div>
+<div class="block">empty constructor.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(ru.nsu.abramenko.math.Expression,ru.nsu.abramenko.math.Expression)">
+<h3>Expression</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Expression</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;a,
+ <a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a>&nbsp;b)</span></div>
+<div class="block">expression a b.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - left</dd>
+<dd><code>b</code> - right</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -230,7 +251,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.lang.String)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
-<div class="block">evluate.</div>
+<div class="block">evaluate.
+ may throw assert fail with variable</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>s</code> - arg equals something</dd>
@@ -270,7 +292,7 @@ loadScripts(document, 'script');</script>
 <div class="block">getter of expression.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>expressiont</dd>
+<dd>expression</dd>
 </dl>
 </section>
 </li>

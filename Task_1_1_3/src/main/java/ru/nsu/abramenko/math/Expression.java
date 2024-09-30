@@ -8,7 +8,23 @@ public abstract class Expression {
     protected Expression left;
     protected Expression right;
 
-    /** evluate.
+    /** empty constructor.
+     * 
+     */
+    public Expression() {}
+    
+    /** expression a b.
+     * 
+     * @param a left
+     * @param b right
+     */
+    public Expression(Expression a, Expression b) {
+        left = a;
+        right = b;
+    }
+    
+    /** evaluate.
+     * may throw assert fail with variable
      *
      * @param s arg equals something
      * @return number
@@ -30,7 +46,7 @@ public abstract class Expression {
 
     /** getter of expression.
      *
-     * @return expressiont
+     * @return expression
      */
     public String getExpression() {
         return expression;

@@ -11,9 +11,8 @@ public class Sub extends Expression {
      * @param b right
      */
     public Sub(Expression a, Expression b) {
+        super(a, b);
         this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
-        left = a;
-        right = b;
     }
 
     @Override

@@ -12,9 +12,8 @@ public class Add extends Expression {
      * @param b right expr
      */
     public Add(Expression a, Expression b) {
+        super(a, b);
         this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
-        left = a;
-        right = b;
     }
 
     @Override

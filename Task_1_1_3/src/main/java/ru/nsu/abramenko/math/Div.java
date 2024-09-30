@@ -8,12 +8,12 @@ public class Div extends Expression {
     /** a div b expression.
      *
      * @param a left
-     * @param b right
+     * @param b right, must not equal 0
      */
     public Div(Expression a, Expression b) {
+        super(a, b);
         this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
-        left = a;
-        right = b;
+        assert !b.getExpression().equals("0") : "Division by Zero";
     }
 
     @Override

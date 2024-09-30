@@ -11,9 +11,8 @@ public class Mul extends Expression {
      * @param b right
      */
     public Mul(Expression a, Expression b) {
+        super(a, b);
         this.expression = "(" + a.getExpression() + "*" + b.getExpression() + ")";
-        left = a;
-        right = b;
     }
 
     @Override

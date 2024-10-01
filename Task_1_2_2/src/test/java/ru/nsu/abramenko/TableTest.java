@@ -19,25 +19,25 @@ class TableTest {
     @Test
     @DisplayName("DifferentSizeTest")
     void sizeCheck() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         table.update("one", 1.0);
         table.put("two", 2);
         table.update("two", 2.0);
 
-        HashTableOwn<String, Number> table1 = new HashTableOwn();
+        HashTableOwn<String, Number> table1 = new HashTableOwn<>();
         table1.put("one", 1);
         table1.update("one", 1.0);
         table1.put("two", 2);
         table1.update("two", 2.0);
         table1.remove("two");
-        assertTrue(!table1.equals(table));
+        assertFalse(table1.equals(table));
     }
 
     @Test
     @DisplayName("ExceptionTest")
     void exceptionCheck() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         table.update("one", 1.0);
         table.put("two", 2);
@@ -54,7 +54,7 @@ class TableTest {
     @Test
     @DisplayName("ContainsTest")
     void containsTest() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         table.update("one", 1.0);
         assertFalse(table.contains("one") &&  table.contains("two"));
@@ -63,7 +63,7 @@ class TableTest {
     @Test
     @DisplayName("GetTest")
     void getTest() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         assertEquals(table.get("one").intValue(), 1);
     }
@@ -71,17 +71,17 @@ class TableTest {
     @Test
     @DisplayName("RemoveTest")
     void removeTest() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         table.remove("two");
         table.remove("one");
-        assertEquals(table.contains("one"), false);
+        assertFalse(table.contains("one"));
     }
 
     @Test
     @DisplayName("UpdateTest")
     void updateTest() {
-        HashTableOwn<String, Number> table = new HashTableOwn();
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
         table.put("one", 1);
         table.update("one", 1.0);
         table.update("two", 2);

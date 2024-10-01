@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.hashtableown;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -56,7 +58,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      *
      * @param key key of node
      */
-    public void remove(K key) {
+    public void remove(@NotNull K key) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
@@ -80,7 +82,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      * @return value of node( or null)
      */
-    public V get(K key) {
+    public V get(@NotNull K key) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
@@ -108,7 +110,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      * @return true or false
      */
-    public boolean contains(K key) {
+    public boolean contains(@NotNull K key) {
         int hash = key.hashCode() % capacity;
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
@@ -128,7 +130,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      * @param value value of node
      */
-    public void put(K key, V value) {
+    public void put(@NotNull K key, @NotNull V value) {
         if (capacity == 0 || (double) size / capacity >= LADEN) {
             resize();
         }
@@ -155,7 +157,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      * @param value value of node
      */
-    public void update(K key, V value) {
+    public void update(@NotNull K key, @NotNull V value) {
         int hash = getIndex(key);
         Node<K, V> current = hashTable[hash];
 
@@ -237,18 +239,18 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      */
     @Override
     public String toString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < capacity; i++) {
             if (hashTable[i] != null) {
                 Node<K, V> cur = hashTable[i];
                 while (cur != null) {
-                    res += cur.toString() + " ";
+                    res.append(cur.toString()).append(" ");
                     cur = cur.getNext();
                 }
-                res += "\n";
+                res.append("\n");
             }
         }
-        return res;
+        return res.toString();
     }
 
     /** isThis obj equals.
@@ -258,6 +260,9 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      */
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null || obj.getClass() != HashTableOwn.class) {
             return false;
         }
@@ -306,7 +311,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
          * @param key key
          * @param value value
          */
-        public Node(K key, V value) {
+        public Node(@NotNull K key, @NotNull V value) {
             this.key = key;
             this.value = value;
             next = null;
@@ -317,7 +322,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
          *
          * @param value newValue
          */
-        public void setValue(V value) {
+        public void setValue(@NotNull V value) {
             this.value = value;
         }
 
@@ -369,6 +374,9 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
          */
         @Override
         public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
             if (obj == null || obj.getClass() == Node.class) {
                 return false;
             }

@@ -1,5 +1,6 @@
 package ru.nsu.abramenko;
 
+import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Div;
 import ru.nsu.abramenko.math.Expression;
@@ -7,7 +8,8 @@ import ru.nsu.abramenko.math.Mul;
 import ru.nsu.abramenko.math.Number;
 import ru.nsu.abramenko.math.Sub;
 import ru.nsu.abramenko.math.Variable;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /** Parser.
@@ -17,11 +19,15 @@ import ru.nsu.abramenko.math.Variable;
 public class Parser {
 
     private static boolean containsNumbers(String s) {
-        return s.charAt(0) == '1' || s.charAt(0) == '2'
-                || s.charAt(0) == '3' || s.charAt(0) == '4'
-                || s.charAt(0) == '5' || s.charAt(0) == '6'
-                || s.charAt(0) == '7' || s.charAt(0) == '8'
-                || s.charAt(0) == '9' || s.charAt(0) == '0';
+        Pattern digit = Pattern.compile("[0-9]");
+        Matcher hasDigit = digit.matcher(s);
+        return hasDigit.find();
+    }
+
+    private static boolean containsError(String s) {
+        Pattern special = Pattern.compile ("[!@#$%&_=|<>?{}\\[\\]~\"';:]");
+        Matcher hasSpecial = special.matcher(s);
+        return hasSpecial.find();
     }
 
     private static Expression oper(char operation, Expression a, Expression b) {
@@ -41,20 +47,20 @@ public class Parser {
     }
 
     private static String readToken(String text, int[] pos) {
-        String token = "";
+        StringBuilder token = new StringBuilder();
         while (text.charAt(pos[0]) == ' ' || text.charAt(pos[0]) == '\n'
                 || text.charAt(pos[0]) == '\t' || text.charAt(pos[0]) == '\r') {
             pos[0]++;
         }
         if (text.charAt(pos[0]) == '\0') {
-            token = "\0";
-            return token;
+            token = new StringBuilder("\0");
+            return token.toString();
         }
         if (text.charAt(pos[0]) == '+' || text.charAt(pos[0]) == '-'
                 || text.charAt(pos[0]) == '*' || text.charAt(pos[0]) == '/'
                 || text.charAt(pos[0]) == '(' || text.charAt(pos[0]) == ')') {
-            token += text.charAt(pos[0]++);
-            return token;
+            token.append(text.charAt(pos[0]++));
+            return token.toString();
         }
         int left = pos[0];
         while (text.charAt(pos[0]) != '+' && text.charAt(pos[0]) != '-'
@@ -65,10 +71,10 @@ public class Parser {
         }
         int size = pos[0] - left;
         for (int i = 0; i < size; i++) {
-            token += text.charAt(left + i);
+            token.append(text.charAt(left + i));
         }
-        token += '\0';
-        return token;
+        token.append('\0');
+        return token.toString();
     }
 
     private static String peekToken(String str, int[] pos) {
@@ -78,13 +84,7 @@ public class Parser {
         return token;
     }
 
-    /** converts string to expression.
-     *
-     * @param str string exp
-     * @param pos begin
-     * @return expression
-     */
-    public static Expression parseExpr(String str, int[] pos) {
+    private static Expression parseExpr(String str, int[] pos) {
         Expression res = parseManom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -148,5 +148,17 @@ public class Parser {
             s = peekToken(str, pos);
         }
         return res;
+    }
+
+
+    /** converts string to expression.
+     *
+     * @param str string exp
+     * @param pos begin
+     * @return expression
+     */
+    public static Expression parse(@NotNull String str, int @NotNull [] pos) {
+        assert !containsError(str) : "Неправильный ввод" ;
+        return parseExpr(str, pos);
     }
 }

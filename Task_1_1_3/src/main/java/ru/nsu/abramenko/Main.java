@@ -17,7 +17,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String expression = scanner.nextLine();
         expression += '\0';
-        Expression e = Parser.parseExpr(expression, new int[] {0});
+        Expression e = Parser.parse(expression, new int[] {0});
         e.print();
         Expression de = e.simplify();
         de.print();

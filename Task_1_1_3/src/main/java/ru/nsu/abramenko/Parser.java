@@ -149,27 +149,4 @@ public class Parser {
         }
         return res;
     }
-
-    /*public static String replaceMinusWithNegative(String str) {
-        char[] com = new char[100001];
-        int len = str.length();
-        int j = 0;
-
-        for (int i = 0; i < len; i++) {
-            if (str.charAt(i) == '-') {
-                com[j++] = '-';
-                com[j++] = '1';
-                com[j++] = '*';
-            } else {
-                com[j++] = str.charAt(i);
-            }
-        }
-
-        com[j] = '\0';
-        StringBuilder res = new StringBuilder();
-        for (int i = 0; i < j; i++) {
-            res.append(com[i]);
-        }
-        return res.toString();
-    }*/
 }

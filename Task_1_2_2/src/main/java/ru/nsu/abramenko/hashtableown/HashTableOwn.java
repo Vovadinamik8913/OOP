@@ -1,11 +1,10 @@
 package ru.nsu.abramenko.hashtableown;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+import org.jetbrains.annotations.NotNull;
 
 /** My own hashtable.
  *

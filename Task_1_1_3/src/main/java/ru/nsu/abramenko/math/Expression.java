@@ -14,7 +14,8 @@ public abstract class Expression {
     public Expression() {}
     
     /** expression a b.
-     * 
+     *
+     *
      * @param a left
      * @param b right
      */

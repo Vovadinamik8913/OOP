@@ -150,7 +150,7 @@ public class Parser {
         return res;
     }
 
-    /*public static String ReplaceMinusWithNegative(String str) {
+    /*public static String replaceMinusWithNegative(String str) {
         char[] com = new char[100001];
         int len = str.length();
         int j = 0;
@@ -166,10 +166,10 @@ public class Parser {
         }
 
         com[j] = '\0';
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < j; i++) {
-            res += com[i];
+            res.append(com[i]);
         }
-        return res;
+        return res.toString();
     }*/
 }

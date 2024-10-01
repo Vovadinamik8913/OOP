@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /** sub expression.
  *
  */
@@ -10,7 +12,7 @@ public class Sub extends Expression {
      * @param a left
      * @param b right
      */
-    public Sub(Expression a, Expression b) {
+    public Sub(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
         this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
     }

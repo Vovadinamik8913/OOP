@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /** variable.
  *
  */
@@ -9,7 +11,7 @@ public class Variable extends Expression {
      *
      * @param variable name of var
      */
-    public Variable(String variable) {
+    public Variable(@NotNull String variable) {
         this.expression = variable;
     }
 

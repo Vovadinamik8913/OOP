@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /** div expression.
  *
  */
@@ -10,7 +12,7 @@ public class Div extends Expression {
      * @param a left
      * @param b right, must not equal 0
      */
-    public Div(Expression a, Expression b) {
+    public Div(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
         this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
         assert !b.getExpression().equals("0") : "Division by Zero";

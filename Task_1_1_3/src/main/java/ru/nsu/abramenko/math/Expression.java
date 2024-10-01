@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /**abstract expression.
  *
  */
@@ -19,7 +21,7 @@ public abstract class Expression {
      * @param a left
      * @param b right
      */
-    public Expression(Expression a, Expression b) {
+    public Expression(@NotNull Expression a, @NotNull Expression b) {
         left = a;
         right = b;
     }

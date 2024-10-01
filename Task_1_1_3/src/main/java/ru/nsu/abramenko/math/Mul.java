@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /** multiply expression.
  *
  */
@@ -10,7 +12,7 @@ public class Mul extends Expression {
      * @param a left
      * @param b right
      */
-    public Mul(Expression a, Expression b) {
+    public Mul(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
         this.expression = "(" + a.getExpression() + "*" + b.getExpression() + ")";
     }

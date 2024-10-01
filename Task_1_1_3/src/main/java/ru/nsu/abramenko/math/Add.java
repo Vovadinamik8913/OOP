@@ -1,6 +1,8 @@
 package ru.nsu.abramenko.math;
 
 
+import org.jetbrains.annotations.NotNull;
+
 /** Add expression.
  *
  */
@@ -11,7 +13,7 @@ public class Add extends Expression {
      * @param a left expr
      * @param b right expr
      */
-    public Add(Expression a, Expression b) {
+    public Add(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
         this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
     }

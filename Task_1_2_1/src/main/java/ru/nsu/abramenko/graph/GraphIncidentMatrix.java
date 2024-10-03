@@ -117,29 +117,23 @@ public class GraphIncidentMatrix<T> implements Graph<T>{
     @Override
     public ArrayList<T> topologicalSort() throws Exception {
         HashMap<T, Integer> inDegree = new HashMap<>();
-        Queue<T> queue = new LinkedList<>();
-        ArrayList<T> sortedList = new ArrayList<>();
-
         // Инициализация степени входа
         for (T vertex : graph.keySet()) {
             inDegree.put(vertex, 0);
         }
-
         // Подсчет степени входа для каждой вершины
         for (Map.Entry<T, HashMap<String, Integer>> entry : graph.entrySet()) {
-            T vertex = entry.getKey();
-            HashMap<String, Integer> neighbors = entry.getValue();
-            for (Map.Entry<String, Integer> edge : neighbors.entrySet()) {
-                // Получаем целевую вершину из рёбер
-                if (edge.getValue() == 0) {
+            for (Map.Entry<String, Integer> edge : entry.getValue().entrySet()) {
+                if (edge.getValue() == 0 || edge.getValue() == 1) {
                     continue;
                 }
                 Edge<T> e = edges.get(edge.getKey());
-                T neighbor = e.getTo(); // Предполагается, что метод getTarget() возвращает целевую вершину
+                T neighbor = e.getTo();
                 inDegree.put(neighbor, inDegree.get(neighbor) + 1);
             }
         }
 
+        Queue<T> queue = new LinkedList<>();
         // Добавление вершин с нулевой степенью входа в очередь
         for (Map.Entry<T, Integer> entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
@@ -147,14 +141,16 @@ public class GraphIncidentMatrix<T> implements Graph<T>{
             }
         }
 
+        ArrayList<T> sortedList = new ArrayList<>();
         while (!queue.isEmpty()) {
             T current = queue.poll();
             sortedList.add(current);
 
             // Обновление степени входа соседей
-            for (String edgeKey : graph.get(current).keySet()) {
-                Edge<T> edge = edges.get(edgeKey);
-                if (edge != null) {
+            for (Map.Entry<String, Integer>  entry : graph.get(current).entrySet()) {
+                Edge<T> edge = edges.get(entry.getKey());
+                if (edge != null && entry.getValue() != 0
+                        && entry.getValue() != 1) {
                     T neighbor = edge.getTo();
                     inDegree.put(neighbor, inDegree.get(neighbor) - 1);
                     if (inDegree.get(neighbor) == 0) {

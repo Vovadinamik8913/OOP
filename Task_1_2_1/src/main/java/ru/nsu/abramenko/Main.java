@@ -1,15 +1,14 @@
 package ru.nsu.abramenko;
 
 import ru.nsu.abramenko.graph.Graph;
-import ru.nsu.abramenko.graph.GraphAdjacencyMatrix;
-import ru.nsu.abramenko.graph.basic.Vertex;
+import ru.nsu.abramenko.graph.GraphIncidentMatrix;
 import ru.nsu.abramenko.transform.IntegerTransform;
 import java.io.IOException;
 
 
 public class Main {
     public static void main(String[] args) {
-        Graph <Integer> graph = new GraphAdjacencyMatrix<>();
+        Graph <Integer> graph = new GraphIncidentMatrix<>();
         IntegerTransform transform = new IntegerTransform();
         try {
             graph.scanFromFile("/home/abrikosjr/Desktop/OOPworkspace/OOP/Task_1_2_1/src/main/java/ru/nsu/abramenko/input.txt", transform);

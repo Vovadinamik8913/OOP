@@ -110,9 +110,6 @@ public class GraphAdjacencyMatrix<T> implements Graph<T>{
     @Override
     public ArrayList<T> topologicalSort() throws Exception {
         HashMap<T, Integer> inDegree = new HashMap<>();
-        Queue<T> queue = new LinkedList<>();
-        ArrayList<T> sortedList = new ArrayList<>();
-
         // Инициализация степени входа
         for (T vertex : graph.keySet()) {
             inDegree.put(vertex, 0);
@@ -127,6 +124,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T>{
             }
         }
 
+        Queue<T> queue = new LinkedList<>();
         // Добавление вершин с нулевой степенью входа в очередь
         for (Map.Entry<T, Integer> entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
@@ -134,15 +132,19 @@ public class GraphAdjacencyMatrix<T> implements Graph<T>{
             }
         }
 
+
+        ArrayList<T> sortedList = new ArrayList<>();
         while (!queue.isEmpty()) {
             T current = queue.poll();
             sortedList.add(current);
 
             // Обновление степени входа соседей
-            for (T neighbor : graph.get(current).keySet()) {
-                inDegree.put(neighbor, inDegree.get(neighbor) - 1);
-                if (inDegree.get(neighbor) == 0) {
-                    queue.add(neighbor);
+            for (Map.Entry<T, Integer> neighbor : graph.get(current).entrySet()) {
+                if (neighbor.getValue() != 0) {
+                    inDegree.put(neighbor.getKey(), inDegree.get(neighbor.getKey()) - 1);
+                    if (inDegree.get(neighbor.getKey()) == 0) {
+                        queue.add(neighbor.getKey());
+                    }
                 }
             }
         }

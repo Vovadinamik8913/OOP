@@ -1,5 +1,7 @@
 package ru.nsu.abramenko;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.math.Add;
 import ru.nsu.abramenko.math.Div;
@@ -8,8 +10,6 @@ import ru.nsu.abramenko.math.Mul;
 import ru.nsu.abramenko.math.Number;
 import ru.nsu.abramenko.math.Sub;
 import ru.nsu.abramenko.math.Variable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /** Parser.
@@ -25,7 +25,7 @@ public class Parser {
     }
 
     private static boolean containsError(String s) {
-        Pattern special = Pattern.compile ("[!@#$%&_=|<>?{}\\[\\]~\"';:]");
+        Pattern special = Pattern.compile("[!@#$%&_=|<>?{}\\[\\]~\"';:]");
         Matcher hasSpecial = special.matcher(s);
         return hasSpecial.find();
     }
@@ -100,7 +100,7 @@ public class Parser {
             res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
-        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод" ;
+        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод";
         return res;
     }
 
@@ -154,7 +154,7 @@ public class Parser {
             res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
-        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод" ;
+        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод";
         return res;
     }
 
@@ -166,10 +166,10 @@ public class Parser {
      * @return expression
      */
     public static Expression parse(@NotNull String str, int @NotNull [] pos) {
-        assert !containsError(str) : "Неправильный ввод" ;
+        assert !containsError(str) : "Неправильный ввод";
         long countEnters = str.chars().filter(ch -> ch == '(').count();
         long countOuts = str.chars().filter(ch -> ch == ')').count();
-        assert countEnters == countOuts : "Неправильный ввод" ;
+        assert countEnters == countOuts : "Неправильный ввод";
         return parseExpr(str, pos);
     }
 }

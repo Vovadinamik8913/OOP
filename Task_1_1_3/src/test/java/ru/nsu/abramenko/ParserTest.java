@@ -20,6 +20,31 @@ class ParserTest {
     }
 
     @Test
+    @DisplayName("BracketsError")
+    void bracketsErrorTest() {
+        try {
+            System.setIn(new ByteArrayInputStream("2+(3*(50-1)))))\n".getBytes()));
+            Main.main(null);
+            assertTrue(true);
+        } catch (AssertionError e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("BracketsError")
+    void symbolTest() {
+        try {
+            System.setIn(new ByteArrayInputStream("(2+2)(4+4)\n".getBytes()));
+            Main.main(null);
+            assertTrue(true);
+        } catch (AssertionError e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    @Test
     @DisplayName("Brackets")
     void bracketsTest() {
         try {

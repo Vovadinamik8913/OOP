@@ -30,7 +30,7 @@ public class Parser {
         return hasSpecial.find();
     }
 
-    private static Expression oper(char operation, Expression a, Expression b) {
+    private static Expression operator(char operation, Expression a, Expression b) {
         if (operation == '-') {
             return new Sub(a, b);
         }
@@ -52,27 +52,33 @@ public class Parser {
                 || text.charAt(pos[0]) == '\t' || text.charAt(pos[0]) == '\r') {
             pos[0]++;
         }
+
         if (text.charAt(pos[0]) == '\0') {
             token = new StringBuilder("\0");
             return token.toString();
         }
-        if (text.charAt(pos[0]) == '+' || text.charAt(pos[0]) == '-'
-                || text.charAt(pos[0]) == '*' || text.charAt(pos[0]) == '/'
-                || text.charAt(pos[0]) == '(' || text.charAt(pos[0]) == ')') {
+
+        Pattern operatorPattern = Pattern.compile("[+\\-*/()]");
+        Matcher operatorMatcher =
+                operatorPattern.matcher(String.valueOf(text.charAt(pos[0])));
+        if (operatorMatcher.matches()) {
             token.append(text.charAt(pos[0]++));
             return token.toString();
         }
+
         int left = pos[0];
-        while (text.charAt(pos[0]) != '+' && text.charAt(pos[0]) != '-'
-                && text.charAt(pos[0]) != '*' && text.charAt(pos[0]) != '/'
-                && text.charAt(pos[0]) != '(' && text.charAt(pos[0]) != ')'
-                && text.charAt(pos[0]) != ' ' && text.charAt(pos[0]) != '\0') {
+        Pattern nonDigitPattern = Pattern.compile("[^+\\-*/()\\s]");
+        while (true) {
+            Matcher nonDidgitMatcher =
+                    nonDigitPattern.matcher(String.valueOf(text.charAt(pos[0])));
+            if (!nonDidgitMatcher.matches()
+                    || text.charAt(pos[0]) == '\0') {
+                break;
+            }
             pos[0]++;
         }
-        int size = pos[0] - left;
-        for (int i = 0; i < size; i++) {
-            token.append(text.charAt(left + i));
-        }
+
+        token.append(text, left, pos[0]);
         token.append('\0');
         return token.toString();
     }
@@ -91,9 +97,10 @@ public class Parser {
         while (s.charAt(0) == '+' || s.charAt(0) == '-') {
             operation = readToken(str, pos);
             Expression add = parseManom(str, pos);
-            res = oper(operation.charAt(0), res, add);
+            res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
+        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод" ;
         return res;
     }
 
@@ -144,9 +151,10 @@ public class Parser {
         while (s.charAt(0) == '*' || s.charAt(0) == '/') {
             operation = readToken(str, pos);
             Expression add = parseAtom(str, pos);
-            res = oper(operation.charAt(0), res, add);
+            res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
+        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод" ;
         return res;
     }
 
@@ -159,6 +167,9 @@ public class Parser {
      */
     public static Expression parse(@NotNull String str, int @NotNull [] pos) {
         assert !containsError(str) : "Неправильный ввод" ;
+        long countEnters = str.chars().filter(ch -> ch == '(').count();
+        long countOuts = str.chars().filter(ch -> ch == ')').count();
+        assert countEnters == countOuts : "Неправильный ввод" ;
         return parseExpr(str, pos);
     }
 }

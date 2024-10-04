@@ -1,9 +1,5 @@
 package ru.nsu.abramenko.graph;
 
-import org.jetbrains.annotations.NotNull;
-import ru.nsu.abramenko.graph.basic.Edge;
-import ru.nsu.abramenko.transform.Transform;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,12 +9,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 import java.util.LinkedList;
+import org.jetbrains.annotations.NotNull;
+import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.transform.Transform;
 
+
+/** implements Graph.
+ * by using Adjacency matrix
+ *
+ * @param <T> class Type
+ */
 public class GraphAdjacencyMatrix<T> implements Graph<T>{
 
     private final HashMap<T, HashMap<T, Integer>> graph;
 
 
+    /** init matrix
+     *
+     */
     public GraphAdjacencyMatrix() {
         this.graph = new HashMap<>();
     }

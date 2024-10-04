@@ -1,22 +1,30 @@
 package ru.nsu.abramenko.graph;
 
-import org.jetbrains.annotations.NotNull;
-import ru.nsu.abramenko.graph.basic.Edge;
-import ru.nsu.abramenko.transform.Transform;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Queue;
 import java.util.Map;
+import java.util.Queue;
 import java.util.LinkedList;
+import org.jetbrains.annotations.NotNull;
+import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.transform.Transform;
 
+/**implements Graph.
+ * by using Adjacency list
+ *
+ * @param <T> classType
+ */
 public class GraphAdjacencyList<T> implements Graph<T> {
 
     private final HashMap<T, ArrayList<T>> graph;
 
+    /** init list.
+     *
+     */
     public GraphAdjacencyList() {
         this.graph = new HashMap<>();
     }

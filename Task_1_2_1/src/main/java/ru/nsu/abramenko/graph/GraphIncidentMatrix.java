@@ -1,19 +1,32 @@
 package ru.nsu.abramenko.graph;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
+import java.util.LinkedList;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.graph.basic.Edge;
 import ru.nsu.abramenko.transform.Transform;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.*;
-
+/**
+ implements Graph.
+ * by using incident matrix
+ *
+ * @param <T> class Type
+ */
 public class GraphIncidentMatrix<T> implements Graph<T>{
 
     private final HashMap<T, HashMap<String, Integer>> graph;
     private final HashMap<String, Edge<T>> edges;
 
+    /** init matrix.
+     *
+     */
     public GraphIncidentMatrix() {
         graph = new HashMap<>();
         edges = new HashMap<>();

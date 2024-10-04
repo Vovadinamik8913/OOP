@@ -1,9 +1,10 @@
 package ru.nsu.abramenko;
 
+import java.io.IOException;
 import ru.nsu.abramenko.graph.Graph;
 import ru.nsu.abramenko.graph.GraphIncidentMatrix;
 import ru.nsu.abramenko.transform.IntegerTransform;
-import java.io.IOException;
+
 
 
 public class Main {

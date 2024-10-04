@@ -28,4 +28,43 @@ class VariableTest {
             System.out.println(ex.getMessage());
         }
     }
+
+    @Test
+    @DisplayName("EqualsErrorTest")
+    void equalsErrorTest() {
+        Expression e = new Variable("x");
+        try {
+            assertEquals(e.eval("x 1"), 1);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("NullErrorTest")
+    void nullErrorTest() {
+        Expression e = new Variable("x");
+        try {
+            assertEquals(e.eval(null), 1);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("SpaceErrorTest")
+    void spacesErrorTest() {
+        Expression e = new Variable("x");
+        try {
+            assertEquals(e.eval("x 1 = 10"), 1);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        try {
+            assertEquals(e.eval("x= 10000 10"), 1);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

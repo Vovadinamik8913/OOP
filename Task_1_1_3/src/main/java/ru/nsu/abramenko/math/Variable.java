@@ -43,7 +43,7 @@ public class Variable extends Expression {
     }
 
     @Override
-    public double eval(String s) throws Exception{
+    public double eval(String s) throws Exception {
         String val = null;
         if (s == null)  {
             throw  new NullPointerException("Конфликт имен: variable = null");

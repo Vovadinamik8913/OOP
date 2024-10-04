@@ -33,7 +33,8 @@ public class Parser {
         return hasSpecial.find() || !hasOperations.find();
     }
 
-    private static Expression operator(char operation, Expression a, Expression b) throws Exception {
+    private static Expression operator(
+            char operation, Expression a, Expression b) throws Exception {
         if (operation == '-') {
             return new Sub(a, b);
         }

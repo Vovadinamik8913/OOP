@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +19,7 @@ import ru.nsu.abramenko.transform.Transform;
  *
  * @param <T> class Type
  */
-public class GraphIncidentMatrix<T> implements Graph<T>{
+public class GraphIncidentMatrix<T> implements Graph<T> {
 
     private final HashMap<T, HashMap<String, Integer>> graph;
     private final HashMap<String, Edge<T>> edges;

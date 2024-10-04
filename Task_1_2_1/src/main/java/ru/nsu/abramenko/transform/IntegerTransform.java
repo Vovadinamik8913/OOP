@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.transform;
 
+/** from string to integer.
+ *
+ */
 public class IntegerTransform implements Transform<Integer> {
 
     @Override

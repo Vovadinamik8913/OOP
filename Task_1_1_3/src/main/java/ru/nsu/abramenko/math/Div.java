@@ -12,19 +12,21 @@ public class Div extends Expression {
      * @param a left
      * @param b right, must not equal 0
      */
-    public Div(@NotNull Expression a, @NotNull Expression b) {
+    public Div(@NotNull Expression a, @NotNull Expression b) throws Exception {
         super(a, b);
         this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
-        assert !b.getExpression().equals("0") : "Division by Zero";
+        if (b.getExpression().equals("0.0")) {
+            throw new Exception("Division by Zero");
+        }
     }
 
     @Override
-    public double eval(String s) {
+    public double eval(String s) throws Exception {
         return left.eval(s) / right.eval(s);
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(String s) throws Exception{
         return new Div(
                 new Sub(
                         new Mul(left.derivative(s), right), new Mul(left, right.derivative(s))),
@@ -32,7 +34,7 @@ public class Div extends Expression {
     }
 
     @Override
-    public Expression simplify() {
+    public Expression simplify() throws Exception {
         if (left.getClass() == Number.class && right.getClass() == Number.class) {
             return new Number(left.eval(null) / right.eval(null));
         } else if (left.getClass() == Number.class && left.eval(null) == 0) {

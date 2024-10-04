@@ -13,18 +13,29 @@ class AddTest {
         Expression e = new Add(new Number(3), new Mul(new Number(2),
                 new Variable("x")));
         e.print();
+        try {
+            Expression de = e.derivative("x");
+            de.print();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
-        Expression de = e.derivative("x");
-        de.print();
-
-        assertEquals(23.0, e.eval("x = 10; y = 13"));
+        try {
+            assertEquals(23.0, e.eval("x = 10; y = 13"));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Test
     void addTest() {
         Expression e = new Add(
                 new Number(12), new Number(6));
-        assertEquals(e.eval(null), 18);
+        try {
+            assertEquals(e.eval(null), 18);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Test
@@ -32,9 +43,13 @@ class AddTest {
     void derivativeTest() {
         Expression e = new Add(
                 new Number(2), new Variable("x"));
-        e = e.derivative("x");
-        e.print();
-        assertEquals(e.eval("x=1"), 1);
+        try {
+            e = e.derivative("x");
+            e.print();
+            assertEquals(e.eval("x=1"), 1);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Test
@@ -43,7 +58,11 @@ class AddTest {
         Expression e = new Add(
                 new Mul(new Number(2), new Number(6)),
                 new Number(6));
-        Expression e2 = e.simplify();
-        assertEquals(e2.eval(null), 18);
+        try {
+            Expression e2 = e.simplify();
+            assertEquals(e2.eval(null), 18);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

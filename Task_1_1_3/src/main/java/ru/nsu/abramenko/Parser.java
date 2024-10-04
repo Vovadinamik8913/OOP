@@ -27,10 +27,13 @@ public class Parser {
     private static boolean containsError(String s) {
         Pattern special = Pattern.compile("[!@#$%&_=|<>?{}\\[\\]~\"';:]");
         Matcher hasSpecial = special.matcher(s);
-        return hasSpecial.find();
+
+        Pattern operations = Pattern.compile("[+\\-*/]");
+        Matcher hasOperations = operations.matcher(s);
+        return hasSpecial.find() || !hasOperations.find();
     }
 
-    private static Expression operator(char operation, Expression a, Expression b) {
+    private static Expression operator(char operation, Expression a, Expression b) throws Exception {
         if (operation == '-') {
             return new Sub(a, b);
         }
@@ -90,7 +93,7 @@ public class Parser {
         return token;
     }
 
-    private static Expression parseExpr(String str, int[] pos) {
+    private static Expression parseExpr(String str, int[] pos) throws Exception {
         Expression res = parseManom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -100,11 +103,13 @@ public class Parser {
             res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
-        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод";
+        if (pos[0] < str.length() && str.charAt(pos[0]) == '(') {
+            throw  new Exception("Неправильный ввод");
+        }
         return res;
     }
 
-    private static Expression parseAtom(String str, int[] pos) {
+    private static Expression parseAtom(String str, int[] pos) throws Exception {
         String s = peekToken(str, pos);
         Expression res;
         if (s.charAt(0) == '(') {
@@ -144,7 +149,7 @@ public class Parser {
         return res;
     }
 
-    private static Expression parseManom(String str, int[] pos) {
+    private static Expression parseManom(String str, int[] pos) throws Exception {
         Expression res = parseAtom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -154,7 +159,9 @@ public class Parser {
             res = operator(operation.charAt(0), res, add);
             s = peekToken(str, pos);
         }
-        assert pos[0] >= str.length() || str.charAt(pos[0]) != '(' : "Неправильный ввод";
+        if (pos[0] < str.length() && str.charAt(pos[0]) == '(') {
+            throw  new Exception("Неправильный ввод");
+        }
         return res;
     }
 
@@ -165,11 +172,15 @@ public class Parser {
      * @param pos begin
      * @return expression
      */
-    public static Expression parse(@NotNull String str, int @NotNull [] pos) {
-        assert !containsError(str) : "Неправильный ввод";
+    public static Expression parse(@NotNull String str, int @NotNull [] pos) throws Exception {
+        if (containsError(str)) {
+            throw new Exception("Неправильный ввод");
+        }
         long countEnters = str.chars().filter(ch -> ch == '(').count();
         long countOuts = str.chars().filter(ch -> ch == ')').count();
-        assert countEnters == countOuts : "Неправильный ввод";
+        if (countEnters != countOuts) {
+            throw new Exception("Неправильный ввод");
+        }
         return parseExpr(str, pos);
     }
 }

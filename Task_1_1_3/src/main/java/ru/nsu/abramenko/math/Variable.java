@@ -15,37 +15,52 @@ public class Variable extends Expression {
         this.expression = variable;
     }
 
+
+    private String[] parseVariable(String variable) throws Exception {
+        if (variable == null) {
+            throw  new NullPointerException("Конфликт имен: variable = null");
+        }
+        if (!variable.contains("=")) {
+            throw  new Exception("Конфликт имен: there is no =");
+        }
+        variable = variable.strip();
+
+        String tmp = variable.substring(0, variable.indexOf("=")).strip();
+        if (tmp.contains(" ")) {
+            throw  new Exception("Конфликт имен: problems in arg");
+        }
+
+        String[] res = new String[2];
+        res[0] = tmp;
+
+        tmp = variable.substring(variable.indexOf("=") + 1).strip();
+        if (tmp.contains(" ")) {
+            throw  new Exception("Конфликт имен: problems in val");
+        }
+        res[1] = tmp;
+
+        return res;
+    }
+
     @Override
-    public double eval(String s) {
+    public double eval(String s) throws Exception{
         String val = null;
-        assert s != null : "Конфликт имен";
+        if (s == null)  {
+            throw  new NullPointerException("Конфликт имен: variable = null");
+        }
 
         String[] keys = s.split(";");
         for (String key : keys) {
-            int ind = 0;
-            while (key.charAt(ind) == ' ') {
-                ind++;
-            }
-            int last = key.indexOf(' ', ind, key.length());
-            if (last == -1) {
-                last = key.indexOf("=");
-            }
-            String arg = key.substring(ind, last);
-            if (arg.equals(expression)) {
-                ind = key.indexOf('=') + 1;
-                while (key.charAt(ind) == ' ') {
-                    ind++;
-                }
-                last = key.indexOf(' ', ind, key.length());
-                if (last == -1) {
-                    last = key.length();
-                }
-                val = key.substring(ind, last);
+            String[] kv = parseVariable(key);
+            if (expression.equals(kv[0])) {
+                val = kv[1];
                 break;
             }
         }
 
-        assert val != null : "Конфликт имен";
+        if (val == null) {
+            throw new Exception("Конфликт имен");
+        }
         return Double.parseDouble(val);
     }
 

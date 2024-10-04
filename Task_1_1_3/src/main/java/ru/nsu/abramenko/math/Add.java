@@ -19,17 +19,17 @@ public class Add extends Expression {
     }
 
     @Override
-    public double eval(String s) {
+    public double eval(String s) throws Exception {
         return left.eval(s) + right.eval(s);
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(String s) throws Exception {
         return new Add(left.derivative(s), right.derivative(s));
     }
 
     @Override
-    public Expression simplify() {
+    public Expression simplify() throws Exception {
         if (left.getClass() == Number.class && right.getClass() == Number.class) {
             return new Number(left.eval(null) + right.eval(null));
         }

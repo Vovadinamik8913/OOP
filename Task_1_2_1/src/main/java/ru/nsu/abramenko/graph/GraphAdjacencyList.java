@@ -97,7 +97,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
     }
 
     @Override
-    public void scanFromFile(String path, Transform<T> transform) throws IOException{
+    public void scanFromFile(String path, Transform<T> transform) throws IOException {
         File file = new File(path);
         List<String> line = Files.readAllLines(file.toPath());
         for (String pair : line) {

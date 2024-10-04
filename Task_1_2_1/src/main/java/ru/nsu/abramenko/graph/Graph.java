@@ -48,13 +48,13 @@ public interface Graph<T> {
      */
     void addEdge(@NotNull Edge<T> e);
 
-    /** del edge if contains
+    /** del edge if contains.
      *
      * @param e edge
      */
     void delEdge(@NotNull Edge<T> e);
 
-    /** get vertex neighbours
+    /** get vertex neighbours.
      *
      * @param v vertex
      * @return arr of neighbours

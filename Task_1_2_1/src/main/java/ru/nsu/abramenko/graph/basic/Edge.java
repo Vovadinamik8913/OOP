@@ -91,6 +91,6 @@ public class Edge<T> {
      */
     @Override
     public String toString() {
-        return "(" + from.toString() + " > " + to.toString() +")";
+        return "(" + from.toString() + " > " + to.toString() + ")";
     }
 }

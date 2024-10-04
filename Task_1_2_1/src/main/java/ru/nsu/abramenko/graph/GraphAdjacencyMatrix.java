@@ -32,13 +32,13 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean contains(@NotNull T v) {
+    public boolean containsVertex(@NotNull T v) {
         return graph.containsKey(v);
     }
 
     @Override
     public void addVertex(@NotNull T v) {
-        if (graph.containsKey(v)) {
+        if (containsVertex(v)) {
             return;
         }
         HashMap<T, Integer> buf = new HashMap<T, Integer>();
@@ -51,7 +51,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public void delVertex(@NotNull T v) {
-        if (!graph.containsKey(v)) {
+        if (!containsVertex(v)) {
             return;
         }
         graph.remove(v);
@@ -59,8 +59,8 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean contains(@NotNull Edge<T> e) {
-        if (contains(e.getFrom()) && contains(e.getTo())) {
+    public boolean containsEdge(@NotNull Edge<T> e) {
+        if (containsVertex(e.getFrom()) && containsVertex(e.getTo())) {
             return graph.get(e.getFrom()).get(e.getTo()) != 0;
         }
         return false;
@@ -68,7 +68,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public void addEdge(@NotNull Edge<T> e) {
-        if (contains(e)) {
+        if (containsEdge(e)) {
             return;
         }
         addVertex(e.getFrom());
@@ -78,7 +78,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public void delEdge(@NotNull Edge<T> e) {
-        if (!contains(e)) {
+        if (!containsEdge(e)) {
             return;
         }
         graph.get(e.getFrom()).replace(e.getTo(), 0);
@@ -86,6 +86,9 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public ArrayList<T> getAllNeighbours(@NotNull T v) {
+        if (!containsVertex(v)) {
+            return null;
+        }
         ArrayList<T> neighbours = new ArrayList<>();
         for (Map.Entry<T, HashMap<T, Integer>> node : graph.entrySet()) {
             if (!node.getKey().equals(v)) {

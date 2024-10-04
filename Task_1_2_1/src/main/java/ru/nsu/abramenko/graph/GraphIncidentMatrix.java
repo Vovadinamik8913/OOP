@@ -33,13 +33,13 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean contains(@NotNull T v) {
+    public boolean containsVertex(@NotNull T v) {
         return graph.containsKey(v);
     }
 
     @Override
     public void addVertex(@NotNull T v) {
-        if (graph.containsKey(v)) {
+        if (containsVertex(v)) {
             return;
         }
         HashMap<String, Integer> buf = new HashMap<String, Integer>();
@@ -54,7 +54,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
 
     @Override
     public void delVertex(@NotNull T v) {
-        if (!graph.containsKey(v)) {
+        if (!containsVertex(v)) {
             return;
         }
         graph.remove(v);
@@ -62,13 +62,13 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean contains(@NotNull Edge<T> e) {
+    public boolean containsEdge(@NotNull Edge<T> e) {
         return edges.containsKey(e.toString());
     }
 
     @Override
     public void addEdge(@NotNull Edge<T> e) {
-        if (contains(e)) {
+        if (containsEdge(e)) {
             return;
         }
         addVertex(e.getFrom());
@@ -83,7 +83,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
 
     @Override
     public void delEdge(@NotNull Edge<T> e) {
-        if (!contains(e)) {
+        if (!containsEdge(e)) {
             return;
         }
         edges.remove(e.toString());
@@ -92,6 +92,9 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
 
     @Override
     public ArrayList<T> getAllNeighbours(@NotNull T v) {
+        if (!containsVertex(v)) {
+            return null;
+        }
         ArrayList<T> res = new ArrayList<>();
         for (Map.Entry<String, Integer> map : graph.get(v).entrySet()) {
             Edge<T> e = edges.get(map.getKey());

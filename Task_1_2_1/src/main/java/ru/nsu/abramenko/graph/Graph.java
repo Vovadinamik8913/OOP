@@ -19,7 +19,7 @@ public interface Graph<T> {
      * @param v vertex
      * @return true or false
      */
-    boolean contains(@NotNull T v);
+    boolean containsVertex(@NotNull T v);
 
     /** add vertex to graph if doesn`t exist.
      *
@@ -39,7 +39,7 @@ public interface Graph<T> {
      * @param e edge
      * @return true or false
      */
-    boolean contains(@NotNull Edge<T> e);
+    boolean containsEdge(@NotNull Edge<T> e);
 
     /** add edge if not contains.
      * add vertexes if not contains
@@ -55,6 +55,8 @@ public interface Graph<T> {
     void delEdge(@NotNull Edge<T> e);
 
     /** get vertex neighbours.
+     * or null
+     * if no neighbours/vertex
      *
      * @param v vertex
      * @return arr of neighbours

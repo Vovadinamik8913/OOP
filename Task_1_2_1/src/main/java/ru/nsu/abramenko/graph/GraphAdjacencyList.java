@@ -31,7 +31,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
 
     @Override
     public void addVertex(@NotNull T v) {
-        if (graph.containsKey(v)) {
+        if (containsVertex(v)) {
             return;
         }
         graph.putIfAbsent(v, new ArrayList<>());
@@ -39,7 +39,7 @@ public class GraphAdjacencyList<T> implements Graph<T> {
 
     @Override
     public void delVertex(@NotNull T v) {
-        if (!graph.containsKey(v)) {
+        if (!containsVertex(v)) {
             return;
         }
         graph.remove(v);
@@ -48,10 +48,9 @@ public class GraphAdjacencyList<T> implements Graph<T> {
         }
     }
 
-
     @Override
     public void addEdge(@NotNull Edge<T> e) {
-        if (contains(e)) {
+        if (containsEdge(e)) {
             return;
         }
         addVertex(e.getFrom());
@@ -61,14 +60,14 @@ public class GraphAdjacencyList<T> implements Graph<T> {
 
     @Override
     public void delEdge(@NotNull Edge<T> e) {
-        if (contains(e)) {
+        if (containsEdge(e)) {
             graph.get(e.getFrom()).remove(e.getTo());
         }
     }
 
     @Override
     public ArrayList<T> getAllNeighbours(@NotNull T v) {
-        if (!contains(v)) {
+        if (!containsVertex(v)) {
             return null;
         }
         ArrayList<T> neighbours = graph.get(v);
@@ -83,13 +82,13 @@ public class GraphAdjacencyList<T> implements Graph<T> {
     }
 
     @Override
-    public boolean contains(@NotNull T v) {
+    public boolean containsVertex(@NotNull T v) {
         return graph.containsKey(v);
     }
 
     @Override
-    public boolean contains(@NotNull Edge<T> e) {
-        if (contains(e.getFrom()) && contains(e.getTo())) {
+    public boolean containsEdge(@NotNull Edge<T> e) {
+        if (containsVertex(e.getFrom()) && containsVertex(e.getTo())) {
             ArrayList<T> adj = graph.get(e.getFrom());
             return adj.contains(e.getTo());
         }

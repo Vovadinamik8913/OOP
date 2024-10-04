@@ -6,13 +6,20 @@ import ru.nsu.abramenko.graph.GraphIncidentMatrix;
 import ru.nsu.abramenko.transform.IntegerTransform;
 
 
-
+/** Main.
+ *
+ */
 public class Main {
+    /** main.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
-        Graph <Integer> graph = new GraphIncidentMatrix<>();
+        Graph<Integer> graph = new GraphIncidentMatrix<>();
         IntegerTransform transform = new IntegerTransform();
         try {
-            graph.scanFromFile("/home/abrikosjr/Desktop/OOPworkspace/OOP/Task_1_2_1/src/main/java/ru/nsu/abramenko/input.txt", transform);
+            graph.scanFromFile(
+                    "../Task_1_2_1/src/main/java/ru/nsu/abramenko/input.txt", transform);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

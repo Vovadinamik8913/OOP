@@ -3,12 +3,12 @@ package ru.nsu.abramenko.graph;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.graph.basic.Edge;
 import ru.nsu.abramenko.transform.Transform;
@@ -19,12 +19,12 @@ import ru.nsu.abramenko.transform.Transform;
  *
  * @param <T> class Type
  */
-public class GraphAdjacencyMatrix<T> implements Graph<T>{
+public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     private final HashMap<T, HashMap<T, Integer>> graph;
 
 
-    /** init matrix
+    /** init matrix.
      *
      */
     public GraphAdjacencyMatrix() {

@@ -194,7 +194,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="eval(java.lang.String)">
 <h3>eval</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span>
+            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
 <div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#eval(java.lang.String)">Expression</a></code></span></div>
 <div class="block">evaluate.
  may throw assert fail with variable</div>
@@ -205,13 +206,16 @@ loadScripts(document, 'script');</script>
 <dd><code>s</code> - arg equals something</dd>
 <dt>Returns:</dt>
 <dd>number</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span>
+                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
 <div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
 <div class="block">derivative.</div>
 <dl class="notes">
@@ -221,13 +225,16 @@ loadScripts(document, 'script');</script>
 <dd><code>s</code> - for which arg</dd>
 <dt>Returns:</dt>
 <dd>new expression</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="simplify()">
 <h3>simplify</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()
+                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
 <div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="Expression.html#simplify()">Expression</a></code></span></div>
 <div class="block">simplify original.</div>
 <dl class="notes">
@@ -235,6 +242,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.abramenko.math">Expression</a></code></dd>
 <dt>Returns:</dt>
 <dd>new expression</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>

@@ -2,6 +2,7 @@ package ru.nsu.abramenko;
 
 import java.io.IOException;
 import ru.nsu.abramenko.graph.Graph;
+import ru.nsu.abramenko.graph.GraphAdjacencyMatrix;
 import ru.nsu.abramenko.graph.GraphIncidentMatrix;
 import ru.nsu.abramenko.transform.IntegerTransform;
 
@@ -15,7 +16,7 @@ public class Main {
      * @param args args
      */
     public static void main(String[] args) {
-        Graph<Integer> graph = new GraphIncidentMatrix<>();
+        Graph<Integer> graph = new GraphAdjacencyMatrix<>();
         IntegerTransform transform = new IntegerTransform();
         try {
             graph.scanFromFile(

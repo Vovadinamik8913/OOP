@@ -16,10 +16,11 @@ class VertexTest {
     }
 
     @Test
-    @DisplayName("ToStringTest")
-    void toStringTest() {
+    @DisplayName("PrintTest")
+    void printTest() {
         Vertex<Integer> v1 = new Vertex<>(1);
         System.out.println(v1);
+        System.out.println(v1.name());
         assertTrue(true);
     }
 }

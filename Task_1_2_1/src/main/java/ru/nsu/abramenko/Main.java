@@ -4,6 +4,7 @@ import java.io.IOException;
 import ru.nsu.abramenko.graph.Graph;
 import ru.nsu.abramenko.graph.GraphAdjacencyMatrix;
 import ru.nsu.abramenko.graph.GraphIncidentMatrix;
+import ru.nsu.abramenko.graph.basic.Edge;
 import ru.nsu.abramenko.transform.IntegerTransform;
 
 
@@ -17,25 +18,12 @@ public class Main {
      */
     public static void main(String[] args) {
         Graph<Integer> graph = new GraphAdjacencyMatrix<>();
-        IntegerTransform transform = new IntegerTransform();
-        try {
-            graph.scanFromFile(
-                    "../Task_1_2_1/src/main/java/ru/nsu/abramenko/input.txt", transform);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        for (Integer vertex : graph.getAllNeighbours(1)) {
-            System.out.print(vertex + " ");
-        }
+        graph.addEdge(new Edge<>(1, 2));
+        graph.addEdge(new Edge<>(1, 3));
+        graph.addEdge(new Edge<>(4, 1));
+        graph.delVertex(4);
+        graph.delEdge(new Edge<>(1, 3));
         System.out.println();
-        try {
-            for (Integer vertex : graph.topologicalSort()) {
-                System.out.print(vertex + " ");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println();
-        System.out.println(graph.toString());
+        System.out.println(graph);
     }
 }

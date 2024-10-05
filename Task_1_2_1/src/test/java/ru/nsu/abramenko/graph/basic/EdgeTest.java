@@ -17,8 +17,9 @@ class EdgeTest {
     @DisplayName("ValueTest")
     void valueTest() {
         Edge<Integer> e1 = new Edge<>(1, 2);
+        e1.setValue(10);
         Edge<Integer> e2 = new Edge<>(1, 3, 100);
-        assertEquals(101, e2.getValue() + e1.getValue());
+        assertEquals(110, e2.getValue() + e1.getValue());
     }
 
     @Test
@@ -31,7 +32,7 @@ class EdgeTest {
 
     @Test
     @DisplayName("EqualsTest")
-    void EqualsTest() {
+    void equalsTest() {
         Edge<Integer> e1 = new Edge<>(1, 2);
         Edge<Integer> e2 = new Edge<>(1, 2);
         assertEquals(e1, e2);

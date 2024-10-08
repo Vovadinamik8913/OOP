@@ -63,4 +63,21 @@ class ParserTest {
         assertTrue(true);
     }
 
+
+    @Test
+    @DisplayName("Normal")
+    void normalTest() {
+        try {
+            Expression e = Parser.parse("2*x-10/y+50*0+(2+3)*((2-x)-(2-x))");
+            e.print();
+            Expression de = e.simplify();
+            de.print();
+            de = e.derivative("x");
+            de.print();
+            Expression sde = de.simplify();
+            sde.print();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

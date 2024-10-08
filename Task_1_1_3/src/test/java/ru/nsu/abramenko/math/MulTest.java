@@ -33,7 +33,7 @@ class MulTest {
     void mulTest() {
         Expression e = new Mul(
                 new Number(2), new Number(6));
-        assertEquals(e.eval(null), 12);
+        assertEquals(e.eval(""), 12);
     }
 
 }

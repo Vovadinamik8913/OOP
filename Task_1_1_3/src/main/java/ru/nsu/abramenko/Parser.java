@@ -34,7 +34,8 @@ public class Parser {
     }
 
     private static Expression operator(
-            char operation, Expression a, Expression b) throws ArithmeticException, IllegalArgumentException {
+            char operation, Expression a, Expression b)
+            throws ArithmeticException, IllegalArgumentException {
         return switch (operation) {
             case '-' -> new Sub(a, b);
             case '+' -> new Add(a, b);
@@ -46,12 +47,13 @@ public class Parser {
 
     private static String readToken(String text, int[] pos) {
         StringBuilder token = new StringBuilder();
-        while (text.charAt(pos[0]) == ' ' || text.charAt(pos[0]) == '\n'
-                || text.charAt(pos[0]) == '\t' || text.charAt(pos[0]) == '\r') {
-            pos[0]++;
+        char sym = text.charAt(pos[0]);
+        while (sym == ' ' || sym == '\n'
+                || sym == '\t' || sym == '\r') {
+            sym = text.charAt(++pos[0]);
         }
 
-        if (text.charAt(pos[0]) == '\0') {
+        if (sym == '\0') {
             token = new StringBuilder("\0");
             return token.toString();
         }
@@ -166,7 +168,8 @@ public class Parser {
      * @param str string exp
      * @return expression
      */
-    public static Expression parse(@NotNull String str) throws IllegalArgumentException, ArithmeticException {
+    public static Expression parse(@NotNull String str)
+            throws IllegalArgumentException, ArithmeticException {
         if (containsError(str)) {
             throw new IllegalArgumentException("Неправильный ввод");
         }

@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.math;
 
+import org.jetbrains.annotations.NotNull;
+
 /** number.
  *
  */
@@ -16,12 +18,12 @@ public class Number extends Expression {
     }
 
     @Override
-    public double eval(String s) {
+    public double eval(@NotNull String s) {
         return value;
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(@NotNull String s) {
         return new Number(0);
     }
 

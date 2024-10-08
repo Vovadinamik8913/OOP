@@ -22,7 +22,7 @@ public class Div extends Expression {
     }
 
     @Override
-    public double eval(String s) throws ArithmeticException {
+    public double eval(@NotNull String s) throws ArithmeticException {
         double res = right.eval(s);
         if (res == 0.d) {
             throw new ArithmeticException("Division by Zero");
@@ -31,7 +31,7 @@ public class Div extends Expression {
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(@NotNull String s) {
         return new Div(
                 new Sub(
                         new Mul(left.derivative(s), right), new Mul(left, right.derivative(s))),

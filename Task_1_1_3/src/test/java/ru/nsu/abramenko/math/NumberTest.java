@@ -9,7 +9,7 @@ class NumberTest {
     @Test
     void numberTest() {
         Expression e = new Number(123);
-        assertEquals(e.eval(null), 123);
+        assertEquals(e.eval(""), 123);
     }
 
     @Test

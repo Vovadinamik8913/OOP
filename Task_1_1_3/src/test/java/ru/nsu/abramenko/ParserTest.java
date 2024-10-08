@@ -1,5 +1,6 @@
 package ru.nsu.abramenko;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -11,36 +12,27 @@ class ParserTest {
     @Test
     void strangeStrTest() {
         String expression = "2+2!@#%^&$##VDFAGSDSAE";
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             Expression e = Parser.parse(expression);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
-        assertTrue(true);
+        });
     }
 
     @Test
     @DisplayName("BracketsError")
     void bracketsErrorTest() {
         String expression = "2+(3*(50-1)))))";
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             Expression e = Parser.parse(expression);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
-        assertTrue(true);
+        });
     }
 
     @Test
     @DisplayName("BracketsErr")
     void symbolTest() {
         String expression = "(2+2)(4+4)";
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             Expression e = Parser.parse(expression);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
-        assertTrue(true);
+        });
     }
 
 
@@ -71,5 +63,6 @@ class ParserTest {
         de.print();
         Expression sde = de.simplify();
         sde.print();
+        assertTrue(true);
     }
 }

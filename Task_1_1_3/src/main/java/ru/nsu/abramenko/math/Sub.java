@@ -18,12 +18,12 @@ public class Sub extends Expression {
     }
 
     @Override
-    public double eval(String s) {
+    public double eval(@NotNull String s) {
         return left.eval(s) - right.eval(s);
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(@NotNull String s) {
         return new Sub(left.derivative(s), right.derivative(s));
     }
 

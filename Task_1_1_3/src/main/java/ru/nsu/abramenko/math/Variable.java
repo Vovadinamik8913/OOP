@@ -17,9 +17,6 @@ public class Variable extends Expression {
 
 
     private String[] parseVariable(String variable) throws RuntimeException {
-        if (variable == null) {
-            throw  new NullPointerException("Конфликт имен: variable = null");
-        }
         if (!variable.contains("=")) {
             throw  new RuntimeException("Конфликт имен: there is no =");
         }
@@ -43,11 +40,8 @@ public class Variable extends Expression {
     }
 
     @Override
-    public double eval(String s) throws RuntimeException {
+    public double eval(@NotNull String s) throws RuntimeException {
         String val = null;
-        if (s == null)  {
-            throw  new NullPointerException("Конфликт имен: variable = null");
-        }
 
         String[] keys = s.split(";");
         for (String key : keys) {
@@ -65,7 +59,7 @@ public class Variable extends Expression {
     }
 
     @Override
-    public Expression derivative(String s) {
+    public Expression derivative(@NotNull String s) {
         if (s != null && s.equals(expression)) {
             return new Number(1);
         }

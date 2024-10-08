@@ -32,14 +32,14 @@ public abstract class Expression {
      * @param s arg equals something
      * @return number
      */
-    public abstract double eval(String s);
+    public abstract double eval(@NotNull String s);
 
     /** derivative.
      *
      * @param s for which arg
      * @return new expression
      */
-    public abstract Expression derivative(String s);
+    public abstract Expression derivative(@NotNull String s);
 
     /** simplify original.
      *

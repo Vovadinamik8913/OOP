@@ -15,7 +15,8 @@ public class Div extends Expression {
     public Div(@NotNull Expression a, @NotNull Expression b) throws Exception {
         super(a, b);
         this.expression = "(" + a + "/" + b + ")";
-        if (b.expression.equals("0.0")) {
+        Expression tst = new Number(0);
+        if (b instanceof Number && b.equals(tst)) {
             throw new Exception("Division by Zero");
         }
     }
@@ -23,6 +24,9 @@ public class Div extends Expression {
     @Override
     public double eval(String s) throws Exception {
         double res = right.eval(s);
+        if (res == 0.d) {
+            throw new Exception("Division by Zero");
+        }
         return left.eval(s) / res;
     }
 

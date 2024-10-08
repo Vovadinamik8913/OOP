@@ -18,23 +18,23 @@ public class Sub extends Expression {
     }
 
     @Override
-    public double eval(String s) throws Exception {
+    public double eval(String s) {
         return left.eval(s) - right.eval(s);
     }
 
     @Override
-    public Expression derivative(String s) throws Exception {
+    public Expression derivative(String s) {
         return new Sub(left.derivative(s), right.derivative(s));
     }
 
     @Override
-    public Expression simplify() throws Exception {
+    public Expression simplify() {
         if (left instanceof Number && right instanceof Number) {
-            return new Number(left.eval(null) - right.eval(null));
+            return new Number(left.eval("") - right.eval(""));
         } else if (left.equals(right)) {
             return new Number(0);
         }
-        if (right instanceof Number && right.eval(null) == 0) {
+        if (right instanceof Number && right.eval("") == 0) {
             return left.simplify();
         }
         Expression e = new Sub(left.simplify(), right.simplify());

@@ -13,7 +13,7 @@ class ParserTest {
         String expression = "2+2!@#%^&$##VDFAGSDSAE";
         try {
             Expression e = Parser.parse(expression);
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
         assertTrue(true);
@@ -25,7 +25,7 @@ class ParserTest {
         String expression = "2+(3*(50-1)))))";
         try {
             Expression e = Parser.parse(expression);
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
         assertTrue(true);
@@ -37,7 +37,7 @@ class ParserTest {
         String expression = "(2+2)(4+4)";
         try {
             Expression e = Parser.parse(expression);
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
         assertTrue(true);
@@ -48,18 +48,14 @@ class ParserTest {
     @DisplayName("Brackets")
     void bracketsTest() {
         String expression = "2+(3*(50-1))";
-        try {
-            Expression e = Parser.parse(expression);
-            e.print();
-            Expression de = e.simplify();
-            de.print();
-            de = e.derivative("x");
-            de.print();
-            Expression sde = de.simplify();
-            sde.print();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Expression e = Parser.parse(expression);
+        e.print();
+        Expression de = e.simplify();
+        de.print();
+        de = e.derivative("x");
+        de.print();
+        Expression sde = de.simplify();
+        sde.print();
         assertTrue(true);
     }
 
@@ -67,17 +63,13 @@ class ParserTest {
     @Test
     @DisplayName("Normal")
     void normalTest() {
-        try {
-            Expression e = Parser.parse("2*x-10/y+50*0+(2+3)*((2-x)-(2-x))");
-            e.print();
-            Expression de = e.simplify();
-            de.print();
-            de = e.derivative("x");
-            de.print();
-            Expression sde = de.simplify();
-            sde.print();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Expression e = Parser.parse("2*x-10/y+50*0+(2+3)*((2-x)-(2-x))");
+        e.print();
+        Expression de = e.simplify();
+        de.print();
+        de = e.derivative("x");
+        de.print();
+        Expression sde = de.simplify();
+        sde.print();
     }
 }

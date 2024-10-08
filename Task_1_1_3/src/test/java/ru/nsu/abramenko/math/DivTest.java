@@ -16,7 +16,7 @@ class DivTest {
             e.print();
             de.print();
             assertTrue(true);
-        } catch (Exception ex) {
+        } catch (ArithmeticException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -27,7 +27,7 @@ class DivTest {
             Expression e = new Div(
                     new Number(12), new Number(6));
             assertEquals(e.eval(null), 2);
-        } catch (Exception ex) {
+        } catch (ArithmeticException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -35,13 +35,13 @@ class DivTest {
     @Test
     @DisplayName("DerivativeTest")
     void derivativeTest() {
+        Expression e = new Div(
+                new Number(2), new Variable("x"));
+        e = e.derivative("x");
+        e.print();
         try {
-            Expression e = new Div(
-                    new Number(2), new Variable("x"));
-            e = e.derivative("x");
-            e.print();
             assertEquals(e.eval("x=1"), -2);
-        } catch (Exception ex) {
+        } catch (ArithmeticException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -54,7 +54,7 @@ class DivTest {
                     new Number(12), new Number(6));
             Expression e2 = e.simplify();
             assertEquals(e2.eval(null), 2);
-        } catch (Exception ex) {
+        } catch (ArithmeticException ex) {
             System.out.println(ex.getMessage());
         }
     }

@@ -32,20 +32,20 @@ public abstract class Expression {
      * @param s arg equals something
      * @return number
      */
-    public abstract double eval(String s) throws Exception;
+    public abstract double eval(String s);
 
     /** derivative.
      *
      * @param s for which arg
      * @return new expression
      */
-    public abstract Expression derivative(String s) throws Exception;
+    public abstract Expression derivative(String s);
 
     /** simplify original.
      *
      * @return new expression
      */
-    public abstract Expression simplify() throws Exception;
+    public abstract Expression simplify();
 
     /** print.
      *

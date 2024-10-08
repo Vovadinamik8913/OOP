@@ -12,13 +12,8 @@ class SubTest {
     void subEqualsTest() {
         Expression e = new Sub(new Add(new Number(2),
                 new Variable("x")), new Add(new Number(2), new Variable("x")));
-        Expression de = null;
-        try {
-            de = e.simplify();
-            de.print();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Expression de = e.simplify();
+        de.print();
         e.print();
         assertTrue(true);
     }
@@ -27,11 +22,7 @@ class SubTest {
     void subTest() {
         Expression e = new Sub(
                 new Number(12), new Number(6));
-        try {
-            assertEquals(e.eval(null), 6);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        assertEquals(e.eval(""), 6);
     }
 
     @Test
@@ -39,13 +30,9 @@ class SubTest {
     void derivativeTest() {
         Expression e = new Sub(
                 new Number(2), new Variable("x"));
-        try {
-            e = e.derivative("x");
-            e.print();
-            assertEquals(e.eval("x=1"), -1);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        e = e.derivative("x");
+        e.print();
+        assertEquals(e.eval("x=1"), -1);
     }
 
 }

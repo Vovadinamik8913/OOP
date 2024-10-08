@@ -9,34 +9,22 @@ class NumberTest {
     @Test
     void numberTest() {
         Expression e = new Number(123);
-        try {
-            assertEquals(e.eval(null), 123);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        assertEquals(e.eval(null), 123);
     }
 
     @Test
     @DisplayName("DerivativeTest")
     void derivativeTest() {
         Expression e = new Number(123);
-        try {
-            e = e.derivative("x");
-            assertEquals(e.eval(null), 0);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        e = e.derivative("x");
+        assertEquals(e.eval(""), 0);
     }
 
     @Test
     @DisplayName("SimplifyTest")
     void simplifyTest() {
         Expression e = new Number(123);
-        try {
-            Expression e2 = e.simplify();
-            assertEquals(e.eval(null), e2.eval(null));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Expression e2 = e.simplify();
+        assertEquals(e.eval(""), e2.eval(""));
     }
 }

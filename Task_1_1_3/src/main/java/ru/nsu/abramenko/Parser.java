@@ -34,13 +34,13 @@ public class Parser {
     }
 
     private static Expression operator(
-            char operation, Expression a, Expression b) throws Exception {
+            char operation, Expression a, Expression b) throws ArithmeticException, IllegalArgumentException {
         return switch (operation) {
             case '-' -> new Sub(a, b);
             case '+' -> new Add(a, b);
             case '/' -> new Div(a, b);
             case '*' -> new Mul(a, b);
-            default -> throw new Exception("Неправильный ввод");
+            default -> throw new IllegalArgumentException("Неправильный ввод");
         };
     }
 
@@ -88,7 +88,7 @@ public class Parser {
         return token;
     }
 
-    private static Expression parseExpr(String str, int[] pos) throws Exception {
+    private static Expression parseExpr(String str, int[] pos) throws IllegalArgumentException {
         Expression res = parseManom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -99,12 +99,12 @@ public class Parser {
             s = peekToken(str, pos);
         }
         if (pos[0] < str.length() && str.charAt(pos[0]) == '(') {
-            throw  new Exception("Неправильный ввод");
+            throw  new IllegalArgumentException("Неправильный ввод");
         }
         return res;
     }
 
-    private static Expression parseAtom(String str, int[] pos) throws Exception {
+    private static Expression parseAtom(String str, int[] pos) {
         String s = peekToken(str, pos);
         Expression res;
         if (s.charAt(0) == '(') {
@@ -144,7 +144,7 @@ public class Parser {
         return res;
     }
 
-    private static Expression parseManom(String str, int[] pos) throws Exception {
+    private static Expression parseManom(String str, int[] pos) throws IllegalArgumentException {
         Expression res = parseAtom(str, pos);
         String s = peekToken(str, pos);
         String operation = "";
@@ -155,7 +155,7 @@ public class Parser {
             s = peekToken(str, pos);
         }
         if (pos[0] < str.length() && str.charAt(pos[0]) == '(') {
-            throw  new Exception("Неправильный ввод");
+            throw  new IllegalArgumentException("Неправильный ввод");
         }
         return res;
     }
@@ -166,14 +166,14 @@ public class Parser {
      * @param str string exp
      * @return expression
      */
-    public static Expression parse(@NotNull String str) throws Exception {
+    public static Expression parse(@NotNull String str) throws IllegalArgumentException, ArithmeticException {
         if (containsError(str)) {
-            throw new Exception("Неправильный ввод");
+            throw new IllegalArgumentException("Неправильный ввод");
         }
         long countEnters = str.chars().filter(ch -> ch == '(').count();
         long countOuts = str.chars().filter(ch -> ch == ')').count();
         if (countEnters != countOuts) {
-            throw new Exception("Неправильный ввод");
+            throw new IllegalArgumentException("Неправильный ввод");
         }
         str += '\0';
         return parseExpr(str, new int[]{0});

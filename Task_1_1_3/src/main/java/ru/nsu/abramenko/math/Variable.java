@@ -16,18 +16,18 @@ public class Variable extends Expression {
     }
 
 
-    private String[] parseVariable(String variable) throws Exception {
+    private String[] parseVariable(String variable) throws RuntimeException {
         if (variable == null) {
             throw  new NullPointerException("Конфликт имен: variable = null");
         }
         if (!variable.contains("=")) {
-            throw  new Exception("Конфликт имен: there is no =");
+            throw  new RuntimeException("Конфликт имен: there is no =");
         }
         variable = variable.strip();
 
         String tmp = variable.substring(0, variable.indexOf("=")).strip();
         if (tmp.contains(" ")) {
-            throw  new Exception("Конфликт имен: problems in arg");
+            throw  new RuntimeException("Конфликт имен: problems in arg");
         }
 
         String[] res = new String[2];
@@ -35,7 +35,7 @@ public class Variable extends Expression {
 
         tmp = variable.substring(variable.indexOf("=") + 1).strip();
         if (tmp.contains(" ")) {
-            throw  new Exception("Конфликт имен: problems in val");
+            throw  new RuntimeException("Конфликт имен: problems in val");
         }
         res[1] = tmp;
 
@@ -43,7 +43,7 @@ public class Variable extends Expression {
     }
 
     @Override
-    public double eval(String s) throws Exception {
+    public double eval(String s) throws RuntimeException {
         String val = null;
         if (s == null)  {
             throw  new NullPointerException("Конфликт имен: variable = null");
@@ -59,7 +59,7 @@ public class Variable extends Expression {
         }
 
         if (val == null) {
-            throw new Exception("Конфликт имен");
+            throw new RuntimeException("Конфликт имен");
         }
         return Double.parseDouble(val);
     }

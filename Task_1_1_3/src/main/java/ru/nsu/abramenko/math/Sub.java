@@ -14,7 +14,7 @@ public class Sub extends Expression {
      */
     public Sub(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
-        this.expression = "(" + a.getExpression() + "-" + b.getExpression() + ")";
+        this.expression = "(" + a + "-" + b + ")";
     }
 
     @Override
@@ -29,16 +29,16 @@ public class Sub extends Expression {
 
     @Override
     public Expression simplify() throws Exception {
-        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+        if (left instanceof Number && right instanceof Number) {
             return new Number(left.eval(null) - right.eval(null));
-        } else if (left.getExpression().equals(right.getExpression())) {
+        } else if (left.equals(right)) {
             return new Number(0);
         }
-        if (right.getClass() == Number.class && right.eval(null) == 0) {
+        if (right instanceof Number && right.eval(null) == 0) {
             return left.simplify();
         }
         Expression e = new Sub(left.simplify(), right.simplify());
-        if (!this.expression.equals(e.expression)) {
+        if (!this.equals(e)) {
             return e.simplify();
         }
         return  this;

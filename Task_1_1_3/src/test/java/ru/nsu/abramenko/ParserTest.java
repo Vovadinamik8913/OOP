@@ -5,28 +5,41 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.nsu.abramenko.math.Expression;
 
 class ParserTest {
     @Test
     void strangeStrTest() {
-        System.setIn(new ByteArrayInputStream("2+2!@#%^&$##VDFAGSDSAE\n".getBytes()));
-        Main.main(null);
+        String expression = "2+2!@#%^&$##VDFAGSDSAE";
+        try {
+            Expression e = Parser.parse(expression);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         assertTrue(true);
     }
 
     @Test
     @DisplayName("BracketsError")
     void bracketsErrorTest() {
-        System.setIn(new ByteArrayInputStream("2+(3*(50-1)))))\n".getBytes()));
-        Main.main(null);
+        String expression = "2+(3*(50-1)))))";
+        try {
+            Expression e = Parser.parse(expression);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         assertTrue(true);
     }
 
     @Test
     @DisplayName("BracketsErr")
     void symbolTest() {
-        System.setIn(new ByteArrayInputStream("(2+2)(4+4)\n".getBytes()));
-        Main.main(null);
+        String expression = "(2+2)(4+4)";
+        try {
+            Expression e = Parser.parse(expression);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         assertTrue(true);
     }
 
@@ -34,8 +47,19 @@ class ParserTest {
     @Test
     @DisplayName("Brackets")
     void bracketsTest() {
-        System.setIn(new ByteArrayInputStream("2+(3*(50-1))\n".getBytes()));
-        Main.main(null);
+        String expression = "2+(3*(50-1))";
+        try {
+            Expression e = Parser.parse(expression);
+            e.print();
+            Expression de = e.simplify();
+            de.print();
+            de = e.derivative("x");
+            de.print();
+            Expression sde = de.simplify();
+            sde.print();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         assertTrue(true);
     }
 

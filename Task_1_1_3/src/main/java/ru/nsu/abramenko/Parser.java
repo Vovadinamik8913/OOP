@@ -35,19 +35,13 @@ public class Parser {
 
     private static Expression operator(
             char operation, Expression a, Expression b) throws Exception {
-        if (operation == '-') {
-            return new Sub(a, b);
-        }
-        if (operation == '+') {
-            return new Add(a, b);
-        }
-        if (operation == '*') {
-            return new Mul(a, b);
-        }
-        if (operation == '/') {
-            return new Div(a, b);
-        }
-        return null;
+        return switch (operation) {
+            case '-' -> new Sub(a, b);
+            case '+' -> new Add(a, b);
+            case '/' -> new Div(a, b);
+            case '*' -> new Mul(a, b);
+            default -> throw new Exception("Неправильный ввод");
+        };
     }
 
     private static String readToken(String text, int[] pos) {
@@ -170,10 +164,9 @@ public class Parser {
     /** converts string to expression.
      *
      * @param str string exp
-     * @param pos begin
      * @return expression
      */
-    public static Expression parse(@NotNull String str, int @NotNull [] pos) throws Exception {
+    public static Expression parse(@NotNull String str) throws Exception {
         if (containsError(str)) {
             throw new Exception("Неправильный ввод");
         }
@@ -182,6 +175,7 @@ public class Parser {
         if (countEnters != countOuts) {
             throw new Exception("Неправильный ввод");
         }
-        return parseExpr(str, pos);
+        str += '\0';
+        return parseExpr(str, new int[]{0});
     }
 }

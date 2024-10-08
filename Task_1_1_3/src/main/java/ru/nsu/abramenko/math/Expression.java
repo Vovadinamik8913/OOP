@@ -47,18 +47,27 @@ public abstract class Expression {
      */
     public abstract Expression simplify() throws Exception;
 
-    /** getter of expression.
-     *
-     * @return expression
-     */
-    public String getExpression() {
-        return expression;
-    }
-
     /** print.
      *
      */
     public void print() {
         System.out.println(expression);
+    }
+
+
+    @Override
+    public String toString() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Expression other)) {
+            return false;
+        }
+        return this.expression.equals(other.expression);
     }
 }

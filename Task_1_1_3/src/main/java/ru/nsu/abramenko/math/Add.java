@@ -15,7 +15,7 @@ public class Add extends Expression {
      */
     public Add(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
-        this.expression = "(" + a.getExpression() + "+" + b.getExpression() + ")";
+        this.expression = "(" + a + "+" + b + ")";
     }
 
     @Override
@@ -30,17 +30,17 @@ public class Add extends Expression {
 
     @Override
     public Expression simplify() throws Exception {
-        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+        if (left instanceof Number && right instanceof Number) {
             return new Number(left.eval(null) + right.eval(null));
         }
-        if (left.getClass() == Number.class && left.eval(null) == 0) {
+        if (left instanceof Number && left.eval(null) == 0) {
             return right.simplify();
         }
-        if (right.getClass() == Number.class && right.eval(null) == 0) {
+        if (right instanceof Number && right.eval(null) == 0) {
             return left.simplify();
         }
         Expression e = new Add(left.simplify(), right.simplify());
-        if (!this.expression.equals(e.expression)) {
+        if (!this.equals(e)) {
             return e.simplify();
         }
         return  this;

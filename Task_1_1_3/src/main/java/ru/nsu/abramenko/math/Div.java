@@ -14,15 +14,19 @@ public class Div extends Expression {
      */
     public Div(@NotNull Expression a, @NotNull Expression b) throws Exception {
         super(a, b);
-        this.expression = "(" + a.getExpression() + "/" + b.getExpression() + ")";
-        if (b.getExpression().equals("0.0")) {
+        this.expression = "(" + a + "/" + b + ")";
+        if (b.expression.equals("0.0")) {
             throw new Exception("Division by Zero");
         }
     }
 
     @Override
     public double eval(String s) throws Exception {
-        return left.eval(s) / right.eval(s);
+        double res = right.eval(s);
+        if (res == 0) {
+            throw  new Exception("Division by Zero");
+        }
+        return left.eval(s) / res;
     }
 
     @Override
@@ -35,13 +39,13 @@ public class Div extends Expression {
 
     @Override
     public Expression simplify() throws Exception {
-        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+        if (left instanceof Number && right instanceof Number) {
             return new Number(left.eval(null) / right.eval(null));
-        } else if (left.getClass() == Number.class && left.eval(null) == 0) {
+        } else if (left instanceof Number && left.eval(null) == 0) {
             return new Number(0);
         }
         Expression e = new Div(left.simplify(), right.simplify());
-        if (!this.expression.equals(e.expression)) {
+        if (!this.equals(e)) {
             return e.simplify();
         }
         return  this;

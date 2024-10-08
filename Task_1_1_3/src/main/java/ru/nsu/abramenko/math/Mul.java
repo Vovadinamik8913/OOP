@@ -14,7 +14,7 @@ public class Mul extends Expression {
      */
     public Mul(@NotNull Expression a, @NotNull Expression b) {
         super(a, b);
-        this.expression = "(" + a.getExpression() + "*" + b.getExpression() + ")";
+        this.expression = "(" + a + "*" + b + ")";
     }
 
     @Override
@@ -29,20 +29,20 @@ public class Mul extends Expression {
 
     @Override
     public Expression simplify() throws Exception {
-        if (left.getClass() == Number.class && right.getClass() == Number.class) {
+        if (left instanceof  Number && right instanceof Number) {
             return new Number(left.eval(null) * right.eval(null));
-        } else if ((left.getClass() == Number.class && left.eval(null) == 0)
-                || (right.getClass() == Number.class && right.eval(null) == 0)) {
+        } else if ((left instanceof Number && left.eval(null) == 0)
+                || (right instanceof Number && right.eval(null) == 0)) {
             return new Number(0);
-        } else if (left.getClass() == Number.class
+        } else if (left instanceof Number
                 && left.eval(null) == 1) {
             return right.simplify();
-        }  else if (right.getClass() == Number.class
+        }  else if (right instanceof Number
                 && right.eval(null) == 1) {
             return left.simplify();
         }
         Expression e = new Mul(left.simplify(), right.simplify());
-        if (!this.expression.equals(e.expression)) {
+        if (!this.equals(e)) {
             return e.simplify();
         }
         return  this;

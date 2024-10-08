@@ -51,7 +51,7 @@ public abstract class Expression {
      *
      */
     public void print() {
-        System.out.println(expression);
+        System.out.println(this);
     }
 
 
@@ -62,6 +62,9 @@ public abstract class Expression {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -69,5 +72,10 @@ public abstract class Expression {
             return false;
         }
         return this.expression.equals(other.expression);
+    }
+
+    @Override
+    public int hashCode() {
+        return expression.hashCode();
     }
 }

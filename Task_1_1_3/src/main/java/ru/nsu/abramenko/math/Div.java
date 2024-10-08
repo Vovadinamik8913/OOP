@@ -23,9 +23,6 @@ public class Div extends Expression {
     @Override
     public double eval(String s) throws Exception {
         double res = right.eval(s);
-        if (res == 0) {
-            throw  new Exception("Division by Zero");
-        }
         return left.eval(s) / res;
     }
 

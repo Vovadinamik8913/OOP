@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Queue;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.graph.basic.Vertex;
 import ru.nsu.abramenko.transform.Transform;
 
 
@@ -21,7 +22,7 @@ import ru.nsu.abramenko.transform.Transform;
  */
 public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
-    private final HashMap<T, HashMap<T, Integer>> graph;
+    private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> graph;
 
 
     /** init matrix.
@@ -32,17 +33,17 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean containsVertex(@NotNull T v) {
+    public boolean containsVertex(@NotNull Vertex<T> v) {
         return graph.containsKey(v);
     }
 
     @Override
-    public void addVertex(@NotNull T v) {
+    public void addVertex(@NotNull Vertex<T> v) {
         if (containsVertex(v)) {
             return;
         }
-        HashMap<T, Integer> buf = new HashMap<T, Integer>();
-        for (T key : graph.keySet()) {
+        HashMap<Vertex<T>, Integer> buf = new HashMap<>();
+        for (Vertex<T> key : graph.keySet()) {
             buf.put(key, 0);
         }
         graph.putIfAbsent(v, buf);
@@ -50,7 +51,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delVertex(@NotNull T v) {
+    public void delVertex(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return;
         }
@@ -85,18 +86,18 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public ArrayList<T> getAllNeighbours(@NotNull T v) {
+    public ArrayList<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return null;
         }
-        ArrayList<T> neighbours = new ArrayList<>();
-        for (Map.Entry<T, HashMap<T, Integer>> node : graph.entrySet()) {
+        ArrayList<Vertex<T>> neighbours = new ArrayList<>();
+        for (Map.Entry<Vertex<T>, HashMap<Vertex<T>, Integer>> node : graph.entrySet()) {
             if (!node.getKey().equals(v)) {
                 if (node.getValue().get(v) != 0 && !neighbours.contains(node.getKey())) {
                     neighbours.add(node.getKey());
                 }
             } else {
-                for (Map.Entry<T, Integer> value : node.getValue().entrySet()) {
+                for (Map.Entry<Vertex<T>, Integer> value : node.getValue().entrySet()) {
                     if (value.getValue() != 0 && !neighbours.contains(value.getKey())) {
                         neighbours.add(value.getKey());
                     }
@@ -113,44 +114,44 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         for (String pair : line) {
             String[] parts = pair.split(" ");
             addEdge(new Edge<T>(
-                    transform.transform(parts[0]),
-                    transform.transform(parts[1])));
+                    new Vertex<>(transform.transform(parts[0])),
+                    new Vertex<>(transform.transform(parts[1]))));
         }
     }
 
     @Override
-    public ArrayList<T> topologicalSort() throws Exception {
-        HashMap<T, Integer> inDegree = new HashMap<>();
+    public ArrayList<Vertex<T>> topologicalSort() throws Exception {
+        HashMap<Vertex<T>, Integer> inDegree = new HashMap<>();
         // Инициализация степени входа
-        for (T vertex : graph.keySet()) {
+        for (Vertex<T> vertex : graph.keySet()) {
             inDegree.put(vertex, 0);
         }
 
         // Подсчет степени входа для каждой вершины
-        for (Map.Entry<T, HashMap<T, Integer>> entry : graph.entrySet()) {
-            for (Map.Entry<T, Integer> neighbor : entry.getValue().entrySet()) {
+        for (Map.Entry<Vertex<T>, HashMap<Vertex<T>, Integer>> entry : graph.entrySet()) {
+            for (Map.Entry<Vertex<T>, Integer> neighbor : entry.getValue().entrySet()) {
                 if (neighbor.getValue() != 0) {
                     inDegree.put(neighbor.getKey(), inDegree.get(neighbor.getKey()) + 1);
                 }
             }
         }
 
-        Queue<T> queue = new LinkedList<>();
+        Queue<Vertex<T>> queue = new LinkedList<>();
         // Добавление вершин с нулевой степенью входа в очередь
-        for (Map.Entry<T, Integer> entry : inDegree.entrySet()) {
+        for (Map.Entry<Vertex<T>, Integer> entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
                 queue.add(entry.getKey());
             }
         }
 
 
-        ArrayList<T> sortedList = new ArrayList<>();
+        ArrayList<Vertex<T>> sortedList = new ArrayList<>();
         while (!queue.isEmpty()) {
-            T current = queue.poll();
+            Vertex<T> current = queue.poll();
             sortedList.add(current);
 
             // Обновление степени входа соседей
-            for (Map.Entry<T, Integer> neighbor : graph.get(current).entrySet()) {
+            for (Map.Entry<Vertex<T>, Integer> neighbor : graph.get(current).entrySet()) {
                 if (neighbor.getValue() != 0) {
                     inDegree.put(neighbor.getKey(), inDegree.get(neighbor.getKey()) - 1);
                     if (inDegree.get(neighbor.getKey()) == 0) {
@@ -188,11 +189,11 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             return null;
         }
         StringBuilder res = new StringBuilder();
-        for (T keys : graph.keySet()) {
+        for (Vertex<T> keys : graph.keySet()) {
             res.append("\t").append(keys.toString());
         }
         res.append("\n");
-        for (Map.Entry<T, HashMap<T, Integer>> node : graph.entrySet()) {
+        for (Map.Entry<Vertex<T>, HashMap<Vertex<T>, Integer>> node : graph.entrySet()) {
             res.append(node.getKey().toString());
             for (Integer val : node.getValue().values()) {
                 res.append("\t").append(val.toString());

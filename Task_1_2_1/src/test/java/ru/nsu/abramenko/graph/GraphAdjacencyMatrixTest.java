@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.nsu.abramenko.graph.basic.Vertex;
 import ru.nsu.abramenko.transform.IntegerTransform;
 
 class GraphAdjacencyMatrixTest {
@@ -21,12 +22,12 @@ class GraphAdjacencyMatrixTest {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        for (Integer vertex : graph.getAllNeighbours(1)) {
+        for (Vertex<Integer> vertex : graph.getAllNeighbours(new Vertex<>(1))) {
             System.out.print(vertex + " ");
         }
         System.out.println();
         try {
-            for (Integer vertex : graph.topologicalSort()) {
+            for (Vertex<Integer> vertex : graph.topologicalSort()) {
                 System.out.print(vertex + " ");
             }
         } catch (Exception e) {

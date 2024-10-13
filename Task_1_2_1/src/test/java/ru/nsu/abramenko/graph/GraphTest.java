@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.graph.basic.Vertex;
 import ru.nsu.abramenko.transform.IntegerTransform;
 
 
@@ -22,12 +23,12 @@ class GraphTest {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        for (Integer vertex : graph.getAllNeighbours(1)) {
+        for (Vertex<Integer> vertex : graph.getAllNeighbours(new Vertex<>(1))) {
             System.out.print(vertex + " ");
         }
         System.out.println();
         try {
-            for (Integer vertex : graph.topologicalSort()) {
+            for (Vertex<Integer> vertex : graph.topologicalSort()) {
                 System.out.print(vertex + " ");
             }
         } catch (Exception e) {
@@ -56,12 +57,12 @@ class GraphTest {
     @DisplayName("CycleError")
     void cycleError() {
         Graph<Integer> graph = new GraphAdjacencyList<>();
-        graph.addVertex(1);
-        graph.addVertex(2);
-        graph.addEdge(new Edge<>(1, 2));
-        graph.addEdge(new Edge<>(2, 1));
+        graph.addVertex(new Vertex<>(1));
+        graph.addVertex(new Vertex<>(2));
+        graph.addEdge(new Edge<>(new Vertex<>(1), new Vertex<>(2)));
+        graph.addEdge(new Edge<>(new Vertex<>(1), new Vertex<>(2)));
         try {
-            for (Integer vertex : graph.topologicalSort()) {
+            for (Vertex<Integer> vertex : graph.topologicalSort()) {
                 System.out.print(vertex + " ");
             }
         } catch (Exception e) {

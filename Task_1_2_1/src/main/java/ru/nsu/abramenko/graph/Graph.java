@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.graph.basic.Vertex;
 import ru.nsu.abramenko.transform.Transform;
 
 
@@ -19,19 +20,19 @@ public interface Graph<T> {
      * @param v vertex
      * @return true or false
      */
-    boolean containsVertex(@NotNull T v);
+    boolean containsVertex(@NotNull Vertex<T> v);
 
     /** add vertex to graph if doesn`t exist.
      *
      * @param v vertex
      */
-    void addVertex(@NotNull T v);
+    void addVertex(@NotNull Vertex<T> v);
 
     /** del vertex if exists.
      *
      * @param v vertex
      */
-    void delVertex(@NotNull T v);
+    void delVertex(@NotNull Vertex<T> v);
 
     /** is there an edge between vertex.
      * from -> to (oriented)
@@ -61,7 +62,7 @@ public interface Graph<T> {
      * @param v vertex
      * @return arr of neighbours
      */
-    ArrayList<T> getAllNeighbours(@NotNull T v);
+    ArrayList<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v);
 
     /** create graph by scanning file.
      * Data view: vertex vertex
@@ -77,5 +78,5 @@ public interface Graph<T> {
      * @return sorted graph
      * @throws Exception if there is cycle
      */
-    ArrayList<T> topologicalSort() throws Exception;
+    ArrayList<Vertex<T>> topologicalSort() throws Exception;
 }

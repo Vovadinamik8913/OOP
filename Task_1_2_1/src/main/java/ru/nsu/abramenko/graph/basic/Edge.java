@@ -7,8 +7,8 @@ import java.util.Objects;
  * @param <T> class Type
  */
 public class Edge<T> {
-    private final T from;
-    private final T to;
+    private final Vertex<T> from;
+    private final Vertex<T> to;
     private int value;
 
     /** constructor, value equals 1.
@@ -16,7 +16,7 @@ public class Edge<T> {
      * @param from from vertex
      * @param to to vertex
      */
-    public Edge(T from, T to) {
+    public Edge(Vertex<T> from, Vertex<T> to) {
         this.from = from;
         this.to = to;
         this.value = 1;
@@ -28,7 +28,7 @@ public class Edge<T> {
      * @param to to vertex
      * @param value int value
      */
-    public Edge(T from, T to, int value) {
+    public Edge(Vertex<T> from, Vertex<T> to, int value) {
         this.from = from;
         this.to = to;
         this.value = value;
@@ -55,7 +55,7 @@ public class Edge<T> {
      *
      * @return vertex from
      */
-    public T getFrom() {
+    public Vertex<T> getFrom() {
         return from;
     }
 
@@ -63,7 +63,7 @@ public class Edge<T> {
      *
      * @return vertex to
      */
-    public T getTo() {
+    public Vertex<T> getTo() {
         return to;
     }
 

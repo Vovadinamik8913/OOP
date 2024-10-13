@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Queue;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.abramenko.graph.basic.Edge;
+import ru.nsu.abramenko.graph.basic.Vertex;
 import ru.nsu.abramenko.transform.Transform;
 
 /**
@@ -21,7 +22,7 @@ import ru.nsu.abramenko.transform.Transform;
  */
 public class GraphIncidentMatrix<T> implements Graph<T> {
 
-    private final HashMap<T, HashMap<String, Integer>> graph;
+    private final HashMap<Vertex<T>, HashMap<String, Integer>> graph;
     private final HashMap<String, Edge<T>> edges;
 
     /** init matrix.
@@ -33,12 +34,12 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public boolean containsVertex(@NotNull T v) {
+    public boolean containsVertex(@NotNull Vertex<T> v) {
         return graph.containsKey(v);
     }
 
     @Override
-    public void addVertex(@NotNull T v) {
+    public void addVertex(@NotNull Vertex<T> v) {
         if (containsVertex(v)) {
             return;
         }
@@ -53,7 +54,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public void delVertex(@NotNull T v) {
+    public void delVertex(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return;
         }
@@ -76,7 +77,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         edges.putIfAbsent(e.toString(), e);
         graph.values().forEach((inc) -> inc.put(e.toString(), 0));
         if (!e.getFrom().equals(e.getTo())) {
-            graph.get(e.getTo()).replace(e.toString(), e.getValue());
+            graph.get(e.getFrom()).replace(e.toString(), e.getValue());
         }
     }
 
@@ -90,21 +91,16 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public ArrayList<T> getAllNeighbours(@NotNull T v) {
+    public ArrayList<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return null;
         }
-        ArrayList<T> res = new ArrayList<>();
+        ArrayList<Vertex<T>> res = new ArrayList<>();
         for (Map.Entry<String, Integer> map : graph.get(v).entrySet()) {
             Edge<T> e = edges.get(map.getKey());
             switch (map.getValue()) {
                 case 1:
                     if (!res.contains(e.getFrom())) {
-                        res.add(e.getFrom());
-                    }
-                    break;
-                case -1:
-                    if (!res.contains(e.getTo())) {
                         res.add(e.getTo());
                     }
                     break;
@@ -124,48 +120,48 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         for (String pair : line) {
             String[] parts = pair.split(" ");
             addEdge(new Edge<T>(
-                    transform.transform(parts[0]),
-                    transform.transform(parts[1])));
+                    new Vertex<>(transform.transform(parts[0])),
+                    new Vertex<>(transform.transform(parts[1]))));
         }
     }
 
     @Override
-    public ArrayList<T> topologicalSort() throws Exception {
-        HashMap<T, Integer> inDegree = new HashMap<>();
+    public ArrayList<Vertex<T>> topologicalSort() throws Exception {
+        HashMap<Vertex<T>, Integer> inDegree = new HashMap<>();
         // Инициализация степени входа
-        for (T vertex : graph.keySet()) {
+        for (Vertex<T> vertex : graph.keySet()) {
             inDegree.put(vertex, 0);
         }
         // Подсчет степени входа для каждой вершины
-        for (Map.Entry<T, HashMap<String, Integer>> entry : graph.entrySet()) {
+        for (Map.Entry<Vertex<T>, HashMap<String, Integer>> entry : graph.entrySet()) {
             for (Map.Entry<String, Integer> edge : entry.getValue().entrySet()) {
                 if (edge.getValue() == 0) {
                     continue;
                 }
                 Edge<T> e = edges.get(edge.getKey());
-                T neighbor = e.getFrom();
+                Vertex<T> neighbor = e.getTo();
                 inDegree.put(neighbor, inDegree.get(neighbor) + 1);
             }
         }
 
-        Queue<T> queue = new LinkedList<>();
+        Queue<Vertex<T>> queue = new LinkedList<>();
         // Добавление вершин с нулевой степенью входа в очередь
-        for (Map.Entry<T, Integer> entry : inDegree.entrySet()) {
+        for (Map.Entry<Vertex<T>, Integer> entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
                 queue.add(entry.getKey());
             }
         }
 
-        ArrayList<T> sortedList = new ArrayList<>();
+        ArrayList<Vertex<T>> sortedList = new ArrayList<>();
         while (!queue.isEmpty()) {
-            T current = queue.poll();
+            Vertex<T> current = queue.poll();
             sortedList.add(current);
 
             // Обновление степени входа соседей
             for (Map.Entry<String, Integer>  entry : graph.get(current).entrySet()) {
                 Edge<T> edge = edges.get(entry.getKey());
                 if (edge != null && entry.getValue() != 0) {
-                    T neighbor = edge.getFrom();
+                    Vertex<T> neighbor = edge.getTo();
                     inDegree.put(neighbor, inDegree.get(neighbor) - 1);
                     if (inDegree.get(neighbor) == 0) {
                         queue.add(neighbor);
@@ -210,7 +206,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
             break;
         }
         res.append("\n");
-        for (Map.Entry<T, HashMap<String, Integer>> node : graph.entrySet()) {
+        for (Map.Entry<Vertex<T>, HashMap<String, Integer>> node : graph.entrySet()) {
             res.append(node.getKey().toString());
             for (Integer val : node.getValue().values()) {
                 res.append("\t\t").append(val.toString());

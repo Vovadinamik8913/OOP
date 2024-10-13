@@ -76,8 +76,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         edges.putIfAbsent(e.toString(), e);
         graph.values().forEach((inc) -> inc.put(e.toString(), 0));
         if (!e.getFrom().equals(e.getTo())) {
-            graph.get(e.getFrom()).replace(e.toString(), -1);
-            graph.get(e.getTo()).replace(e.toString(), 1);
+            graph.get(e.getTo()).replace(e.toString(), e.getValue());
         }
     }
 
@@ -140,11 +139,11 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         // Подсчет степени входа для каждой вершины
         for (Map.Entry<T, HashMap<String, Integer>> entry : graph.entrySet()) {
             for (Map.Entry<String, Integer> edge : entry.getValue().entrySet()) {
-                if (edge.getValue() == 0 || edge.getValue() == 1) {
+                if (edge.getValue() == 0) {
                     continue;
                 }
                 Edge<T> e = edges.get(edge.getKey());
-                T neighbor = e.getTo();
+                T neighbor = e.getFrom();
                 inDegree.put(neighbor, inDegree.get(neighbor) + 1);
             }
         }
@@ -165,9 +164,8 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
             // Обновление степени входа соседей
             for (Map.Entry<String, Integer>  entry : graph.get(current).entrySet()) {
                 Edge<T> edge = edges.get(entry.getKey());
-                if (edge != null && entry.getValue() != 0
-                        && entry.getValue() != 1) {
-                    T neighbor = edge.getTo();
+                if (edge != null && entry.getValue() != 0) {
+                    T neighbor = edge.getFrom();
                     inDegree.put(neighbor, inDegree.get(neighbor) - 1);
                     if (inDegree.get(neighbor) == 0) {
                         queue.add(neighbor);
@@ -187,6 +185,9 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }

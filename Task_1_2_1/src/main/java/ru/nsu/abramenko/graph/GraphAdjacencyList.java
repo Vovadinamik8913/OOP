@@ -169,6 +169,9 @@ public class GraphAdjacencyList<T> implements Graph<T> {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -176,5 +179,10 @@ public class GraphAdjacencyList<T> implements Graph<T> {
             return false;
         }
         return graph.equals(other.graph);
+    }
+
+    @Override
+    public int hashCode() {
+        return graph.hashCode();
     }
 }

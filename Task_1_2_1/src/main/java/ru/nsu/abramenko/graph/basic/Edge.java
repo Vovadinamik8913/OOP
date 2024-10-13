@@ -74,6 +74,9 @@ public class Edge<T> {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -91,6 +94,15 @@ public class Edge<T> {
      */
     @Override
     public String toString() {
-        return "(" + from.toString() + " > " + to.toString() + ")";
+        return "(" + from.toString() + ">" + to.toString() + ")";
+    }
+
+    /** get hashCode of edge.
+     *
+     * @return hashCode from String
+     */
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
     }
 }

@@ -16,6 +16,9 @@ public record Vertex<T>(T name) {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -32,5 +35,14 @@ public record Vertex<T>(T name) {
     @Override
     public String toString() {
         return name.toString();
+    }
+
+    /** hashCode of vertex.
+     *
+     * @return hashCode from name
+     */
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

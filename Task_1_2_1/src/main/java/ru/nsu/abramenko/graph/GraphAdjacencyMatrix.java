@@ -73,7 +73,7 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
         }
         addVertex(e.getFrom());
         addVertex(e.getTo());
-        graph.get(e.getFrom()).replace(e.getTo(), 1);
+        graph.get(e.getFrom()).replace(e.getTo(), e.getValue());
     }
 
     @Override
@@ -170,6 +170,9 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (this == obj) {
             return true;
         }
@@ -197,5 +200,10 @@ public class GraphAdjacencyMatrix<T> implements Graph<T> {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return graph.hashCode();
     }
 }

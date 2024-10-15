@@ -2,8 +2,8 @@ package ru.nsu.abramenko;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.nsu.abramenko.math.Expression;
@@ -63,6 +63,6 @@ class ParserTest {
         de.print();
         Expression sde = de.simplify();
         sde.print();
-        assertTrue(true);
+        assertNotEquals(e, de);
     }
 }

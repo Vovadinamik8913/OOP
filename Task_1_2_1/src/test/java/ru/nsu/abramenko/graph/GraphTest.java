@@ -19,7 +19,7 @@ class GraphTest {
         IntegerTransform transform = new IntegerTransform();
         try {
             graph.scanFromFile(
-                    "../Task_1_2_1/src/main/java/ru/nsu/abramenko/input.txt", transform);
+                    ClassLoader.getSystemResource("input.txt").getPath(), transform);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -46,7 +46,7 @@ class GraphTest {
         IntegerTransform transform = new IntegerTransform();
         try {
             graph.scanFromFile(
-                    "../Task_1_2_1/src/main/java/ru/nsu/abramenko/inp.txt", transform);
+                    ClassLoader.getSystemResource("input.txt").getPath(), transform);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

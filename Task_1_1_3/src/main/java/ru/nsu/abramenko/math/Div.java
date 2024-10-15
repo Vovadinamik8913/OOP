@@ -7,14 +7,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Div extends Expression {
 
+    private final Expression left;
+    private final Expression right;
+
     /** a div b expression.
      *
      * @param a left
      * @param b right, must not equal 0
      */
     public Div(@NotNull Expression a, @NotNull Expression b) throws ArithmeticException {
-        super(a, b);
-        this.expression = "(" + a + "/" + b + ")";
+        left = a;
+        right = b;
         Expression tst = new Number(0);
         if (b instanceof Number && b.equals(tst)) {
             throw new ArithmeticException("Division by Zero");
@@ -50,6 +53,32 @@ public class Div extends Expression {
             return e.simplify();
         }
         return  this;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left + "/" + right + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Div div)) {
+            return false;
+        }
+        return left.equals(div.left) && right.equals(div.right);
+    }
+
+    @Override
+    public int hashCode() {
+        int res = left.hashCode();
+        res = 29 * res + right.hashCode();
+        return this.toString().hashCode();
     }
 }
 

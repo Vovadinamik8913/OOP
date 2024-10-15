@@ -7,14 +7,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Mul extends Expression {
 
+    private final Expression left;
+    private final Expression right;
+
     /** a mul b.
      *
      * @param a left
      * @param b right
      */
     public Mul(@NotNull Expression a, @NotNull Expression b) {
-        super(a, b);
-        this.expression = "(" + a + "*" + b + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -46,5 +49,31 @@ public class Mul extends Expression {
             return e.simplify();
         }
         return  this;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left + "*" + right + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Mul multi)) {
+            return false;
+        }
+        return left.equals(multi.left) && right.equals(multi.right);
+    }
+
+    @Override
+    public int hashCode() {
+        int res = left.hashCode();
+        res = 29 * res + right.hashCode();
+        return this.toString().hashCode();
     }
 }

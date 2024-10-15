@@ -8,14 +8,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Add extends Expression {
 
+    private final Expression left;
+    private final Expression right;
+
     /** a add b expression.
      *
      * @param a left expr
      * @param b right expr
      */
     public Add(@NotNull Expression a, @NotNull Expression b) {
-        super(a, b);
-        this.expression = "(" + a + "+" + b + ")";
+        left = a;
+        right = b;
     }
 
     @Override
@@ -44,5 +47,31 @@ public class Add extends Expression {
             return e.simplify();
         }
         return  this;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left + "+" + right + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Add add)) {
+            return false;
+        }
+        return left.equals(add.left) && right.equals(add.right);
+    }
+
+    @Override
+    public int hashCode() {
+        int res = left.hashCode();
+        res = 29 * res + right.hashCode();
+        return this.toString().hashCode();
     }
 }

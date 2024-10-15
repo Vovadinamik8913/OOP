@@ -7,12 +7,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Variable extends Expression {
 
+    private final String variable;
+
     /** new var.
      *
      * @param variable name of var
      */
     public Variable(@NotNull String variable) {
-        this.expression = variable;
+        this.variable = variable;
     }
 
 
@@ -46,7 +48,7 @@ public class Variable extends Expression {
         String[] keys = s.split(";");
         for (String key : keys) {
             String[] kv = parseVariable(key);
-            if (expression.equals(kv[0])) {
+            if (variable.equals(kv[0])) {
                 val = kv[1];
                 break;
             }
@@ -60,7 +62,7 @@ public class Variable extends Expression {
 
     @Override
     public Expression derivative(@NotNull String s) {
-        if (s != null && s.equals(expression)) {
+        if (s.equals(variable)) {
             return new Number(1);
         }
         return new Number(0);
@@ -69,5 +71,29 @@ public class Variable extends Expression {
     @Override
     public Expression simplify() {
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return variable;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Variable other)) {
+            return false;
+        }
+        return other.variable.equals(variable);
+    }
+
+    @Override
+    public int hashCode() {
+        return variable.hashCode();
     }
 }

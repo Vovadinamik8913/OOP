@@ -32,12 +32,12 @@ public class Sub extends Expression {
 
     @Override
     public Expression simplify() {
-        if (left instanceof Number && right instanceof Number) {
-            return new Number(left.eval("") - right.eval(""));
+        if (left instanceof Number a && right instanceof Number b) {
+            return new Number(a.getValue() - b.getValue());
         } else if (left.equals(right)) {
             return new Number(0);
         }
-        if (right instanceof Number && right.eval("") == 0) {
+        if (right instanceof Number b && b.getValue() == 0) {
             return left.simplify();
         }
         Expression e = new Sub(left.simplify(), right.simplify());

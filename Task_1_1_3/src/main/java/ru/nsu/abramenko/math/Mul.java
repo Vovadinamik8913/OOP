@@ -32,16 +32,16 @@ public class Mul extends Expression {
 
     @Override
     public Expression simplify() {
-        if (left instanceof  Number && right instanceof Number) {
-            return new Number(left.eval("") * right.eval(""));
-        } else if ((left instanceof Number && left.eval("") == 0)
-                || (right instanceof Number && right.eval("") == 0)) {
+        if (left instanceof  Number a && right instanceof Number b) {
+            return new Number(a.getValue() * b.getValue());
+        } else if ((left instanceof Number a && a.getValue() == 0)
+                || (right instanceof Number b && b.getValue() == 0)) {
             return new Number(0);
-        } else if (left instanceof Number
-                && left.eval("") == 1) {
+        } else if (left instanceof Number a
+                && a.getValue() == 1) {
             return right.simplify();
-        }  else if (right instanceof Number
-                && right.eval("") == 1) {
+        }  else if (right instanceof Number b
+                && b.getValue() == 1) {
             return left.simplify();
         }
         Expression e = new Mul(left.simplify(), right.simplify());

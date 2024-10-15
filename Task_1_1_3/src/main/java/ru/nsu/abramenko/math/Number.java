@@ -17,6 +17,13 @@ public class Number extends Expression {
         value = number;
     }
 
+    /** get value
+     * @return value
+     */
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public double eval(@NotNull String s) {
         return value;

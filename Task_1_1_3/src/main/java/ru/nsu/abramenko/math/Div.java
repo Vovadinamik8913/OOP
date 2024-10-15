@@ -43,9 +43,9 @@ public class Div extends Expression {
 
     @Override
     public Expression simplify() {
-        if (left instanceof Number && right instanceof Number) {
-            return new Number(left.eval("") / right.eval(""));
-        } else if (left instanceof Number && left.eval("") == 0) {
+        if (left instanceof Number a && right instanceof Number b) {
+            return new Number(a.getValue() / b.getValue());
+        } else if (left instanceof Number a && a.getValue() == 0) {
             return new Number(0);
         }
         Expression e = new Div(left.simplify(), right.simplify());

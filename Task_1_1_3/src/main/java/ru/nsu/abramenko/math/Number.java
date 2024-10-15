@@ -17,7 +17,8 @@ public class Number extends Expression {
         value = number;
     }
 
-    /** get value
+    /** get value.
+     * 
      * @return value
      */
     public double getValue() {

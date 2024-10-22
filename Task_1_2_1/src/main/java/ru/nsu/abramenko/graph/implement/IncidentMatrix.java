@@ -1,18 +1,14 @@
-package ru.nsu.abramenko.graph;
+package ru.nsu.abramenko.graph.implement;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import ru.nsu.abramenko.graph.Graph;
 import ru.nsu.abramenko.graph.basic.Edge;
 import ru.nsu.abramenko.graph.basic.Vertex;
-import ru.nsu.abramenko.transform.Transform;
 
 /**
  implements Graph.
@@ -20,17 +16,13 @@ import ru.nsu.abramenko.transform.Transform;
  *
  * @param <T> class Type
  */
-public class GraphIncidentMatrix<T> implements Graph<T> {
+public class IncidentMatrix<T> implements Graph<T> {
 
-    private final HashMap<Vertex<T>, HashMap<String, Integer>> graph;
-    private final HashMap<String, Edge<T>> edges;
+    private final HashMap<Vertex<T>, HashMap<Edge<T>, Integer>> graph;
 
-    /** init matrix.
-     *
-     */
-    public GraphIncidentMatrix() {
+
+    public IncidentMatrix() {
         graph = new HashMap<>();
-        edges = new HashMap<>();
     }
 
     @Override
@@ -43,9 +35,9 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         if (containsVertex(v)) {
             return;
         }
-        HashMap<String, Integer> buf = new HashMap<String, Integer>();
-        for (HashMap<String, Integer> entry : graph.values()) {
-            for (String key : entry.keySet()) {
+        HashMap<Edge<T>, Integer> buf = new HashMap<>();
+        for (HashMap<Edge<T>, Integer> entry : graph.values()) {
+            for (Edge<T> key : entry.keySet()) {
                 buf.put(key, 0);
             }
             break;
@@ -64,7 +56,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
 
     @Override
     public boolean containsEdge(@NotNull Edge<T> e) {
-        return edges.containsKey(e.toString());
+        return graph.containsValue(e);
     }
 
     @Override
@@ -74,10 +66,9 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         }
         addVertex(e.getFrom());
         addVertex(e.getTo());
-        edges.putIfAbsent(e.toString(), e);
-        graph.values().forEach((inc) -> inc.put(e.toString(), 0));
+        graph.values().forEach((inc) -> inc.put(e, 0));
         if (!e.getFrom().equals(e.getTo())) {
-            graph.get(e.getFrom()).replace(e.toString(), e.getValue());
+            graph.get(e.getFrom()).replace(e, e.getValue());
         }
     }
 
@@ -86,47 +77,34 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         if (!containsEdge(e)) {
             return;
         }
-        edges.remove(e.toString());
-        graph.values().forEach((inc) -> inc.remove(e.toString()));
+        graph.values().forEach((inc) -> inc.remove(e));
     }
 
     @Override
-    public ArrayList<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
+    public @Nullable List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return null;
         }
         ArrayList<Vertex<T>> res = new ArrayList<>();
-        for (Map.Entry<String, Integer> map : graph.get(v).entrySet()) {
-            Edge<T> e = edges.get(map.getKey());
-            switch (map.getValue()) {
-                case 1:
-                    if (!res.contains(e.getFrom())) {
-                        res.add(e.getTo());
-                    }
-                    break;
-                case 0:
-                    break;
-                default:
-                    break;
+        for (Map.Entry<Edge<T>, Integer> map : graph.get(v).entrySet()) {
+            if (map.getValue() != 0) {
+                if (!res.contains(map.getKey().getTo())) {
+                    res.add(map.getKey().getTo());
+                }
             }
         }
         return res;
     }
 
     @Override
-    public void scanFromFile(String path, Transform<T> transform) throws IOException {
-        File file = new File(path);
-        List<String> line = Files.readAllLines(file.toPath());
-        for (String pair : line) {
-            String[] parts = pair.split(" ");
-            addEdge(new Edge<T>(
-                    new Vertex<>(transform.transform(parts[0])),
-                    new Vertex<>(transform.transform(parts[1]))));
+    public @Nullable List<Vertex<T>> getAllVertexes() {
+        if (graph.isEmpty()) {
+            return null;
         }
+        return graph.keySet().stream().toList();
     }
 
-    @Override
-    public ArrayList<Vertex<T>> topologicalSort() throws Exception {
+    /*public ArrayList<Vertex<T>> topologicalSort() throws Exception {
         HashMap<Vertex<T>, Integer> inDegree = new HashMap<>();
         // Инициализация степени входа
         for (Vertex<T> vertex : graph.keySet()) {
@@ -176,7 +154,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         }
 
         return sortedList;
-    }
+    }*/
 
 
     @Override
@@ -187,7 +165,7 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof GraphIncidentMatrix<?> other)) {
+        if (!(obj instanceof IncidentMatrix<?> other)) {
             return false;
         }
         return graph.equals(other.graph);
@@ -199,14 +177,14 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
             return null;
         }
         StringBuilder res = new StringBuilder();
-        for (HashMap<String, Integer> entry : graph.values()) {
-            for (String key : entry.keySet()) {
+        for (HashMap<Edge<T>, Integer> entry : graph.values()) {
+            for (Edge<T> key : entry.keySet()) {
                 res.append(" \t").append(key);
             }
             break;
         }
         res.append("\n");
-        for (Map.Entry<Vertex<T>, HashMap<String, Integer>> node : graph.entrySet()) {
+        for (Map.Entry<Vertex<T>, HashMap<Edge<T>, Integer>> node : graph.entrySet()) {
             res.append(node.getKey().toString());
             for (Integer val : node.getValue().values()) {
                 res.append("\t\t").append(val.toString());
@@ -214,5 +192,10 @@ public class GraphIncidentMatrix<T> implements Graph<T> {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return graph.hashCode();
     }
 }

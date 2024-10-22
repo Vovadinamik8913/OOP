@@ -103,6 +103,6 @@ public class Edge<T> {
      */
     @Override
     public int hashCode() {
-        return this.toString().hashCode();
+        return ((from.hashCode()*31 + to.hashCode()) * 29 + value) * 7;
     }
 }

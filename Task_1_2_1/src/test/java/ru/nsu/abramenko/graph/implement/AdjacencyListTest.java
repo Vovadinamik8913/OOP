@@ -1,22 +1,24 @@
-package ru.nsu.abramenko.graph;
+package ru.nsu.abramenko.graph.implement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.nsu.abramenko.graph.Algorithms;
+import ru.nsu.abramenko.graph.Graph;
+import ru.nsu.abramenko.graph.Reader;
 import ru.nsu.abramenko.graph.basic.Vertex;
-import ru.nsu.abramenko.transform.IntegerTransform;
 
-class GraphIncidentMatrixTest {
+class AdjacencyListTest {
     @Test
     @DisplayName("ScanFile")
     void scanFileTest() {
-        Graph<Integer> graph = new GraphIncidentMatrix<>();
-        IntegerTransform transform = new IntegerTransform();
+        Reader reader = new Reader();
+        AdjacencyList<Integer> graph = new AdjacencyList<>();
         try {
-            graph.scanFromFile(
-                    ClassLoader.getSystemResource("input.txt").getPath(), transform);
+            reader.scanFromFile(graph,
+                    ClassLoader.getSystemResource("input.txt").getPath(), Integer::parseInt);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -24,8 +26,10 @@ class GraphIncidentMatrixTest {
             System.out.print(vertex + " ");
         }
         System.out.println();
+
+        Algorithms algorithms = new Algorithms();
         try {
-            for (Vertex<Integer> vertex : graph.topologicalSort()) {
+            for (Vertex<Integer> vertex : algorithms.topologicalSort(graph)) {
                 System.out.print(vertex + " ");
             }
         } catch (Exception e) {

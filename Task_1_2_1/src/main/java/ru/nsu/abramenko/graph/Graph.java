@@ -1,11 +1,10 @@
 package ru.nsu.abramenko.graph;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.nsu.abramenko.graph.basic.Edge;
 import ru.nsu.abramenko.graph.basic.Vertex;
-import ru.nsu.abramenko.transform.Transform;
 
 
 /** interface to implement Graphs.
@@ -13,8 +12,6 @@ import ru.nsu.abramenko.transform.Transform;
  * @param <T> classType to set vertex names
  */
 public interface Graph<T> {
-
-
     /** is vertex contains in graph.
      *
      * @param v vertex
@@ -62,21 +59,16 @@ public interface Graph<T> {
      * @param v vertex
      * @return arr of neighbours
      */
-    ArrayList<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v);
+    @Nullable
+    List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v);
 
-    /** create graph by scanning file.
-     * Data view: vertex vertex
-     *
-     * @param path path to file
-     * @param transform function of Generic transformation
-     * @throws IOException If can`t open File
-     */
-    void scanFromFile(String path, Transform<T> transform) throws IOException;
 
-    /** sort graph in topological order.
+    /** get vertex neighbours.
+     * or null
+     * if no neighbours/vertex
      *
-     * @return sorted graph
-     * @throws Exception if there is cycle
+     * @return arr of neighbours
      */
-    ArrayList<Vertex<T>> topologicalSort() throws Exception;
+    @Nullable
+    List<Vertex<T>> getAllVertexes();
 }

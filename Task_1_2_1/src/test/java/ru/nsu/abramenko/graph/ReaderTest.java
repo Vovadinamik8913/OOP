@@ -1,7 +1,7 @@
 package ru.nsu.abramenko.graph;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
@@ -16,12 +16,13 @@ class ReaderTest {
     void scanFileTest() {
         Reader reader = new Reader();
         Graph<Integer> graph = new AdjacencyList<>();
-        assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() ->
             reader.scanFromFile(
                     graph,
-                    ClassLoader.getSystemResource("input.txt").getPath(), Integer::parseInt
-            );
-        });
+                    ClassLoader.getSystemResource("input.txt").getPath(),
+                    Integer::parseInt
+            )
+        );
     }
 
     @Test

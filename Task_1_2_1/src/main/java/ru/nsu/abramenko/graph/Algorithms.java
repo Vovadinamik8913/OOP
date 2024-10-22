@@ -23,7 +23,8 @@ public class Algorithms {
      * @return sorted graph
      * @throws RuntimeException if there is cycle
      */
-    public @Nullable <T> ArrayList<Vertex<T>> topologicalSort(Graph<T> graph) throws RuntimeException {
+    public @Nullable <T> ArrayList<Vertex<T>>
+    topologicalSort(Graph<T> graph) throws RuntimeException {
         List<Vertex<T>> vertexes = graph.getAllVertexes();
         if (vertexes == null) {
             return null;

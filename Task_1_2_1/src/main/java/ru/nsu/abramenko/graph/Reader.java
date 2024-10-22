@@ -22,7 +22,8 @@ public class Reader {
      * @param <T> class
      * @throws IOException If can`t open File
      */
-    public <T> void scanFromFile(Graph<T> graph,String path, Function<String, T> parse) throws IOException {
+    public <T> void scanFromFile(
+            Graph<T> graph, String path, Function<String, T> parse) throws IOException {
         File file = new File(path);
         List<String> line = Files.readAllLines(file.toPath());
         for (String pair : line) {

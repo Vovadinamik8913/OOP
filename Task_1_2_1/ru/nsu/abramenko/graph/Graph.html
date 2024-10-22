@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="GraphAdjacencyList.html" title="class in ru.nsu.abramenko.graph">GraphAdjacencyList</a></code>, <code><a href="GraphAdjacencyMatrix.html" title="class in ru.nsu.abramenko.graph">GraphAdjacencyMatrix</a></code>, <code><a href="GraphIncidentMatrix.html" title="class in ru.nsu.abramenko.graph">GraphIncidentMatrix</a></code></dd>
+<dd><code><a href="implement/AdjacencyList.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyList</a></code>, <code><a href="implement/AdjacencyMatrix.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyMatrix</a></code>, <code><a href="implement/IncidentMatrix.html" title="class in ru.nsu.abramenko.graph.implement">IncidentMatrix</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Graph&lt;T&gt;</span></div>
@@ -140,21 +140,15 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">del vertex if exists.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAllNeighbours(ru.nsu.abramenko.graph.basic.Vertex)" class="member-name-link">getAllNeighbours</a><wbr>(@NotNull <a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;v)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">get vertex neighbours.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#scanFromFile(java.lang.String,ru.nsu.abramenko.transform.Transform)" class="member-name-link">scanFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
- <a href="../transform/Transform.html" title="interface in ru.nsu.abramenko.transform">Transform</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;transform)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAllVertexes()" class="member-name-link">getAllVertexes</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">create graph by scanning file.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">sort graph in topological order.</div>
+<div class="block">get vertex neighbours.</div>
 </div>
 </div>
 </div>
@@ -251,7 +245,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getAllNeighbours(ru.nsu.abramenko.graph.basic.Vertex)">
 <h3>getAllNeighbours</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getAllNeighbours</span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="annotations">@Nullable
+</span><span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getAllNeighbours</span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;v)</span></div>
 <div class="block">get vertex neighbours.
  or null
@@ -265,33 +260,16 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="scanFromFile(java.lang.String,ru.nsu.abramenko.transform.Transform)">
-<h3>scanFromFile</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">scanFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
- <a href="../transform/Transform.html" title="interface in ru.nsu.abramenko.transform">Transform</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;transform)</span>
-           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">create graph by scanning file.
- Data view: vertex vertex</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>path</code> - path to file</dd>
-<dd><code>transform</code> - function of Generic transformation</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - If can`t open File</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="topologicalSort()">
-<h3>topologicalSort</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()
-                              throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
-<div class="block">sort graph in topological order.</div>
+<section class="detail" id="getAllVertexes()">
+<h3>getAllVertexes</h3>
+<div class="member-signature"><span class="annotations">@Nullable
+</span><span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getAllVertexes</span>()</div>
+<div class="block">get vertex neighbours.
+ or null
+ if no neighbours/vertex</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>sorted graph</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - if there is cycle</dd>
+<dd>arr of neighbours</dd>
 </dl>
 </section>
 </li>

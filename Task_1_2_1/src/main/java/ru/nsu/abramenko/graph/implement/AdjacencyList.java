@@ -93,7 +93,7 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Vertex<T>, ArrayList<Vertex<T>>> entry : graph.entrySet()) {
+        for (var entry : graph.entrySet()) {
             sb.append(entry.getKey().toString()).append(" -> ");
             if (entry.getValue() != null) {
                 for (Vertex<T> neighbor : entry.getValue()) {

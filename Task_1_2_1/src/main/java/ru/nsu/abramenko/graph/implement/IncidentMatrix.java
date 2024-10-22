@@ -86,7 +86,7 @@ public class IncidentMatrix<T> implements Graph<T> {
             return null;
         }
         ArrayList<Vertex<T>> res = new ArrayList<>();
-        for (Map.Entry<Edge<T>, Integer> map : graph.get(v).entrySet()) {
+        for (var map : graph.get(v).entrySet()) {
             if (map.getValue() != 0) {
                 if (!res.contains(map.getKey().getTo())) {
                     res.add(map.getKey().getTo());
@@ -103,60 +103,7 @@ public class IncidentMatrix<T> implements Graph<T> {
         }
         return graph.keySet().stream().toList();
     }
-
-    /*public ArrayList<Vertex<T>> topologicalSort() throws Exception {
-        HashMap<Vertex<T>, Integer> inDegree = new HashMap<>();
-        // Инициализация степени входа
-        for (Vertex<T> vertex : graph.keySet()) {
-            inDegree.put(vertex, 0);
-        }
-        // Подсчет степени входа для каждой вершины
-        for (Map.Entry<Vertex<T>, HashMap<String, Integer>> entry : graph.entrySet()) {
-            for (Map.Entry<String, Integer> edge : entry.getValue().entrySet()) {
-                if (edge.getValue() == 0) {
-                    continue;
-                }
-                Edge<T> e = edges.get(edge.getKey());
-                Vertex<T> neighbor = e.getTo();
-                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
-            }
-        }
-
-        Queue<Vertex<T>> queue = new LinkedList<>();
-        // Добавление вершин с нулевой степенью входа в очередь
-        for (Map.Entry<Vertex<T>, Integer> entry : inDegree.entrySet()) {
-            if (entry.getValue() == 0) {
-                queue.add(entry.getKey());
-            }
-        }
-
-        ArrayList<Vertex<T>> sortedList = new ArrayList<>();
-        while (!queue.isEmpty()) {
-            Vertex<T> current = queue.poll();
-            sortedList.add(current);
-
-            // Обновление степени входа соседей
-            for (Map.Entry<String, Integer>  entry : graph.get(current).entrySet()) {
-                Edge<T> edge = edges.get(entry.getKey());
-                if (edge != null && entry.getValue() != 0) {
-                    Vertex<T> neighbor = edge.getTo();
-                    inDegree.put(neighbor, inDegree.get(neighbor) - 1);
-                    if (inDegree.get(neighbor) == 0) {
-                        queue.add(neighbor);
-                    }
-                }
-            }
-        }
-
-        // Проверка на наличие циклов
-        if (sortedList.size() != graph.size()) {
-            throw new Exception("Граф содержит цикл, топологическая сортировка невозможна.");
-        }
-
-        return sortedList;
-    }*/
-
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

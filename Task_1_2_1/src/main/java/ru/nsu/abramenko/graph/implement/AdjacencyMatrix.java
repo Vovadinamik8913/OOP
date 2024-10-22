@@ -83,7 +83,7 @@ public class AdjacencyMatrix<T> implements Graph<T> {
             return null;
         }
         ArrayList<Vertex<T>> neighbours = new ArrayList<>();
-        for (Map.Entry<Vertex<T>, Integer> node : graph.get(v).entrySet()) {
+        for (var node : graph.get(v).entrySet()) {
             if (node.getValue() != 0 && !neighbours.contains(node.getKey())) {
                 neighbours.add(node.getKey());
             }

@@ -29,7 +29,7 @@ public class Algorithms {
         if (vertexes == null) {
             return null;
         }
-        HashMap<Vertex<T>, Integer> inDegree = new HashMap<>();
+        var inDegree = new HashMap<Vertex<T>, Integer>();
         // Инициализация степени входа
         for (Vertex<T> vertex : vertexes) {
             inDegree.put(vertex, 0);
@@ -47,7 +47,7 @@ public class Algorithms {
 
         Queue<Vertex<T>> queue = new LinkedList<>();
         // Добавление вершин с нулевой степенью входа в очередь
-        for (Map.Entry<Vertex<T>, Integer> entry : inDegree.entrySet()) {
+        for (var entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
                 queue.add(entry.getKey());
             }

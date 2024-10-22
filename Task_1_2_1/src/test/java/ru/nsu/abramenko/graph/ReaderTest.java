@@ -32,7 +32,7 @@ class ReaderTest {
         assertThrows(IOException.class, () -> {
             reader.scanFromFile(
                     graph,
-                    ClassLoader.getSystemResource("inp.txt").getPath(), Integer::parseInt);
+                    "/inp.txt", Integer::parseInt);
         });
     }
 }

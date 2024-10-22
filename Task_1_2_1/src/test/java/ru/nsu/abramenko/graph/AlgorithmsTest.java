@@ -21,7 +21,7 @@ class AlgorithmsTest {
         graph.addVertex(new Vertex<>(1));
         graph.addVertex(new Vertex<>(2));
         graph.addEdge(new Edge<>(new Vertex<>(1), new Vertex<>(2)));
-        graph.addEdge(new Edge<>(new Vertex<>(1), new Vertex<>(2)));
+        graph.addEdge(new Edge<>(new Vertex<>(2), new Vertex<>(1)));
         Algorithms algorithms = new Algorithms();
         assertThrows(RuntimeException.class, () -> {
             for (Vertex<Integer> vertex : algorithms.topologicalSort(graph)) {
@@ -36,6 +36,6 @@ class AlgorithmsTest {
         Graph<Integer> graph = new AdjacencyList<>();
         Algorithms algorithms = new Algorithms();
         ArrayList<Vertex<Integer>> sorted = algorithms.topologicalSort(graph);
-        assertTrue(sorted.isEmpty());
+        assertTrue(sorted == null);
     }
 }

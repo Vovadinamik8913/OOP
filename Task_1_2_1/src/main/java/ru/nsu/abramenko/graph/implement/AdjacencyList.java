@@ -18,7 +18,7 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  */
 public class AdjacencyList<T> implements Graph<T> {
 
-    private final HashMap<Vertex<T>, ArrayList<Vertex<T>>> graph;
+    private final HashMap<Vertex<T>, ArrayList<Edge<T>>> graph;
 
     public AdjacencyList() {
         this.graph = new HashMap<>();
@@ -38,8 +38,8 @@ public class AdjacencyList<T> implements Graph<T> {
             return;
         }
         graph.remove(v);
-        for (ArrayList<Vertex<T>> neighbors : graph.values()) {
-            neighbors.remove(v);
+        for (ArrayList<Edge<T>> neighbors : graph.values()) {
+            neighbors.removeIf((e) -> e.getTo().equals(v));
         }
     }
 
@@ -50,7 +50,7 @@ public class AdjacencyList<T> implements Graph<T> {
         }
         addVertex(e.getFrom());
         addVertex(e.getTo());
-        graph.get(e.getFrom()).add(e.getTo());
+        graph.get(e.getFrom()).add(e);
     }
 
     @Override
@@ -65,7 +65,13 @@ public class AdjacencyList<T> implements Graph<T> {
         if (!containsVertex(v)) {
             return null;
         }
-        return graph.get(v);
+        ArrayList<Vertex<T>> neighbors = new ArrayList<>();
+        for (var edge : graph.get(v)) {
+            if (!neighbors.contains(edge.getTo())) {
+                neighbors.add(edge.getTo());
+            }
+        }
+        return neighbors;
     }
 
     @Override
@@ -84,8 +90,8 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public boolean containsEdge(@NotNull Edge<T> e) {
         if (containsVertex(e.getFrom()) && containsVertex(e.getTo())) {
-            ArrayList<Vertex<T>> adj = graph.get(e.getFrom());
-            return adj.contains(e.getTo());
+            ArrayList<Edge<T>> adj = graph.get(e.getFrom());
+            return adj.contains(e);
         }
         return false;
     }
@@ -96,8 +102,8 @@ public class AdjacencyList<T> implements Graph<T> {
         for (var entry : graph.entrySet()) {
             sb.append(entry.getKey().toString()).append(" -> ");
             if (entry.getValue() != null) {
-                for (Vertex<T> neighbor : entry.getValue()) {
-                    sb.append(neighbor.toString()).append(" ");
+                for (Edge<T> neighbor : entry.getValue()) {
+                    sb.append(neighbor.getTo().toString()).append(" ");
                 }
             }
             sb.append("\n");

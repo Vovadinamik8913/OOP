@@ -24,9 +24,14 @@ public class Reader {
      */
     public <T> void scanFromFile(
             Graph<T> graph, String path, Function<String, T> parse) throws IOException {
-        File file = new File(
-                ClassLoader.getSystemResource(path).getPath()
-        );
+        File file;
+        try {
+             file = new File(
+                    ClassLoader.getSystemResource(path).getPath()
+            );
+        } catch (NullPointerException e) {
+            throw new IOException("нет такого пути");
+        }
         List<String> line = Files.readAllLines(file.toPath());
         for (String pair : line) {
             String[] parts = pair.split(" ");

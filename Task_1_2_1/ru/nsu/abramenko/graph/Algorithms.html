@@ -119,7 +119,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;T&gt;&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;T&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort(ru.nsu.abramenko.graph.Graph)" class="member-name-link">topologicalSort</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.abramenko.graph">Graph</a>&lt;T&gt;&nbsp;graph)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">sort graph in topological order.</div>
@@ -159,8 +159,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="topologicalSort(ru.nsu.abramenko.graph.Graph)">
 <h3>topologicalSort</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;T&gt;&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.abramenko.graph">Graph</a>&lt;T&gt;&nbsp;graph)</span>
-                                                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a>&lt;T&gt;&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.abramenko.graph">Graph</a>&lt;T&gt;&nbsp;graph)</span>
+                                              throws <span class="exceptions"><a href="CycleException.html" title="class in ru.nsu.abramenko.graph">CycleException</a></span></div>
 <div class="block">sort graph in topological order.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
@@ -171,6 +171,7 @@ loadScripts(document, 'script');</script>
 <dd>sorted graph</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></code> - if there is cycle</dd>
+<dd><code><a href="CycleException.html" title="class in ru.nsu.abramenko.graph">CycleException</a></code></dd>
 </dl>
 </section>
 </li>

@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/abramenko/graph/Graph.html#addEdge(ru.nsu.abramenko.graph.basic.Edge)" class="member-name-link">addEdge(Edge&lt;T&gt;)</a> - Method in interface ru.nsu.abramenko.graph.<a href="ru/nsu/abramenko/graph/Graph.html" title="interface in ru.nsu.abramenko.graph">Graph</a></dt>
@@ -113,6 +113,10 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html#containsVertex(ru.nsu.abramenko.graph.basic.Vertex)" class="member-name-link">containsVertex(Vertex&lt;T&gt;)</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html" title="class in ru.nsu.abramenko.graph.implement">IncidentMatrix</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/abramenko/graph/CycleException.html" class="type-name-link" title="class in ru.nsu.abramenko.graph">CycleException</a> - Exception Class in <a href="ru/nsu/abramenko/graph/package-summary.html">ru.nsu.abramenko.graph</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/abramenko/graph/CycleException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">CycleException(String)</a> - Constructor for exception class ru.nsu.abramenko.graph.<a href="ru/nsu/abramenko/graph/CycleException.html" title="class in ru.nsu.abramenko.graph">CycleException</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
@@ -151,20 +155,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">constructor with value.</div>
 </dd>
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">is obj equals this.</div>
-</dd>
 <dt><a href="ru/nsu/abramenko/graph/basic/Vertex.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a></dt>
 <dd>
-<div class="block">is obj equals this.</div>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyList</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/AdjacencyMatrix.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/AdjacencyMatrix.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyMatrix</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html" title="class in ru.nsu.abramenko.graph.implement">IncidentMatrix</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
@@ -188,18 +182,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html#getAllVertexes()" class="member-name-link">getAllVertexes()</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html" title="class in ru.nsu.abramenko.graph.implement">IncidentMatrix</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#getFrom()" class="member-name-link">getFrom()</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">get vertex from.</div>
-</dd>
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#getTo()" class="member-name-link">getTo()</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">get vertex to.</div>
-</dd>
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#getValue()" class="member-name-link">getValue()</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">get value.</div>
-</dd>
 <dt><a href="ru/nsu/abramenko/graph/Graph.html" class="type-name-link" title="interface in ru.nsu.abramenko.graph">Graph&lt;T&gt;</a> - Interface in <a href="ru/nsu/abramenko/graph/package-summary.html">ru.nsu.abramenko.graph</a></dt>
 <dd>
 <div class="block">interface to implement Graphs.</div>
@@ -207,20 +189,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">get hashCode of edge.</div>
-</dd>
 <dt><a href="ru/nsu/abramenko/graph/basic/Vertex.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a></dt>
 <dd>
-<div class="block">hashCode of vertex.</div>
+<div class="block">Returns a hash code value for this object.</div>
 </dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyList</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/AdjacencyMatrix.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/AdjacencyMatrix.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyMatrix</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/IncidentMatrix.html" title="class in ru.nsu.abramenko.graph.implement">IncidentMatrix</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -259,10 +231,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">create graph by scanning file.</div>
 </dd>
-<dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#setValue(int)" class="member-name-link">setValue(int)</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">set value or reweigh.</div>
-</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
@@ -271,12 +239,10 @@ loadScripts(document, 'script');</script>
 <div class="block">sort graph in topological order.</div>
 </dd>
 <dt><a href="ru/nsu/abramenko/graph/basic/Edge.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Edge.html" title="class in ru.nsu.abramenko.graph.basic">Edge</a></dt>
-<dd>
-<div class="block">edge to string.</div>
-</dd>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/abramenko/graph/basic/Vertex.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.abramenko.graph.basic.<a href="ru/nsu/abramenko/graph/basic/Vertex.html" title="class in ru.nsu.abramenko.graph.basic">Vertex</a></dt>
 <dd>
-<div class="block">name of vertex to string.</div>
+<div class="block">Returns a string representation of this record class.</div>
 </dd>
 <dt><a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.abramenko.graph.implement.<a href="ru/nsu/abramenko/graph/implement/AdjacencyList.html" title="class in ru.nsu.abramenko.graph.implement">AdjacencyList</a></dt>
 <dd>&nbsp;</dd>
@@ -296,7 +262,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>Vertex</code> record class.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>

@@ -1,7 +1,7 @@
 package ru.nsu.abramenko.graph;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

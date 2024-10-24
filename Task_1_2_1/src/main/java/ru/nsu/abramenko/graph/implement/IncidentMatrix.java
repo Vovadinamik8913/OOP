@@ -17,7 +17,7 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  *
  * @param <T> class Type
  */
-@EqualsAndHashCode(exclude={"graph"})
+@EqualsAndHashCode(exclude = {"graph"})
 public class IncidentMatrix<T> implements Graph<T> {
 
     private final Map<Vertex<T>, Map<Edge<T>, Integer>> graph;

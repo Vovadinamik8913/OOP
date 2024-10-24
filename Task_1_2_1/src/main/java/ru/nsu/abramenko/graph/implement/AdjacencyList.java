@@ -17,7 +17,7 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  *
  * @param <T> classType
  */
-@EqualsAndHashCode(exclude={"graph"})
+@EqualsAndHashCode(exclude = {"graph"})
 public class AdjacencyList<T> implements Graph<T> {
 
     private final Map<Vertex<T>, List<Edge<T>>> graph;

@@ -26,7 +26,7 @@ public class Reader {
             Graph<T> graph, String path, Function<String, T> parse) throws IOException {
         File file;
         try {
-             file = new File(
+            file = new File(
                     ClassLoader.getSystemResource(path).getPath()
             );
         } catch (NullPointerException e) {

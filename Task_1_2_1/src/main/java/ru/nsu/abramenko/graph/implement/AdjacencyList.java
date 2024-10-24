@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.nsu.abramenko.graph.Graph;
@@ -16,9 +17,10 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  *
  * @param <T> classType
  */
+@EqualsAndHashCode(exclude={"graph"})
 public class AdjacencyList<T> implements Graph<T> {
 
-    private final HashMap<Vertex<T>, ArrayList<Edge<T>>> graph;
+    private final Map<Vertex<T>, List<Edge<T>>> graph;
 
     public AdjacencyList() {
         this.graph = new HashMap<>();
@@ -38,7 +40,7 @@ public class AdjacencyList<T> implements Graph<T> {
             return;
         }
         graph.remove(v);
-        for (ArrayList<Edge<T>> neighbors : graph.values()) {
+        for (List<Edge<T>> neighbors : graph.values()) {
             neighbors.removeIf((e) -> e.getTo().equals(v));
         }
     }
@@ -56,12 +58,13 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public void delEdge(@NotNull Edge<T> e) {
         if (containsEdge(e)) {
-            graph.get(e.getFrom()).remove(e.getTo());
+            graph.get(e.getFrom()).remove(e);
         }
     }
 
     @Override
-    public @Nullable List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
+    @Nullable
+    public List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return null;
         }
@@ -75,7 +78,8 @@ public class AdjacencyList<T> implements Graph<T> {
     }
 
     @Override
-    public @Nullable List<Vertex<T>> getAllVertexes() {
+    @Nullable
+    public List<Vertex<T>> getAllVertexes() {
         if (graph.isEmpty()) {
             return null;
         }
@@ -90,7 +94,7 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public boolean containsEdge(@NotNull Edge<T> e) {
         if (containsVertex(e.getFrom()) && containsVertex(e.getTo())) {
-            ArrayList<Edge<T>> adj = graph.get(e.getFrom());
+            List<Edge<T>> adj = graph.get(e.getFrom());
             return adj.contains(e);
         }
         return false;
@@ -109,24 +113,5 @@ public class AdjacencyList<T> implements Graph<T> {
             sb.append("\n");
         }
         return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof AdjacencyList<?> other)) {
-            return false;
-        }
-        return graph.equals(other.graph);
-    }
-
-    @Override
-    public int hashCode() {
-        return graph.hashCode();
     }
 }

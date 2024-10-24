@@ -1,9 +1,9 @@
 package ru.nsu.abramenko.graph;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.nsu.abramenko.graph.basic.Edge;
@@ -25,7 +25,7 @@ class AlgorithmsTest {
         graph.addEdge(new Edge<>(
                 new Vertex<>(2), new Vertex<>(1)));
         Algorithms algorithms = new Algorithms();
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(CycleException.class, () -> {
             for (Vertex<Integer> vertex : algorithms.topologicalSort(graph)) {
                 System.out.print(vertex + " ");
             }
@@ -37,7 +37,7 @@ class AlgorithmsTest {
     void emptyGraph() {
         Graph<Integer> graph = new AdjacencyList<>();
         Algorithms algorithms = new Algorithms();
-        ArrayList<Vertex<Integer>> sorted = algorithms.topologicalSort(graph);
-        assertTrue(sorted == null);
+        List<Vertex<Integer>> sorted = algorithms.topologicalSort(graph);
+        assertNull(sorted);
     }
 }

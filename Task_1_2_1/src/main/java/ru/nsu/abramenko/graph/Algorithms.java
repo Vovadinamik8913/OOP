@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import org.jetbrains.annotations.Nullable;
 import ru.nsu.abramenko.graph.basic.Vertex;
@@ -15,7 +14,6 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  */
 public class Algorithms {
 
-
     /** sort graph in topological order.
      *
      * @param graph graph to sort
@@ -23,8 +21,8 @@ public class Algorithms {
      * @return sorted graph
      * @throws RuntimeException if there is cycle
      */
-    public @Nullable <T> ArrayList<Vertex<T>>
-        topologicalSort(Graph<T> graph) throws RuntimeException {
+    @Nullable
+    public <T> List<Vertex<T>> topologicalSort(Graph<T> graph) throws CycleException {
         List<Vertex<T>> vertexes = graph.getAllVertexes();
         if (vertexes == null) {
             return null;
@@ -54,7 +52,7 @@ public class Algorithms {
         }
 
 
-        ArrayList<Vertex<T>> sortedList = new ArrayList<>();
+        List<Vertex<T>> sortedList = new ArrayList<>();
         while (!queue.isEmpty()) {
             Vertex<T> current = queue.poll();
             sortedList.add(current);
@@ -74,7 +72,7 @@ public class Algorithms {
 
         // Проверка на наличие циклов
         if (sortedList.size() != vertexes.size()) {
-            throw new RuntimeException("Граф содержит цикл, топологическая сортировка невозможна.");
+            throw new CycleException("Граф содержит цикл, топологическая сортировка невозможна.");
         }
 
         return sortedList;

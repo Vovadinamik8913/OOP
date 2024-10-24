@@ -17,11 +17,11 @@ class ReaderTest {
         Reader reader = new Reader();
         Graph<Integer> graph = new AdjacencyList<>();
         assertDoesNotThrow(() ->
-            reader.scanFromFile(
-                    graph,
-                    ClassLoader.getSystemResource("input.txt").getPath(),
-                    Integer::parseInt
-            )
+                reader.scanFromFile(
+                        graph,
+                        "input.txt",
+                        Integer::parseInt
+                )
         );
     }
 

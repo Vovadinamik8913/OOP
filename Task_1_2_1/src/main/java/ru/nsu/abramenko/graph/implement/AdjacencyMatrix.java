@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.nsu.abramenko.graph.Graph;
@@ -16,9 +17,10 @@ import ru.nsu.abramenko.graph.basic.Vertex;
  *
  * @param <T> class Type
  */
+@EqualsAndHashCode(exclude={"graph"})
 public class AdjacencyMatrix<T> implements Graph<T> {
 
-    private final HashMap<Vertex<T>, HashMap<Vertex<T>, Integer>> graph;
+    private final Map<Vertex<T>, Map<Vertex<T>, Integer>> graph;
 
     public AdjacencyMatrix() {
         this.graph = new HashMap<>();
@@ -34,7 +36,7 @@ public class AdjacencyMatrix<T> implements Graph<T> {
         if (containsVertex(v)) {
             return;
         }
-        HashMap<Vertex<T>, Integer> buf = new HashMap<>();
+        Map<Vertex<T>, Integer> buf = new HashMap<>();
         for (Vertex<T> key : graph.keySet()) {
             buf.put(key, 0);
         }
@@ -78,7 +80,8 @@ public class AdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public @Nullable List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
+    @Nullable
+    public List<Vertex<T>> getAllNeighbours(@NotNull Vertex<T> v) {
         if (!containsVertex(v)) {
             return null;
         }
@@ -92,25 +95,12 @@ public class AdjacencyMatrix<T> implements Graph<T> {
     }
 
     @Override
-    public @Nullable List<Vertex<T>> getAllVertexes() {
+    @Nullable
+    public List<Vertex<T>> getAllVertexes() {
         if (graph.isEmpty()) {
             return null;
         }
         return graph.keySet().stream().toList();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof AdjacencyMatrix<?> other)) {
-            return false;
-        }
-        return graph.equals(other.graph);
     }
 
     @Override
@@ -123,7 +113,7 @@ public class AdjacencyMatrix<T> implements Graph<T> {
             res.append("\t").append(keys.toString());
         }
         res.append("\n");
-        for (Map.Entry<Vertex<T>, HashMap<Vertex<T>, Integer>> node : graph.entrySet()) {
+        for (var node : graph.entrySet()) {
             res.append(node.getKey().toString());
             for (Integer val : node.getValue().values()) {
                 res.append("\t").append(val.toString());
@@ -131,10 +121,5 @@ public class AdjacencyMatrix<T> implements Graph<T> {
             res.append("\n");
         }
         return res.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return graph.hashCode();
     }
 }

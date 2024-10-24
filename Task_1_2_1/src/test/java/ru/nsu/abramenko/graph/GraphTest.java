@@ -19,7 +19,8 @@ class GraphTest {
         try {
             reader.scanFromFile(
                     graph,
-                    ClassLoader.getSystemResource("input.txt").getPath(), Integer::parseInt
+                    "input.txt",
+                    Integer::parseInt
             );
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -1,8 +1,10 @@
 package ru.nsu.abramenko;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.util.ConcurrentModificationException;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +14,19 @@ import ru.nsu.abramenko.hashtableown.HashTableOwn;
 class TableTest {
     @Test
     void mainCheck() {
-        Main.main(null);
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
+        table.put("one", 1);
+        table.update("one", 1.0);
+        table.put("two", 2);
+        table.update("two", 2.0);
+        System.out.println(table.get("one"));
+        System.out.println(table.get("two"));
+        table.forEach((s) -> System.out.print(s.getValue() + " "));
+        System.out.println();
+        for (HashTableOwn.Node<String, Number> i : table) {
+            System.out.println(i.getValue());
+        }
+        System.out.println(table);
         assertTrue(true);
     }
 
@@ -42,13 +56,12 @@ class TableTest {
         table.update("one", 1.0);
         table.put("two", 2);
         table.update("two", 2.0);
-        try {
-            for (HashTableOwn.Node<String, Number> node : table) {
-                table.remove("two");
-            }
-        } catch (ConcurrentModificationException e) {
-            assertTrue(true);
-        }
+        assertThrows(ConcurrentModificationException.class,
+                () -> {
+                    for (HashTableOwn.Node<String, Number> node : table) {
+                        table.remove("two");
+                    }
+                });
     }
 
     @Test

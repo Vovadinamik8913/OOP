@@ -1,7 +1,6 @@
 package ru.nsu.abramenko.hashtableown;
 
 
-import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -15,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @param <K> key
  * @param <V> value
  */
+@EqualsAndHashCode
 public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     private static final double LADEN = 0.7;
     private Node<K, V>[] hashTable;
@@ -33,7 +33,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     /** resizing table and saving data.
      *
      */
-    public void resize() {
+    private void resize() {
         int newCapacity;
         if (capacity == 0) {
             newCapacity = 1;
@@ -222,7 +222,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
             if (hashTable[i] != null) {
                 Node<K, V> cur = hashTable[i];
                 while (cur != null) {
-                    res.append(cur.toString()).append(" ");
+                    res.append(cur).append(" ");
                     cur = cur.getNext();
                 }
                 res.append("\n");
@@ -231,48 +231,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return res.toString();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != HashTableOwn.class) {
-            return false;
-        }
-        HashTableOwn<K, V> table = (HashTableOwn<K, V>) obj;
-        if (size != table.size || capacity != table.capacity) {
-            return false;
-        }
-        for (int i = 0; i < capacity; i++) {
-            if (hashTable[i] == null && table.hashTable[i] == null) {
-                continue;
-            }
-            if (hashTable[i] != null && table.hashTable[i] != null) {
-                Node<K, V> curThis = hashTable[i];
-                Node<K, V> curOther = table.hashTable[i];
-                while (curThis != null) {
-                    if (!curThis.equals(curOther)) {
-                        return false;
-                    }
-                    curThis = curThis.next;
-                    curOther = curOther.next;
-                    if ((curThis == null && curOther != null)
-                        || (curThis != null && curOther == null)) {
-                        return false;
-                    }
-                }
-            } else {
-                return false;
-            }
-
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(hashTable);
-    }
 
     /** what the table is made of.
      *
@@ -303,6 +261,5 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         public String toString() {
             return "(" + key.toString() + " => " + value.toString() + ")";
         }
-
     }
 }

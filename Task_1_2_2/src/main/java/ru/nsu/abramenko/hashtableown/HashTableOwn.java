@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /** My own hashtable.
  *
@@ -85,6 +86,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      * @return value of node( or null)
      */
+    @Nullable
     public V get(@NotNull K key) {
         int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
@@ -237,7 +239,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param <K> key
      * @param <V> value
      */
-    @EqualsAndHashCode
     @Getter
     public static class Node<K, V> {
         private final K key;

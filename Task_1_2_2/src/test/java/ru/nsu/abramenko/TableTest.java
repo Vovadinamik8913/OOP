@@ -3,6 +3,8 @@ package ru.nsu.abramenko;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ConcurrentModificationException;
@@ -44,7 +46,7 @@ class TableTest {
         table1.put("two", 2);
         table1.update("two", 2.0);
         table1.remove("two");
-        assertFalse(table1.equals(table));
+        assertNotEquals(table1, table);
     }
 
     @Test
@@ -57,7 +59,7 @@ class TableTest {
         table.update("two", 2.0);
         assertThrows(ConcurrentModificationException.class,
                 () -> {
-                    for (HashTableOwn.Node<String, Number> node : table) {
+                    for (HashTableOwn.Node<String, Number> ignored : table) {
                         table.remove("two");
                     }
                 });
@@ -79,6 +81,13 @@ class TableTest {
         table.put("one", 1);
         assertEquals(table.get("one").intValue(), 1);
     }
+    @Test
+    @DisplayName("GetTest")
+    void notContainsTest() {
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
+        table.put("one", 1);
+        assertNull(table.get("two"));
+    }
 
     @Test
     @DisplayName("RemoveTest")
@@ -98,5 +107,14 @@ class TableTest {
         table.update("one", 1.0);
         table.update("two", 2);
         assertTrue(table.contains("two"));
+    }
+
+    @Test
+    @DisplayName("PutTest")
+    void putIfExistsTest() {
+        HashTableOwn<String, Number> table = new HashTableOwn<>();
+        table.put("one", 1);
+        table.put("one", 1.0);
+        assertEquals(table.get("one"), 1);
     }
 }

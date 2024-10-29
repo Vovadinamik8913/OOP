@@ -21,6 +21,9 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     private int capacity;
     private int size;
 
+    /** init table.
+     *
+     */
     public HashTableOwn() {
         this.hashTable = null;
         this.capacity = 0;
@@ -285,6 +288,11 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         @Setter
         private Node<K, V> next;
 
+        /** init node.
+         *
+         * @param key key
+         * @param value val
+         */
         public Node(@NotNull K key, @NotNull V value) {
             this.key = key;
             this.value = value;

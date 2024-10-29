@@ -1,9 +1,13 @@
 package ru.nsu.abramenko.hashtableown;
 
 
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.function.Consumer;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 /** My own hashtable.
@@ -17,9 +21,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     private int capacity;
     private int size;
 
-    /** constructor of empty table.
-     *
-     */
     public HashTableOwn() {
         this.hashTable = null;
         this.capacity = 0;
@@ -58,7 +59,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param key key of node
      */
     public void remove(@NotNull K key) {
-        int hash = getIndex(key);
+        int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
         while (current != null) {
@@ -82,7 +83,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @return value of node( or null)
      */
     public V get(@NotNull K key) {
-        int hash = getIndex(key);
+        int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
         while (current != null) {
@@ -95,12 +96,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return null;
     }
 
-    /** get index in table by key.
-     *
-     * @param key key of node
-     * @return index in table
-     */
-    private int getIndex(K key) {
+    private int getHash(K key) {
         return Math.abs(key.hashCode()) % capacity;
     }
 
@@ -110,7 +106,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @return true or false
      */
     public boolean contains(@NotNull K key) {
-        int hash = key.hashCode() % capacity;
+        int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
         Node<K, V> prev = null;
         while (current != null) {
@@ -134,7 +130,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
             resize();
         }
 
-        int hash = getIndex(key);
+        int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
 
         while (current != null) {
@@ -157,7 +153,7 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
      * @param value value of node
      */
     public void update(@NotNull K key, @NotNull V value) {
-        int hash = getIndex(key);
+        int hash = getHash(key);
         Node<K, V> current = hashTable[hash];
 
         while (current != null) {
@@ -174,10 +170,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         size++;
     }
 
-    /** making table iterable.
-     *
-     * @return iterator
-     */
     @Override
     public Iterator<Node<K, V>> iterator() {
         return new Iterator<Node<K, V>>() {
@@ -185,10 +177,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
             private Node<K, V> obj = null;
             private int index = 0;
 
-            /** isThere next node in table.
-             *
-             * @return true of false
-             */
             @Override
             public boolean hasNext() {
                 if (obj != null && obj.getNext() != null) {
@@ -203,10 +191,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
                 return false;
             }
 
-            /** getting next node.
-             *
-             * @return next node
-             */
             @Override
             public Node<K, V> next() {
                 if (objSize != size) {
@@ -222,20 +206,12 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         };
     }
 
-    /** foreach with some action.
-     *
-     * @param action The action to be performed for each element
-     */
     @Override
     public void forEach(Consumer<? super Node<K, V>> action) {
         Iterable.super.forEach(action);
     }
 
 
-    /** returns table in string format.
-     *
-     * @return table to string
-     */
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -252,11 +228,6 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return res.toString();
     }
 
-    /** isThis obj equals.
-     *
-     * @param obj another table
-     * @return true of false
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -295,92 +266,35 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(hashTable);
+    }
+
     /** what the table is made of.
      *
      * @param <K> key
      * @param <V> value
      */
+    @EqualsAndHashCode
+    @Getter
     public static class Node<K, V> {
         private final K key;
+        @Setter
         private V value;
+        @Setter
         private Node<K, V> next;
 
-        /** constructor.
-         *
-         * @param key key
-         * @param value value
-         */
         public Node(@NotNull K key, @NotNull V value) {
             this.key = key;
             this.value = value;
             next = null;
         }
 
-
-        /**set value.
-         *
-         * @param value newValue
-         */
-        public void setValue(@NotNull V value) {
-            this.value = value;
-        }
-
-        /** get next node.
-         *
-         * @return next node
-         */
-        public Node<K, V> getNext() {
-            return next;
-        }
-
-        /** set next node.
-         *
-         * @param next next node
-         */
-        public void setNext(Node<K, V> next) {
-            this.next = next;
-        }
-
-        /** get key.
-         *
-         * @return key
-         */
-        public K getKey() {
-            return key;
-        }
-
-        /** get value.
-         *
-         * @return value
-         */
-        public V getValue() {
-            return value;
-        }
-
-        /** convert node to string.
-         *
-         * @return node to string
-         */
         @Override
         public String toString() {
             return "(" + key.toString() + " => " + value.toString() + ")";
         }
 
-        /** is obj equals.
-         *
-         * @param obj another node
-         * @return true or false
-         */
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || obj.getClass() == Node.class) {
-                return false;
-            }
-            Node<K, V> node = (Node<K, V>) obj;
-            return this.key.equals(node.key) && this.value.equals(node.value);
-        }
     }
 }

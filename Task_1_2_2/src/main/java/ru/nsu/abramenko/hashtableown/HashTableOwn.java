@@ -176,39 +176,9 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
     }
 
     @Override
+    @NotNull
     public Iterator<Node<K, V>> iterator() {
-        return new Iterator<Node<K, V>>() {
-            private final int objSize = size;
-            private Node<K, V> obj = null;
-            private int index = 0;
-
-            @Override
-            public boolean hasNext() {
-                if (obj != null && obj.getNext() != null) {
-                    return true;
-                }
-                while (index < hashTable.length) {
-                    if (hashTable[index] != null) {
-                        return true;
-                    }
-                    index++;
-                }
-                return false;
-            }
-
-            @Override
-            public Node<K, V> next() {
-                if (objSize != size) {
-                    throw  new ConcurrentModificationException();
-                }
-                if (obj != null && obj.getNext() != null) {
-                    obj = obj.next;
-                } else {
-                    obj = hashTable[index++];
-                }
-                return obj;
-            }
-        };
+        return new Iter();
     }
 
     @Override
@@ -261,6 +231,40 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         @Override
         public String toString() {
             return "(" + key.toString() + " => " + value.toString() + ")";
+        }
+    }
+
+    public class Iter implements Iterator<Node<K, V>> {
+
+        private final int objSize = size;
+        private Node<K, V> obj = null;
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            if (obj != null && obj.getNext() != null) {
+                return true;
+            }
+            while (index < hashTable.length) {
+                if (hashTable[index] != null) {
+                    return true;
+                }
+                index++;
+            }
+            return false;
+        }
+
+        @Override
+        public Node<K, V> next() {
+            if (objSize != size) {
+                throw  new ConcurrentModificationException();
+            }
+            if (obj != null && obj.getNext() != null) {
+                obj = obj.next;
+            } else {
+                obj = hashTable[index++];
+            }
+            return obj;
         }
     }
 }

@@ -234,6 +234,9 @@ public class HashTableOwn<K, V> implements Iterable<HashTableOwn.Node<K, V>> {
         }
     }
 
+    /** class Iter.
+     *
+     */
     public class Iter implements Iterator<Node<K, V>> {
 
         private final int objSize = size;

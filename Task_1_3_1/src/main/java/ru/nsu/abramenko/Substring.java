@@ -1,6 +1,9 @@
 package ru.nsu.abramenko;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -18,58 +21,40 @@ public class Substring {
      * @param inputFilePath путь к файлу
      * @param patternString нужная подстрока
      */
-    public static void find(String inputFilePath, String patternString) {
+
+    public static List<Integer> find(
+            @NotNull String inputFilePath, @NotNull String patternString) throws RuntimeException {
         List<Integer> matches = new ArrayList<>();
-        Set<Integer> match = new HashSet<>();
         try (FileInputStream fis = new FileInputStream(inputFilePath)) {
 
             StringBuilder batchBuilder = new StringBuilder();
             byte[] buffer = new byte[1024];
             int bytesRead;
-            int shift = 0;
+            var ref = new Object() {
+                int shift = 0;
+            };
             while ((bytesRead = fis.read(buffer)) != -1) {
                 batchBuilder.append(new String(buffer, 0, bytesRead, StandardCharsets.UTF_8));
 
                 if (batchBuilder.length() > 10000) {
                     List<Integer> res = RabinKarp.find(batchBuilder.toString(), patternString);
-                    if (shift != 0) {
-                        for (Integer val : res) {
-                            val += shift;
-                        }
-                    }
-                    shift += batchBuilder.length() - patternString.length();
+                    res.replaceAll((val) -> val += ref.shift);
                     matches.addAll(res);
-                    batchBuilder.delete(0, batchBuilder.length() - patternString.length() + 1);
+                    int firstCharIndex = res.isEmpty() ? 0 :
+                            Math.max(0, batchBuilder.length() - patternString.length() + 1);
+                    batchBuilder.delete(0, firstCharIndex);
+                    ref.shift += firstCharIndex;
                 }
             }
 
             if (!batchBuilder.isEmpty() &&  batchBuilder.length() > patternString.length()) {
                 List<Integer> res = RabinKarp.find(batchBuilder.toString(), patternString);
-                if (shift != 0) {
-                    for (Integer val : res) {
-                        val += shift;
-                    }
-                }
+                res.replaceAll((val) -> val += ref.shift);
                 matches.addAll(res);
             }
-
-            if (!matches.isEmpty()) {
-                System.out.print("[");
-                for (int i = 0; i < matches.size(); i++) {
-                    System.out.print(matches.get(i));
-                    if (i < matches.size() - 1) {
-                        System.out.print(", ");
-                    }
-                }
-                System.out.println("]");
-            } else {
-                System.out.println("Такой подстроки не существует");
-            }
-
+            return matches;
         } catch (IOException e) {
-            System.out.println("IOException: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            throw  new RuntimeException(e.getMessage());
         }
     }
 }

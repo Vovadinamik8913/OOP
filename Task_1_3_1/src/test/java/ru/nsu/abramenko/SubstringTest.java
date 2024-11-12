@@ -1,12 +1,14 @@
 package ru.nsu.abramenko;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,18 +23,21 @@ class SubstringTest {
 
     @Test
     @DisplayName("BaseTest")
-    void baseTest() {
+    void baseTest() throws IOException {
         String filePath = "input.txt";
         String content = "абракабрадабра";
         String pattern = "бра";
 
-        try {
-            createTestFile(filePath, content);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        createTestFile(filePath, content);
 
-        Substring.find(filePath, pattern);
+        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> test = new ArrayList<>();
+        test.add(1);
+        test.add(6);
+        test.add(11);
+        assertEquals(res, test);
+
+        new File(filePath).delete();
 
     }
 
@@ -42,26 +47,17 @@ class SubstringTest {
         String filePath = "testFile.txt";
         String content = "Hello, this is a test file. This file is for testing.";
         String pattern = "test";
-
         createTestFile(filePath, content);
 
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
-        Substring.find(filePath, pattern);
-
-        String expectedOutput = "[17, 45]";
-        assertTrue(outContent.toString().contains(expectedOutput));
-        System.setOut(System.out);
+        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> test = new ArrayList<>();
+        test.add(17);
+        test.add(45);
+        assertEquals(res, test);
 
         new File(filePath).delete();
     }
 
-    /**
-     * Тест, в котором не существует подстроки.
-     *
-     * @throws IOException ошибка при чтении/записис
-     */
     @Test
     @DisplayName("NotExists")
     public void testFindSubstringNotExists() throws IOException {
@@ -71,15 +67,43 @@ class SubstringTest {
 
         createTestFile(filePath, content);
 
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        List<Integer> res = Substring.find(filePath, pattern);
+        assertTrue(res.isEmpty());
 
-        Substring.find(filePath, pattern);
+        new File(filePath).delete();
+    }
 
-        String expectedOutput = "Такой подстроки не существует";
-        assertTrue(outContent.toString().contains(expectedOutput));
+    @Test
+    @DisplayName("Exception")
+    public void errorTest() {
+        assertThrows(RuntimeException.class,
+                () -> {
+                Substring.find("fsdfs", "dsag");
+        });
+    }
 
-        System.setOut(System.out);
+
+    @Test
+    @DisplayName("Big Test")
+    public void bigTest() throws IOException {
+        String filePath = "testFile.txt";
+        StringBuilder content = new StringBuilder();
+        String pattern = "abc";
+        for (int i = 0; i < 100000; i++) {
+            content.append("a");
+        }
+        content.append("abc");
+        for (int i = 0; i < 100000; i++) {
+            content.append("a");
+        }
+        content.append("abc");
+        createTestFile(filePath, content.toString());
+
+        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> test = new ArrayList<>();
+        test.add(100000);
+        test.add(200003);
+        assertEquals(res, test);
 
         new File(filePath).delete();
     }

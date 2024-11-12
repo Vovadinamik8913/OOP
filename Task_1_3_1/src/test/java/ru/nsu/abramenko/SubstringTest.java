@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +26,6 @@ class SubstringTest {
     void baseTest() throws IOException {
         String filePath = "input.txt";
         String content = "абракабрадабра";
-        String pattern = "бра";
 
         createTestFile(filePath, content);
 
@@ -35,7 +33,7 @@ class SubstringTest {
         test.add(1);
         test.add(6);
         test.add(11);
-        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> res = Substring.find(filePath, "бра");
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -47,13 +45,12 @@ class SubstringTest {
     public void testFindSubstringExists() throws IOException {
         String filePath = "testFile.txt";
         String content = "Hello, this is a test file. This file is for testing.";
-        String pattern = "test";
         createTestFile(filePath, content);
 
         List<Integer> test = new ArrayList<>();
         test.add(17);
         test.add(45);
-        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> res = Substring.find(filePath, "test");
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -64,11 +61,10 @@ class SubstringTest {
     public void testFindSubstringNotExists() throws IOException {
         String filePath = "testFile.txt";
         String content = "Hello, this is a test file. This file is for testing.";
-        String pattern = "nonexistent";
 
         createTestFile(filePath, content);
 
-        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> res = Substring.find(filePath, "none");
         assertTrue(res.isEmpty());
 
         new File(filePath).delete();
@@ -97,13 +93,12 @@ class SubstringTest {
         }
         content.append("abc");
         String filePath = "testFile.txt";
-        String pattern = "abc";
         createTestFile(filePath, content.toString());
 
         List<Integer> test = new ArrayList<>();
         test.add(100000);
         test.add(200003);
-        List<Integer> res = Substring.find(filePath, pattern);
+        List<Integer> res = Substring.find(filePath, "abc");
         assertEquals(res, test);
 
         new File(filePath).delete();

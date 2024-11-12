@@ -1,11 +1,10 @@
 package ru.nsu.abramenko;
 
-
-import java.util.ArrayList;
 import java.io.FileInputStream;
-import java.util.List;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 /**

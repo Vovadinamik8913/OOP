@@ -129,4 +129,11 @@ class SubstringTest {
 
         new File(filePath).delete();
     }
+
+    @Test
+    @DisplayName("Biggest Test")
+    public void biggestTest() {
+        List<Integer> res = Substring.find("test3.txt", "было");
+        assertTrue(res.contains(10948));
+    }
 }

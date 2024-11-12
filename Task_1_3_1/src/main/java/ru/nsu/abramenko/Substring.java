@@ -1,15 +1,12 @@
 package ru.nsu.abramenko;
 
-import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.util.List;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Класс для поиска подстроки.

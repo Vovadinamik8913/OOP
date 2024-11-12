@@ -1,8 +1,9 @@
 package ru.nsu.abramenko;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,11 +31,11 @@ class SubstringTest {
 
         createTestFile(filePath, content);
 
-        List<Integer> res = Substring.find(filePath, pattern);
         List<Integer> test = new ArrayList<>();
         test.add(1);
         test.add(6);
         test.add(11);
+        List<Integer> res = Substring.find(filePath, pattern);
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -49,10 +50,10 @@ class SubstringTest {
         String pattern = "test";
         createTestFile(filePath, content);
 
-        List<Integer> res = Substring.find(filePath, pattern);
         List<Integer> test = new ArrayList<>();
         test.add(17);
         test.add(45);
+        List<Integer> res = Substring.find(filePath, pattern);
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -78,7 +79,7 @@ class SubstringTest {
     public void errorTest() {
         assertThrows(RuntimeException.class,
                 () -> {
-                Substring.find("fsdfs", "dsag");
+                    Substring.find("fsdfs", "dsag");
         });
     }
 
@@ -86,23 +87,23 @@ class SubstringTest {
     @Test
     @DisplayName("Big Test")
     public void bigTest() throws IOException {
-        String filePath = "testFile.txt";
         StringBuilder content = new StringBuilder();
+        for (int i = 0; i < 100000; i++) {
+            content.append("a");
+        }
+        content.append("abc");
+        for (int i = 0; i < 100000; i++) {
+            content.append("a");
+        }
+        content.append("abc");
+        String filePath = "testFile.txt";
         String pattern = "abc";
-        for (int i = 0; i < 100000; i++) {
-            content.append("a");
-        }
-        content.append("abc");
-        for (int i = 0; i < 100000; i++) {
-            content.append("a");
-        }
-        content.append("abc");
         createTestFile(filePath, content.toString());
 
-        List<Integer> res = Substring.find(filePath, pattern);
         List<Integer> test = new ArrayList<>();
         test.add(100000);
         test.add(200003);
+        List<Integer> res = Substring.find(filePath, pattern);
         assertEquals(res, test);
 
         new File(filePath).delete();

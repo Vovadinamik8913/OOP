@@ -46,19 +46,19 @@ public class RabinKarp {
         List<Integer> matches = new ArrayList<>();
         int n = text.length();
         int b = pattern.length();
-        int xPatternHash = hash(pattern, X, XMOD);
-        int yPatternHash = hash(pattern, Y, YMOD);
+        int hash1 = hash(pattern, X, XMOD);
+        int hash2 = hash(pattern, Y, YMOD);
         int xp = power(X, b - 1, XMOD);
         int yp = power(Y, b - 1, YMOD);
         int hx = hash(text.substring(0, b), X, XMOD);
         int hy = hash(text.substring(0, b), Y, YMOD);
-        if (hx == xPatternHash && hy == yPatternHash) {
+        if (hx == hash1 && hy == hash2) {
             matches.add(0);
         }
         for (int i = 1; i < n - b + 1; i++) {
-            hx = shift(hx, text.charAt(i-1), text.charAt(i - 1 + b), xp, X, XMOD);
-            hy = shift(hy, text.charAt(i-1), text.charAt(i - 1 + b), yp, Y, YMOD);
-            if (hx == xPatternHash && hy == yPatternHash) {
+            hx = shift(hx, text.charAt(i - 1), text.charAt(i - 1 + b), xp, X, XMOD);
+            hy = shift(hy, text.charAt(i - 1), text.charAt(i - 1 + b), yp, Y, YMOD);
+            if (hx == hash1 && hy == hash2) {
                 matches.add(i);
             }
         }

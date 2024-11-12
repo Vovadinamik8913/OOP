@@ -103,4 +103,30 @@ class SubstringTest {
 
         new File(filePath).delete();
     }
+
+    @Test
+    @DisplayName("Big Rus Test")
+    public void bigRusTest() throws IOException {
+        StringBuilder content = new StringBuilder();
+        content.append("абв");
+        for (int i = 0; i < 100000; i++) {
+            content.append("а");
+        }
+        content.append("абв");
+        for (int i = 0; i < 100000; i++) {
+            content.append("а");
+        }
+        content.append("абв");
+        String filePath = "testFile.txt";
+        createTestFile(filePath, content.toString());
+
+        List<Integer> test = new ArrayList<>();
+        test.add(0);
+        test.add(100003);
+        test.add(200006);
+        List<Integer> res = Substring.find(filePath, "абв");
+        assertEquals(res, test);
+
+        new File(filePath).delete();
+    }
 }

@@ -76,7 +76,7 @@ class SubstringTest {
         assertThrows(RuntimeException.class,
                 () -> {
                     Substring.find("fsdfs", "dsag");
-        });
+                });
     }
 
 

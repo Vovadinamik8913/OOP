@@ -23,7 +23,7 @@ class SubstringTest {
     @DisplayName("BaseTest")
     void baseTest() {
         String filePath = "input.txt";
-        String content = "абракадабра";
+        String content = "абракабрадабра";
         String pattern = "бра";
 
         try {

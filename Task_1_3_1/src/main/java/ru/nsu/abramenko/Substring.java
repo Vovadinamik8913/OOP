@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Класс для поиска подстроки.
@@ -18,24 +20,37 @@ public class Substring {
      */
     public static void find(String inputFilePath, String patternString) {
         List<Integer> matches = new ArrayList<>();
-
+        Set<Integer> match = new HashSet<>();
         try (FileInputStream fis = new FileInputStream(inputFilePath)) {
 
             StringBuilder batchBuilder = new StringBuilder();
             byte[] buffer = new byte[1024];
             int bytesRead;
-
+            int shift = 0;
             while ((bytesRead = fis.read(buffer)) != -1) {
                 batchBuilder.append(new String(buffer, 0, bytesRead, StandardCharsets.UTF_8));
 
                 if (batchBuilder.length() > 10000) {
-                    matches.addAll(findAll(batchBuilder.toString(), patternString));
-                    batchBuilder.setLength(0);
+                    List<Integer> res = RabinKarp.find(batchBuilder.toString(), patternString);
+                    if (shift != 0) {
+                        for (Integer val : res) {
+                            val += shift;
+                        }
+                    }
+                    shift += batchBuilder.length() - patternString.length();
+                    matches.addAll(res);
+                    batchBuilder.delete(0, batchBuilder.length() - patternString.length() + 1);
                 }
             }
 
-            if (!batchBuilder.isEmpty()) {
-                matches.addAll(findAll(batchBuilder.toString(), patternString));
+            if (!batchBuilder.isEmpty() &&  batchBuilder.length() > patternString.length()) {
+                List<Integer> res = RabinKarp.find(batchBuilder.toString(), patternString);
+                if (shift != 0) {
+                    for (Integer val : res) {
+                        val += shift;
+                    }
+                }
+                matches.addAll(res);
             }
 
             if (!matches.isEmpty()) {
@@ -56,57 +71,5 @@ public class Substring {
         } catch (Exception e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
-    }
-
-    private static final int X = 1103;
-    private static final int MOD = 1093;
-
-    private static int hash(String str) {
-        int res = 0;
-        for (int i = 0; i < str.length(); i++) {
-            res = (res * X % MOD + value(str.charAt(i))) % MOD;
-        }
-        return res;
-    }
-
-    private static int value(char sym) {
-        return (int) sym;
-    }
-
-    private static int power(int n, int m) {
-        int res = 1;
-        for (int i = 0; i < m; i++) {
-            res = res * n % MOD;
-        }
-        return res % MOD;
-    }
-
-    /**
-     * Реализация полимиально хэширования для поиска подстроки.
-     *
-     * @param text строка
-     * @param pattern подстрока
-     * @return массив начал вхождений подстроки в строке
-     */
-    public static List<Integer> findAll(String text, String pattern) {
-        List<Integer> matches = new ArrayList<>();
-        int n = text.length();
-        int b = pattern.length();
-        int patternHash = hash(pattern);
-        int xp = power(X, b - 1);
-        int h = hash(text.substring(0, b));
-        if (h == patternHash) {
-            matches.add(0);
-        }
-        for (int i = 1; i < n - b + 1; i++) {
-            int val = (value(text.charAt(i - 1)) * xp) % MOD;
-            h = ((h - (value(text.charAt(i - 1)) * xp) % MOD) + MOD) % MOD;
-            h = h * X % MOD;
-            h = ((h + value(text.charAt(i - 1 + b))) + MOD) % MOD;
-            if (h == patternHash) {
-                matches.add(i);
-            }
-        }
-        return matches;
     }
 }

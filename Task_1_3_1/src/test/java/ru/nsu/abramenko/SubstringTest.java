@@ -104,10 +104,10 @@ class SubstringTest {
     @DisplayName("Big Rus Test")
     public void bigRusTest() throws IOException {
         String content = "абв" +
-                "а".repeat(100000) +
-                "абв" +
-                "а".repeat(100000) +
-                "абв";
+                "а".repeat(100000)
+                + "абв"
+                + "а".repeat(100000)
+                + "абв";
         String filePath = "testFile.txt";
         createTestFile(filePath, content);
 
@@ -131,11 +131,11 @@ class SubstringTest {
     @Test
     @DisplayName("Big Test")
     public void bigCombinedTest() throws IOException {
-        String content = "абв" +
-                "aабв".repeat(1000000) +
-                "абв" +
-                "aабв".repeat(1000000) +
-                "абв";
+        String content = "абв"
+                + "aабв".repeat(1000000)
+                + "абв"
+                + "aабв".repeat(1000000)
+                + "абв";
         String filePath = "testFile.txt";
         createTestFile(filePath, content);
         List<Integer> res = Substring.find(filePath, "абв");

@@ -84,13 +84,9 @@ class SubstringTest {
     @DisplayName("Big Test")
     public void bigTest() throws IOException {
         StringBuilder content = new StringBuilder();
-        for (int i = 0; i < 100000; i++) {
-            content.append("a");
-        }
+        content.append("a".repeat(100000));
         content.append("abc");
-        for (int i = 0; i < 100000; i++) {
-            content.append("a");
-        }
+        content.append("a".repeat(100000));
         content.append("abc");
         String filePath = "testFile.txt";
         createTestFile(filePath, content.toString());
@@ -107,18 +103,13 @@ class SubstringTest {
     @Test
     @DisplayName("Big Rus Test")
     public void bigRusTest() throws IOException {
-        StringBuilder content = new StringBuilder();
-        content.append("абв");
-        for (int i = 0; i < 100000; i++) {
-            content.append("а");
-        }
-        content.append("абв");
-        for (int i = 0; i < 100000; i++) {
-            content.append("а");
-        }
-        content.append("абв");
+        String content = "абв" +
+                "а".repeat(100000) +
+                "абв" +
+                "а".repeat(100000) +
+                "абв";
         String filePath = "testFile.txt";
-        createTestFile(filePath, content.toString());
+        createTestFile(filePath, content);
 
         List<Integer> test = new ArrayList<>();
         test.add(0);
@@ -134,6 +125,21 @@ class SubstringTest {
     @DisplayName("Biggest Test")
     public void biggestTest() {
         List<Integer> res = Substring.find("test3.txt", "было");
-        assertTrue(res.contains(10948));
+        assertEquals(182, res.size());
+    }
+
+    @Test
+    @DisplayName("Big Test")
+    public void bigCombinedTest() throws IOException {
+        String content = "абв" +
+                "aабв".repeat(1000000) +
+                "абв" +
+                "aабв".repeat(1000000) +
+                "абв";
+        String filePath = "testFile.txt";
+        createTestFile(filePath, content);
+        List<Integer> res = Substring.find(filePath, "абв");
+        assertEquals(res.size(), 2000003);
+        new File(filePath).delete();
     }
 }

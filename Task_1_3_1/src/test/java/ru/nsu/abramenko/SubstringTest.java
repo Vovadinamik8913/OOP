@@ -103,8 +103,8 @@ class SubstringTest {
     @Test
     @DisplayName("Big Rus Test")
     public void bigRusTest() throws IOException {
-        String content = "абв" +
-                "а".repeat(100000)
+        String content = "абв"
+                + "а".repeat(100000)
                 + "абв"
                 + "а".repeat(100000)
                 + "абв";

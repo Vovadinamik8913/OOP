@@ -124,7 +124,9 @@ class SubstringTest {
     @Test
     @DisplayName("Book Test")
     public void bookTest() throws IOException {
-        List<Long> res = Substring.find("test3.txt", "было");
+        List<Long> res = Substring.find(
+                ClassLoader.getSystemResource("test3.txt").getPath(),
+                "было");
         assertEquals(182, res.size());
     }
 

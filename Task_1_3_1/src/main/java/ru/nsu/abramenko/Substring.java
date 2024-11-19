@@ -20,7 +20,6 @@ public class Substring {
      * @param filePath путь к файлу
      * @param patternString нужная подстрока
      */
-
     public static List<Long> find(
             @NotNull String filePath, @NotNull String patternString) throws IOException {
         List<Long> matches = new ArrayList<>();

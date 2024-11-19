@@ -160,7 +160,9 @@ class SubstringTest {
     @DisplayName("Emoji Test")
     public void emojiTest() throws IOException {
         String filePath = "testFile.txt";
-        String content = "\uD83D\uDE02\uD83D\uDE18❤\uFE0F\uD83D\uDE0D\uD83D\uDC8B\uD83D\uDE04\uD83D\uDE07\uD83D\uDE19\uD83D\uDE1E\uD83E\uDD14\uD83E\uDD75\uD83E\uDD2F\uD83E\uDD2C";
+        String content = "\uD83D\uDE02\uD83D\uDE18❤\uFE0F\uD83D\uDE0D\uD83D"
+                + "\uDC8B\uD83D\uDE04\uD83D\uDE07\uD83D\uDE19\uD83D\uDE1E"
+                + "\uD83E\uDD14\uD83E\uDD75\uD83E\uDD2F\uD83E\uDD2C";
 
         createTestFile(filePath, content);
         List<Long> test = new ArrayList<>();

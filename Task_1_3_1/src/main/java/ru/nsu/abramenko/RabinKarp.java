@@ -2,6 +2,7 @@ package ru.nsu.abramenko;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /** realization of Rabin-Karp algorithm.
  *
@@ -42,8 +43,8 @@ public class RabinKarp {
      * @param pattern подстрока
      * @return массив начал вхождений подстроки в строке
      */
-    public static List<Integer> find(String text, String pattern) {
-        List<Integer> matches = new ArrayList<>();
+    public static List<Long> find(String text, String pattern) {
+        List<Long> matches = new ArrayList<>();
         int n = text.length();
         int b = pattern.length();
         int hash1 = hash(pattern, X, XMOD);
@@ -53,13 +54,13 @@ public class RabinKarp {
         int hx = hash(text.substring(0, b), X, XMOD);
         int hy = hash(text.substring(0, b), Y, YMOD);
         if (hx == hash1 && hy == hash2) {
-            matches.add(0);
+            matches.add(0L);
         }
         for (int i = 1; i < n - b + 1; i++) {
             hx = shift(hx, text.charAt(i - 1), text.charAt(i - 1 + b), xp, X, XMOD);
             hy = shift(hy, text.charAt(i - 1), text.charAt(i - 1 + b), yp, Y, YMOD);
             if (hx == hash1 && hy == hash2) {
-                matches.add(i);
+                matches.add(i*1L);
             }
         }
         return matches;

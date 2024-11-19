@@ -29,11 +29,11 @@ class SubstringTest {
 
         createTestFile(filePath, content);
 
-        List<Integer> test = new ArrayList<>();
-        test.add(1);
-        test.add(6);
-        test.add(11);
-        List<Integer> res = Substring.find(filePath, "бра");
+        List<Long> test = new ArrayList<>();
+        test.add(1L);
+        test.add(6L);
+        test.add(11L);
+        List<Long> res = Substring.find(filePath, "бра");
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -47,10 +47,10 @@ class SubstringTest {
         String content = "Hello, this is a test file. This file is for testing.";
         createTestFile(filePath, content);
 
-        List<Integer> test = new ArrayList<>();
-        test.add(17);
-        test.add(45);
-        List<Integer> res = Substring.find(filePath, "test");
+        List<Long> test = new ArrayList<>();
+        test.add(17L);
+        test.add(45L);
+        List<Long> res = Substring.find(filePath, "test");
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -64,7 +64,7 @@ class SubstringTest {
 
         createTestFile(filePath, content);
 
-        List<Integer> res = Substring.find(filePath, "none");
+        List<Long> res = Substring.find(filePath, "none");
         assertTrue(res.isEmpty());
 
         new File(filePath).delete();
@@ -73,7 +73,7 @@ class SubstringTest {
     @Test
     @DisplayName("Exception")
     public void errorTest() {
-        assertThrows(RuntimeException.class,
+        assertThrows(IOException.class,
                 () -> {
                     Substring.find("fsdfs", "dsag");
                 });
@@ -91,10 +91,10 @@ class SubstringTest {
         String filePath = "testFile.txt";
         createTestFile(filePath, content.toString());
 
-        List<Integer> test = new ArrayList<>();
-        test.add(100000);
-        test.add(200003);
-        List<Integer> res = Substring.find(filePath, "abc");
+        List<Long> test = new ArrayList<>();
+        test.add(100000L);
+        test.add(200003L);
+        List<Long> res = Substring.find(filePath, "abc");
         assertEquals(res, test);
 
         new File(filePath).delete();
@@ -111,35 +111,34 @@ class SubstringTest {
         String filePath = "testFile.txt";
         createTestFile(filePath, content);
 
-        List<Integer> test = new ArrayList<>();
-        test.add(0);
-        test.add(100003);
-        test.add(200006);
-        List<Integer> res = Substring.find(filePath, "абв");
+        List<Long> test = new ArrayList<>();
+        test.add(0L);
+        test.add(100003L);
+        test.add(200006L);
+        List<Long> res = Substring.find(filePath, "абв");
         assertEquals(res, test);
 
         new File(filePath).delete();
     }
 
     @Test
-    @DisplayName("Biggest Test")
-    public void biggestTest() {
-        List<Integer> res = Substring.find("test3.txt", "было");
+    @DisplayName("Book Test")
+    public void bookTest() throws IOException {
+        List<Long> res = Substring.find("test3.txt", "было");
         assertEquals(182, res.size());
     }
 
     @Test
-    @DisplayName("Big Test")
-    public void bigCombinedTest() throws IOException {
-        String content = "абв"
-                + "aабв".repeat(1000000)
-                + "абв"
-                + "aабв".repeat(1000000)
-                + "абв";
+    @DisplayName("Biggest Test")
+    public void biggestTest() throws IOException {
         String filePath = "testFile.txt";
-        createTestFile(filePath, content);
-        List<Integer> res = Substring.find(filePath, "абв");
-        assertEquals(res.size(), 2000003);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (int i = 0; i < 10000; i++) {
+                writer.write("abc".repeat(1000000) + "абв");
+            }
+        }
+        List<Long> res = Substring.find(filePath, "абв");
+        assertEquals(res.size(), 2500);
         new File(filePath).delete();
     }
 }

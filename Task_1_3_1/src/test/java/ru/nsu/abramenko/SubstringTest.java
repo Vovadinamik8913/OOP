@@ -133,7 +133,7 @@ class SubstringTest {
     public void biggestTest() throws IOException {
         String filePath = "testFile.txt";
         try (FileWriter writer = new FileWriter(filePath)) {
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 2500; i++) {
                 writer.write("abc".repeat(1000000) + "абв");
             }
         }

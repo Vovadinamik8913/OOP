@@ -2,7 +2,6 @@ package ru.nsu.abramenko;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /** realization of Rabin-Karp algorithm.
  *
@@ -60,7 +59,7 @@ public class RabinKarp {
             hx = shift(hx, text.charAt(i - 1), text.charAt(i - 1 + b), xp, X, XMOD);
             hy = shift(hy, text.charAt(i - 1), text.charAt(i - 1 + b), yp, Y, YMOD);
             if (hx == hash1 && hy == hash2) {
-                matches.add(i*1L);
+                matches.add(i * 1L);
             }
         }
         return matches;

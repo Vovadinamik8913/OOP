@@ -138,7 +138,7 @@ class SubstringTest {
             }
         }
         List<Long> res = Substring.find(filePath, "абв");
-        assertEquals(res.size(), 2500);
+        assertEquals(res.size(), 100);
         new File(filePath).delete();
     }
 

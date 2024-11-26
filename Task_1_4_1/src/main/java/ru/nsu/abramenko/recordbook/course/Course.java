@@ -10,7 +10,6 @@ import ru.nsu.abramenko.recordbook.course.enums.Mark;
 /** describes subject, his controls and res mark.
  *
  */
-@EqualsAndHashCode
 public class Course {
     @Getter
     private final String subject;

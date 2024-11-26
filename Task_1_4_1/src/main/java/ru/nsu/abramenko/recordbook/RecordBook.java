@@ -202,7 +202,8 @@ public class RecordBook {
         }
 
         Course vkr = recordBook.get(Semester.EIGHTH).stream()
-                .filter(course -> course.getControlType() == ControlType.THESIS_DEFENSE).findAny().get();
+                .filter(course -> course.getControlType() == ControlType.THESIS_DEFENSE)
+                .findAny().get();
 
         return vkr.getResult().value() == 5;
     }
@@ -217,7 +218,7 @@ public class RecordBook {
 
     private long countOfControl(ControlType controlType) {
         long cnt = 0;
-        for(var sem : recordBook.values()) {
+        for (var sem : recordBook.values()) {
             cnt += sem.stream().mapToLong((course) -> course.countOfControl(controlType)).sum();
         }
         return cnt;

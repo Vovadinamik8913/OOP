@@ -1,14 +1,15 @@
 package ru.nsu.abramenko.recordbook.course;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import ru.nsu.abramenko.recordbook.course.enums.ControlType;
 import ru.nsu.abramenko.recordbook.course.enums.Mark;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/** describes subject, his controls and res mark.
+ *
+ */
 @EqualsAndHashCode
 public class Course {
     @Getter
@@ -26,6 +27,10 @@ public class Course {
         result = null;
     }
 
+    /** add new grade.
+     *
+     * @param grade grade
+     */
     public void addGrade(Grade grade) {
         if (grade.controlType() == controlType) {
             result = grade.mark();
@@ -33,6 +38,11 @@ public class Course {
         grades.add(grade);
     }
 
+    /** count amount of controls.
+     *
+     * @param controlType type of control
+     * @return count
+     */
     public long countOfControl(ControlType controlType) {
         if (this.controlType == controlType) {
             return 1;

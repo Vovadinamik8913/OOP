@@ -1,0 +1,23 @@
+FIRST;Операционные системы;FIVE;EXAM
+FIRST;Физра;PASS;PASS
+FIRST;Алгебра;FIVE;EXAM
+FIRST;Математическая логика;FOUR;DIF_PASS
+
+SECOND;Императивное программирование;FIVE;EXAM
+SECOND;Линейная алгебра;FIVE;DIF_PASS
+SECOND;Структуры данных;PASS;PASS
+SECOND;Структуры данных;FOUR;EXAM
+SECOND;Иностранный язык;FOUR;TEST
+
+THIRD;Дифференциальные уравнения;TWO;COLLOQUIUM
+THIRD;Дифференциальные уравнения;FIVE;EXAM
+THIRD;Компьютерные сети;FIVE;DIF_PASS
+THIRD;Введение в ИИ;FOUR;ASSIGNMENT
+THIRD;Декларативное программирование;PASS;PASS
+
+FOURTH;Инженерия программного обеспечения;FOUR;DIF_PASS
+FOURTH;Базы данных;THREE;TEST
+FOURTH;Базы данных;THREE;EXAM
+FOURTH;Модели;FIVE;DIF_PASS
+FOURTH;Цифровые платформы;THREE;PRACTICE_DEFENSE
+FOURTH;Цифровые платформы;PASS;PASS

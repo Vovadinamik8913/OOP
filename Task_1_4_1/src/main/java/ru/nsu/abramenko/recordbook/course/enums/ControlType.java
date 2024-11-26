@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.recordbook.course.enums;
 
+/** type of control in university.
+ *
+ */
 public enum ControlType {
     PASS("Зачет"),
     DIF_PASS("Дифференцированный зачет"),

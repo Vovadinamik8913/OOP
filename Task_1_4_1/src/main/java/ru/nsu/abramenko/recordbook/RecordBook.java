@@ -1,5 +1,10 @@
 package ru.nsu.abramenko.recordbook;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import ru.nsu.abramenko.recordbook.course.Course;
@@ -7,15 +12,16 @@ import ru.nsu.abramenko.recordbook.course.Grade;
 import ru.nsu.abramenko.recordbook.course.enums.ControlType;
 import ru.nsu.abramenko.recordbook.course.enums.Semester;
 
-import java.util.*;
-
-
+/** recordBook of student.
+ *
+ */
 public class RecordBook {
     private final Map<Semester, List<Course>> recordBook;
     @Setter
     @Getter
     private Semester current;
     @Getter
+    @Setter
     private boolean isBudget;
 
     public RecordBook(boolean isBudget) {
@@ -23,6 +29,10 @@ public class RecordBook {
         this.isBudget = isBudget;
     }
 
+    /** add semester.
+     *
+     * @param semester semestr
+     */
     public void addSemester(Semester semester) {
         if (containsSemester(semester)) {
             return;
@@ -30,6 +40,11 @@ public class RecordBook {
         recordBook.putIfAbsent(semester, new ArrayList<>());
     }
 
+    /** add course.
+     *
+     * @param semester semestr
+     * @param course course
+     */
     public void addCourse(Semester semester, Course course) {
         if (containsCourse(semester, course)) {
             return;
@@ -40,10 +55,21 @@ public class RecordBook {
         recordBook.get(semester).add(course);
     }
 
+    /** contains semestr .
+     *
+     * @param semester semestr
+     * @return true or false
+     */
     public boolean containsSemester(Semester semester) {
         return recordBook.containsKey(semester);
     }
 
+    /** contains course.
+     *
+     * @param semester sem
+     * @param course course
+     * @return true or false
+     */
     public boolean containsCourse(Semester semester, Course course) {
         if (recordBook.containsKey(semester)) {
             return recordBook.get(semester).contains(course);
@@ -51,6 +77,12 @@ public class RecordBook {
         return false;
     }
 
+    /** add grade.
+     *
+     * @param semester sem
+     * @param subject subject
+     * @param grade grade
+     */
     public void newGrade(Semester semester, String subject, Grade grade) {
         if (containsSemester(semester)) {
             var courses = recordBook.get(semester);
@@ -60,6 +92,10 @@ public class RecordBook {
         }
     }
 
+    /** get average.
+     *
+     * @return GPA
+     */
     public double calculateGPA() {
         var ref = new Object() {
             long val = 0;
@@ -78,7 +114,11 @@ public class RecordBook {
         return ref.val * 1.d / ref.cnt;
     }
 
-    public boolean canGetHigherScholarShip() {
+    /** can get higherScholarShip
+     *
+     * @return true or false
+     */
+    public boolean higherScholarShip() {
         if (!containsSemester(current)) {
             return false;
         }
@@ -103,6 +143,10 @@ public class RecordBook {
         return res.allMatch(course -> course.getResult().value() > 3);
     }
 
+    /** is there a chance for budget.
+     *
+     * @return true or false
+     */
     public boolean canGetBudget() {
         if (isBudget) {
             return false;
@@ -115,12 +159,6 @@ public class RecordBook {
             default -> isGoodExams(Semester.values()[ind - 2])
                     && isGoodExams(Semester.values()[ind - 1]);
         };
-    }
-
-    public void moveToBudget() {
-        if (canGetBudget()) {
-            isBudget = true;
-        }
     }
 
     private long cntOfWellMarks() {
@@ -144,7 +182,11 @@ public class RecordBook {
                 );
     }
 
-    public  boolean canGetRedDiploma() {
+    /** can get a red diploma.
+     *
+     * @return true or false
+     */
+    public  boolean redDiploma() {
         boolean badMarks = haveBadMarks();
         if (badMarks) {
             return false;
@@ -162,8 +204,17 @@ public class RecordBook {
         return vkr.getResult().value() == 5;
     }
 
+    private long countOfControlInSemester(Semester semester, ControlType controlType) {
+        if (!containsSemester(semester)) {
+            return 0;
+        }
+        var sem = recordBook.get(semester);
+        return sem.stream().mapToLong((course) -> course.countOfControl(controlType)).sum();
+    }
+
     @Override
     public String toString() {
-        return super.toString();
+       String res = "";
+        return res;
     }
 }

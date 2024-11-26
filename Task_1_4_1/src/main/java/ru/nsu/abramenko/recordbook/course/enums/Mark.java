@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.recordbook.course.enums;
 
+/** marks from 2 to 5, PASS and NA.
+ *
+ */
 public enum Mark {
     PASS(5, "PASS"),
     FIVE(5),
@@ -24,6 +27,12 @@ public enum Mark {
         return description;
     }
 
+    /** returns of mark.
+     * if PASS then 5
+     * if NA then 0
+     *
+     * @return value of mark
+     */
     public int value() {
         return mark;
     }

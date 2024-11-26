@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.recordbook.course.enums;
 
+/** semesters from 1 to 8.
+ *
+ */
 public enum Semester {
     FIRST("1 семестр"),
     SECOND("2 семестр"),

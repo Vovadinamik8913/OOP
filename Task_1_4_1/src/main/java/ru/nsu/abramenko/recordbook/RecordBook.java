@@ -202,7 +202,7 @@ public class RecordBook {
         }
 
         Course vkr = recordBook.get(Semester.EIGHTH).stream()
-                .filter(course -> course.getSubject().equals("ВКР")).findAny().get();
+                .filter(course -> course.getControlType() == ControlType.THESIS_DEFENSE).findAny().get();
 
         return vkr.getResult().value() == 5;
     }
@@ -215,9 +215,31 @@ public class RecordBook {
         return sem.stream().mapToLong((course) -> course.countOfControl(controlType)).sum();
     }
 
+    private long countOfControl(ControlType controlType) {
+        long cnt = 0;
+        for(var sem : recordBook.values()) {
+            cnt += sem.stream().mapToLong((course) -> course.countOfControl(controlType)).sum();
+        }
+        return cnt;
+    }
+
     @Override
     public String toString() {
-        String res = "";
-        return res;
+        StringBuilder res = new StringBuilder();
+        res.append("types\t\tвсего");
+        for (int i = 0; i < Semester.values().length; i++) {
+            res.append("\t").append(Integer.toString(i + 1));
+        }
+        res.append("\n");
+        for (ControlType type : ControlType.values()) {
+            res.append(type).append("\t\t");
+            res.append(Long.toString(countOfControl(type)));
+            for (Semester sem : Semester.values()) {
+                res.append("\t");
+                res.append(Long.toString(countOfControlInSemester(sem, type)));
+            }
+            res.append("\n");
+        }
+        return res.toString();
     }
 }

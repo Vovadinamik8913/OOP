@@ -4,13 +4,13 @@ package ru.nsu.abramenko.recordbook.course.enums;
  *
  */
 public enum ControlType {
-    PASS("Зачет"),
-    DIF_PASS("Дифференцированный зачет"),
-    EXAM("Экзамен"),
-    ASSIGNMENT("Задание"),
+    PASS("   Зачет"),
+    DIF_PASS("ДифЗачет"),
+    EXAM("   Экзамен"),
+    ASSIGNMENT("   Задание"),
     TEST("Контрольная"),
     COLLOQUIUM("Коллоквиум"),
-    PRACTICE_DEFENSE("Защита отчета по практике"),
+    PRACTICE_DEFENSE("Практики"),
     THESIS_DEFENSE("Защита ВКР");
 
     private final String description;

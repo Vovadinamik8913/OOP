@@ -42,5 +42,5 @@ SEVENTH;Социальные сети и их влияние (дополните
 SEVENTH;Тестирование программного обеспечения (дополнительный курс);PASS;PASS
 SEVENTH;Основы проектирования (дополнительный курс);FIVE;DIF_PASS
 
-EIGHTH;ВКР;FIVE;EXAM
+EIGHTH;ВКР;FIVE;THESIS_DEFENSE
 EIGHTH;Специальные темы в ИТ (дополнительный курс);PASS;PASS

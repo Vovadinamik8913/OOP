@@ -27,7 +27,7 @@ class RecordBookTest {
             throw new RuntimeException(e);
         }
         recordBook.setCurrent(Semester.EIGHTH);
-        assertTrue(recordBook.calculateGPA() < 4.2d);
+        assertTrue(recordBook.calculateGpa() < 4.2d);
     }
 
     @Test
@@ -47,7 +47,7 @@ class RecordBookTest {
             throw new RuntimeException(e);
         }
         recordBook.setCurrent(Semester.EIGHTH);
-        System.out.println(recordBook.calculateGPA());
+        System.out.println(recordBook.calculateGpa());
         assertTrue(recordBook.redDiploma());
     }
 
@@ -89,5 +89,24 @@ class RecordBookTest {
         }
         recordBook.setCurrent(Semester.FOURTH);
         assertFalse(recordBook.higherScholarShip());
+    }
+
+    @Test
+    @DisplayName("StringTest")
+    void stringTest() {
+        String planPath = ClassLoader.getSystemResource("plan.txt").getPath();
+        RecordBook recordBook;
+        try {
+            recordBook = Reader.readPlanFromFile(planPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String gradesPath = ClassLoader.getSystemResource("grade1.txt").getPath();
+        try {
+            Reader.readGradesFromFile(gradesPath, recordBook);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(recordBook);
     }
 }

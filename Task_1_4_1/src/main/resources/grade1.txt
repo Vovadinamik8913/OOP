@@ -1,0 +1,46 @@
+FIRST;Операционные системы;FOUR;EXAM
+FIRST;Физра;PASS;PASS
+FIRST;Алгебра;FIVE;EXAM
+FIRST;Математическая логика;THREE;DIF_PASS
+
+SECOND;Императивное программирование;FIVE;EXAM
+SECOND;Линейная алгебра;FOUR;DIF_PASS
+SECOND;Структуры данных;PASS;PASS
+SECOND;Структуры данных;FOUR;EXAM
+SECOND;Иностранный язык;FOUR;TEST
+
+THIRD;Дифференциальные уравнения;TWO;COLLOQUIUM
+THIRD;Дифференциальные уравнения;THREE;EXAM
+THIRD;Компьютерные сети;THREE;DIF_PASS
+THIRD;Введение в ИИ;FOUR;ASSIGNMENT
+THIRD;Декларативное программирование;PASS;PASS
+
+FOURTH;Инженерия программного обеспечения;FOUR;DIF_PASS
+FOURTH;Инженерия программного обеспечения;THREE;EXAM
+FOURTH;Базы данных;THREE;TEST
+FOURTH;Базы данных;FIVE;EXAM
+FOURTH;Модели;FIVE;DIF_PASS
+FOURTH;Цифровые платформы;THREE;PRACTICE_DEFENSE
+FOURTH;Цифровые платформы;PASS;PASS
+
+FIFTH;Веб-разработка;FIVE;EXAM
+FIFTH;Мобильные приложения;FOUR;DIF_PASS
+FIFTH;Искусственный интеллект;FOUR;EXAM
+FIFTH;Физра (продолжение);THREE;ASSIGNMENT
+FIFTH;Физра (продолжение);PASS;PASS
+
+SIXTH;Машинное обучение;FIVE;EXAM
+SIXTH;Кибербезопасность;FOUR;TEST
+SIXTH;Кибербезопасность;FOUR;DIF_PASS
+SIXTH;ОПП (Объектно-ориентированное программирование);THREE;COLLOQUIUM
+SIXTH;ОПП (Объектно-ориентированное программирование);THREE;EXAM
+SIXTH;ПАК (Компьютерные приложения);FOUR;PRACTICE_DEFENSE
+SIXTH;ПАК (Компьютерные приложения);PASS;PASS
+
+SEVENTH;Социальные сети и их влияние (дополнительный курс);FOUR;ASSIGNMENT
+SEVENTH;Социальные сети и их влияние (дополнительный курс);PASS;PASS
+SEVENTH;Тестирование программного обеспечения (дополнительный курс);PASS;PASS
+SEVENTH;Основы проектирования (дополнительный курс);FIVE;DIF_PASS
+
+EIGHTH;ВКР;FIVE;EXAM
+EIGHTH;Специальные темы в ИТ (дополнительный курс);PASS;PASS

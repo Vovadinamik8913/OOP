@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.abramenko.recordbook"},{"l":"ru.nsu.abramenko.recordbook.course"},{"l":"ru.nsu.abramenko.recordbook.course.enums"}];updateSearchResults();

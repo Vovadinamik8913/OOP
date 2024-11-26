@@ -13,10 +13,12 @@ public enum Mark {
 
     private final Integer mark;
     private final String description;
+
     Mark(int mark) {
         this.mark = mark;
         description = Integer.toString(mark);
     }
+
     Mark(int mark, String description) {
         this.mark = mark;
         this.description = description;

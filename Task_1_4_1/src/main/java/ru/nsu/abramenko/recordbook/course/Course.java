@@ -20,6 +20,11 @@ public class Course {
     @Getter
     private Mark result;
 
+    /** constructor.
+     *
+     * @param subject subject
+     * @param controlType type
+     */
     public Course(String subject, ControlType controlType) {
         this.subject = subject;
         this.controlType = controlType;

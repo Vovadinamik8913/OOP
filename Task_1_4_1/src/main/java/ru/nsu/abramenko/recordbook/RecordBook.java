@@ -96,13 +96,14 @@ public class RecordBook {
      *
      * @return GPA
      */
-    public double calculateGPA() {
+    public double calculateGpa() {
         var ref = new Object() {
             long val = 0;
             long cnt = 0;
         };
         recordBook.values().forEach(courses -> {
-            var res = courses.stream().filter(course -> course.getControlType() != ControlType.PASS);
+            var res = courses.stream()
+                    .filter(course -> course.getControlType() != ControlType.PASS);
             res.filter(course -> course.getResult() != null).forEach(course -> {
                 ref.val += course.getResult().value();
                 ref.cnt++;
@@ -114,7 +115,7 @@ public class RecordBook {
         return ref.val * 1.d / ref.cnt;
     }
 
-    /** can get higherScholarShip
+    /** can get higherScholarShip.
      *
      * @return true or false
      */
@@ -139,7 +140,8 @@ public class RecordBook {
             return false;
         }
         var res = sem.stream()
-                .filter(course -> course.getResult() != null && course.getControlType() == ControlType.EXAM);
+                .filter(course -> course.getResult() != null
+                        && course.getControlType() == ControlType.EXAM);
         return res.allMatch(course -> course.getResult().value() > 3);
     }
 
@@ -169,7 +171,8 @@ public class RecordBook {
                 .forEach(courses ->
                         ref.wellMarks += courses.stream()
                                 .filter(course -> course.getControlType() != ControlType.PASS
-                                        && course.getResult() != null && course.getResult().value() == 5).count());
+                                        && course.getResult() != null
+                                        && course.getResult().value() == 5).count());
         return ref.wellMarks;
     }
 
@@ -214,7 +217,7 @@ public class RecordBook {
 
     @Override
     public String toString() {
-       String res = "";
+        String res = "";
         return res;
     }
 }

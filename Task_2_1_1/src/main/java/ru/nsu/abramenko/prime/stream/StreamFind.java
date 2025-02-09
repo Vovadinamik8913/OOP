@@ -11,6 +11,7 @@ public class StreamFind implements FinderPrimeNum {
 
     @Override
     public boolean containsPrimeNumber(int[] numbers) {
-        return Arrays.stream(numbers).parallel().anyMatch(num -> !AnalyseNumber.getInstance().isPrime(num));
+        return Arrays.stream(numbers).parallel()
+                .anyMatch(num -> !AnalyseNumber.getInstance().isPrime(num));
     }
 }

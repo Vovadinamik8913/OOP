@@ -96,6 +96,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ThreadFind</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../FinderPrimeNum.html" title="interface in ru.nsu.abramenko.prime">FinderPrimeNum</a></span></div>
+<div class="block">class for Finding non Prime by threads.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,7 +109,9 @@ implements <a href="../FinderPrimeNum.html" title="interface in ru.nsu.abramenko
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">ThreadFind</a><wbr>(int&nbsp;numThreads)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">constructor.</div>
+</div>
 </div>
 </section>
 </li>
@@ -151,9 +154,12 @@ implements <a href="../FinderPrimeNum.html" title="interface in ru.nsu.abramenko
 <h3>ThreadFind</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ThreadFind</span><wbr><span class="parameters">(int&nbsp;numThreads)</span>
            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></span></div>
+<div class="block">constructor.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>numThreads</code> - number of threads</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link">RuntimeException</a></code> - if numthreads &gt; 1000</dd>
 </dl>
 </section>
 </li>

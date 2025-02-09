@@ -1,0 +1,14 @@
+package ru.nsu.abramenko.prime.stream;
+
+import ru.nsu.abramenko.prime.AnalyseNumber;
+import ru.nsu.abramenko.prime.FinderPrimeNum;
+
+import java.util.Arrays;
+
+public class StreamFind implements FinderPrimeNum {
+
+    @Override
+    public boolean containsPrimeNumber(int[] numbers) {
+        return Arrays.stream(numbers).parallel().anyMatch(num -> !AnalyseNumber.getInstance().isPrime(num));
+    }
+}

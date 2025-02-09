@@ -5,11 +5,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import ru.nsu.abramenko.prime.AnalyseNumber;
 import ru.nsu.abramenko.prime.FinderPrimeNum;
 
+/** class for Finding non Prime by threads.
+ *
+ */
 public class ThreadFind implements FinderPrimeNum {
 
     private final int numThreads;
     private final AtomicBoolean isContainsNotPrime;
 
+    /** constructor.
+     *
+     * @param numThreads number of threads
+     * @throws RuntimeException if numthreads > 1000
+     */
     public ThreadFind(int numThreads) throws RuntimeException {
         this.numThreads = numThreads;
         if (numThreads > 1000) {

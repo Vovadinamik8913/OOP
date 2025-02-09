@@ -1,13 +1,12 @@
 package ru.nsu.abramenko.prime;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import ru.nsu.abramenko.prime.consistent.ConsistentFind;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import ru.nsu.abramenko.prime.consistent.ConsistentFind;
 
 class ConsistentFindTest {
     @Test

@@ -23,8 +23,8 @@ class StreamFindTest {
     void basicFalseTest() {
         StreamFind consistentFind = new StreamFind();
         int[] testArr = new int[]{
-                20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053
+            20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053
         };
         assertFalse(consistentFind.containsPrimeNumber(testArr));
         System.out.println("False Test: " + consistentFind.timeOfFind(testArr));
@@ -35,7 +35,7 @@ class StreamFindTest {
     void bigNumTest() {
         StreamFind consistentFind = new StreamFind();
         int[] testArr = new int[]{
-                500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
+            500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
         };
         assertTrue(consistentFind.containsPrimeNumber(testArr));
         System.out.println("Large Test: " + consistentFind.timeOfFind(testArr));

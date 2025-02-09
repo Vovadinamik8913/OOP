@@ -3,6 +3,9 @@ package ru.nsu.abramenko.prime.consistent;
 import ru.nsu.abramenko.prime.AnalyseNumber;
 import ru.nsu.abramenko.prime.FinderPrimeNum;
 
+/** class for Finding non Prime consistent program.
+ *
+ */
 public class ConsistentFind implements FinderPrimeNum {
 
     @Override

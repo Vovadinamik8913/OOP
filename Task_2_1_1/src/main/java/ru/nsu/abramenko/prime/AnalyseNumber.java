@@ -1,5 +1,8 @@
 package ru.nsu.abramenko.prime;
 
+/** analysing number is prime or not.
+ *
+ */
 public class AnalyseNumber {
 
     private static final int LEN = 1000000;
@@ -19,6 +22,10 @@ public class AnalyseNumber {
         }
     }
 
+    /** realisation of Singleton.
+     *
+     * @return instance of AnalyseNumber
+     */
     public static AnalyseNumber getInstance() {
         if (instance == null) {
             synchronized (AnalyseNumber.class) {
@@ -29,7 +36,12 @@ public class AnalyseNumber {
         }
         return instance;
     }
-    
+
+    /** isPrime?.
+     *
+     * @param number number
+     * @return true or false
+     */
     public boolean isPrime(int number) {
         if (number < LEN) {
             return !sieve[number];

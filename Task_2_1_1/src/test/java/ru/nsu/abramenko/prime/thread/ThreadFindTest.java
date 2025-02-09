@@ -22,8 +22,8 @@ class ThreadFindTest {
     void basicFalseTest() {
         ThreadFind threadFind = new ThreadFind(12);
         int[] testArr = new int[]{
-                20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053
+            20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053
         };
         assertFalse(threadFind.containsPrimeNumber(testArr));
         System.out.println("False Test: " + threadFind.timeOfFind(testArr));
@@ -34,7 +34,7 @@ class ThreadFindTest {
     void bigNumTest() {
         ThreadFind threadFind = new ThreadFind(6);
         int[] testArr = new int[]{
-                500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
+            500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
         };
         assertTrue(threadFind.containsPrimeNumber(testArr));
         System.out.println("Large Test: " + threadFind.timeOfFind(testArr));

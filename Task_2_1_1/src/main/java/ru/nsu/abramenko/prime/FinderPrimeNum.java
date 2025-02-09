@@ -1,7 +1,11 @@
 package ru.nsu.abramenko.prime;
 
+/** interface for finding non prime in sequences.
+ *
+ */
 public interface FinderPrimeNum {
     boolean containsPrimeNumber(int[] numbers);
+
     default double timeOfFind(int[] numbers) {
         long res = 0L;
         int tries = 100;

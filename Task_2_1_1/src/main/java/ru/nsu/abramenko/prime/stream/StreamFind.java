@@ -4,6 +4,9 @@ import java.util.Arrays;
 import ru.nsu.abramenko.prime.AnalyseNumber;
 import ru.nsu.abramenko.prime.FinderPrimeNum;
 
+/** class for Finding non Prime by streams.
+ *
+ */
 public class StreamFind implements FinderPrimeNum {
 
     @Override

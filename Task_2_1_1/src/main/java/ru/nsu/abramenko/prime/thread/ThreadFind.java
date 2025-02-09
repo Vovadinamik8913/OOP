@@ -1,13 +1,9 @@
 package ru.nsu.abramenko.prime.thread;
 
-import ru.nsu.abramenko.prime.AnalyseNumber;
-import ru.nsu.abramenko.prime.FinderPrimeNum;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
+import ru.nsu.abramenko.prime.AnalyseNumber;
+import ru.nsu.abramenko.prime.FinderPrimeNum;
 
 public class ThreadFind implements FinderPrimeNum {
 

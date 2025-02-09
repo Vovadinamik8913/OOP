@@ -3,11 +3,11 @@ package ru.nsu.abramenko.prime;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.util.Arrays;
+import ru.nsu.abramenko.prime.consistent.ConsistentFind;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.nsu.abramenko.prime.consistent.ConsistentFind;
 
-import java.util.Arrays;
 
 class ConsistentFindTest {
     @Test
@@ -24,8 +24,8 @@ class ConsistentFindTest {
     void basicFalseTest() {
         ConsistentFind consistentFind = new ConsistentFind();
         int[] testArr = new int[]{
-                20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053
+            20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053
         };
         assertFalse(consistentFind.containsPrimeNumber(testArr));
         System.out.println("False Test: " + consistentFind.timeOfFind(testArr));
@@ -36,7 +36,7 @@ class ConsistentFindTest {
     void bigNumTest() {
         ConsistentFind consistentFind = new ConsistentFind();
         int[] testArr = new int[]{
-                500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
+            500000005, 100010352, 940501000, 500000000, 999999999, 1000000000
         };
         assertTrue(consistentFind.containsPrimeNumber(testArr));
         System.out.println("Large Test: " + consistentFind.timeOfFind(testArr));

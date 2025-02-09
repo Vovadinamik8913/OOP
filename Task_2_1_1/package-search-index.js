@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.abramenko.prime"},{"l":"ru.nsu.abramenko.prime.consistent"},{"l":"ru.nsu.abramenko.prime.stream"},{"l":"ru.nsu.abramenko.prime.thread"}];updateSearchResults();

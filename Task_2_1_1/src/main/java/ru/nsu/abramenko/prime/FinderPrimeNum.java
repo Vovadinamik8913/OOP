@@ -6,6 +6,11 @@ package ru.nsu.abramenko.prime;
 public interface FinderPrimeNum {
     boolean containsPrimeNumber(int[] numbers);
 
+    /** time for check array.
+     *
+     * @param numbers numbers
+     * @return time of checking
+     */
     default double timeOfFind(int[] numbers) {
         long res = 0L;
         int tries = 100;

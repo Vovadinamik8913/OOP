@@ -11,7 +11,7 @@ import ru.nsu.abramenko.prime.FinderPrimeNum;
 public class ThreadFind implements FinderPrimeNum {
 
     private final int numThreads;
-    private final AtomicBoolean isContainsNotPrime;
+    private final AtomicBoolean isFound;
 
     /** constructor.
      *
@@ -23,7 +23,7 @@ public class ThreadFind implements FinderPrimeNum {
         if (numThreads > 1000) {
             throw new RuntimeException("Too much threads");
         }
-        isContainsNotPrime = new AtomicBoolean(false);
+        isFound = new AtomicBoolean(false);
     }
 
     private int[] shuffle(int[] numbers) {
@@ -47,9 +47,9 @@ public class ThreadFind implements FinderPrimeNum {
             int start = i * lengthPerThread;
             int end = (i == numThreads - 1) ? arr.length : start + lengthPerThread;
             threads[i] = new Thread(() -> {
-                for (int j = start; j < end && !isContainsNotPrime.get(); j++) {
+                for (int j = start; j < end && !isFound.get(); j++) {
                     if (!AnalyseNumber.getInstance().isPrime(arr[j])) {
-                        isContainsNotPrime.set(true);
+                        isFound.set(true);
                     }
                 }
             });
@@ -63,6 +63,6 @@ public class ThreadFind implements FinderPrimeNum {
                 throw new RuntimeException(e);
             }
         }
-        return isContainsNotPrime.get();
+        return isFound.get();
     }
 }

@@ -21,6 +21,6 @@ public interface FinderPrimeNum {
             res += end - start;
         }
 
-        return (double) res / tries / 100;
+        return (double) res / tries / 1000000;
     }
 }

@@ -1,5 +1,7 @@
 package ru.nsu.abramenko.prime;
 
+import lombok.Getter;
+
 /** analysing number is prime or not.
  *
  */
@@ -7,8 +9,8 @@ public class AnalyseNumber {
 
     private static final int LEN = 1000000;
     private final boolean[] sieve;
-    private static volatile AnalyseNumber instance;
-
+    @Getter
+    private static AnalyseNumber instance = new AnalyseNumber();
     private AnalyseNumber() {
         sieve = new boolean[LEN];
         sieve[0] = true;
@@ -22,20 +24,6 @@ public class AnalyseNumber {
         }
     }
 
-    /** realisation of Singleton.
-     *
-     * @return instance of AnalyseNumber
-     */
-    public static AnalyseNumber getInstance() {
-        if (instance == null) {
-            synchronized (AnalyseNumber.class) {
-                if (instance == null) {
-                    instance = new AnalyseNumber();
-                }
-            }
-        }
-        return instance;
-    }
 
     /** isPrime?.
      *

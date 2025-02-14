@@ -43,7 +43,7 @@ class ThreadFindTest {
     @Test
     @DisplayName("largestTest")
     void largestTest() {
-        ThreadFind threadFind = new ThreadFind(50);
+        ThreadFind threadFind = new ThreadFind(4);
         int size = 10000;
         int[] testArr = new int[size];
         Arrays.fill(testArr, 999999937);

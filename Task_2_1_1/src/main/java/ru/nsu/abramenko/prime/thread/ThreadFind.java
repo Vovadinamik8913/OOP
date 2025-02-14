@@ -41,13 +41,12 @@ public class ThreadFind implements FinderPrimeNum {
     @Override
     public boolean containsPrimeNumber(int[] numbers) throws RuntimeException {
         int[] arr = shuffle(numbers);
-        Thread[] threads = new Thread[numThreads];
-        int lengthPerThread = arr.length / numThreads;
-        for (int i = 0; i < numThreads; i++) {
-            int start = i * lengthPerThread;
-            int end = (i == numThreads - 1) ? arr.length : start + lengthPerThread;
+        int len = Math.min(arr.length, numThreads);
+        Thread[] threads = new Thread[len];
+        for (int i = 0; i < len && !isFound.get(); i++) {
+            int index = i;
             threads[i] = new Thread(() -> {
-                for (int j = start; j < end && !isFound.get(); j++) {
+                for (int j = index; j < arr.length && !isFound.get(); j += len) {
                     if (!AnalyseNumber.getInstance().isPrime(arr[j])) {
                         isFound.set(true);
                     }
@@ -58,7 +57,12 @@ public class ThreadFind implements FinderPrimeNum {
 
         for (Thread thread : threads) {
             try {
-                thread.join();
+                if (isFound.get()) {
+                    return isFound.get();
+                }
+                if (thread != null) {
+                    thread.join();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

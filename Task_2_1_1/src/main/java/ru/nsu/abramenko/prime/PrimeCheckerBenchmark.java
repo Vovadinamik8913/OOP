@@ -24,8 +24,8 @@ import ru.nsu.abramenko.prime.thread.ThreadFind;
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Warmup(iterations = 10, time = 3, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 20, time = 3, timeUnit = TimeUnit.SECONDS)
+@Warmup(iterations = 10, time = 3)
+@Measurement(iterations = 20, time = 3)
 @Fork(1)
 public class PrimeCheckerBenchmark {
     int[] testArr;
@@ -35,9 +35,8 @@ public class PrimeCheckerBenchmark {
      */
     @Setup
     public void setup() {
-        testArr = new int[1000];
+        testArr = new int[10000];
         Arrays.fill(testArr, 999999937);
-        AnalyseNumber.getInstance();
     }
 
     /**
@@ -89,49 +88,25 @@ public class PrimeCheckerBenchmark {
     }
 
     /**
-     * Test for parallel program with 50 threads.
+     * Test for parallel program with 4 threads.
      *
      * @param blackhole for optimisation.
      */
     @Benchmark
-    public void testThreads50(Blackhole blackhole) {
-        ThreadFind threadFind = new ThreadFind(50);
+    public void testThreads4(Blackhole blackhole) {
+        ThreadFind threadFind = new ThreadFind(4);
         boolean result = threadFind.containsPrimeNumber(testArr);
         blackhole.consume(result);
     }
 
     /**
-     * Test for parallel program with 64 thread.
+     * Test for parallel program with 16 thread.
      *
      * @param blackhole for optimisation.
      */
     @Benchmark
-    public void testThreads64(Blackhole blackhole) {
-        ThreadFind threadFind = new ThreadFind(64);
-        boolean result = threadFind.containsPrimeNumber(testArr);
-        blackhole.consume(result);
-    }
-
-    /**
-     * Test for parallel program with 256 threads.
-     *
-     * @param blackhole for optimisation.
-     */
-    @Benchmark
-    public void testThreads256(Blackhole blackhole) {
-        ThreadFind threadFind = new ThreadFind(256);
-        boolean result = threadFind.containsPrimeNumber(testArr);
-        blackhole.consume(result);
-    }
-
-    /**
-     * Test for parallel program with 512 threads.
-     *
-     * @param blackhole for optimisation.
-     */
-    @Benchmark
-    public void testThreads512(Blackhole blackhole) {
-        ThreadFind threadFind = new ThreadFind(512);
+    public void testThreads16(Blackhole blackhole) {
+        ThreadFind threadFind = new ThreadFind(16);
         boolean result = threadFind.containsPrimeNumber(testArr);
         blackhole.consume(result);
     }

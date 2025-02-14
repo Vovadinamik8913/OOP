@@ -10,6 +10,7 @@ public class ConsistentFind implements FinderPrimeNum {
 
     @Override
     public boolean containsPrimeNumber(int[] numbers) {
+        
         for (int number : numbers) {
             if (!AnalyseNumber.getInstance().isPrime(number)) {
                 return true;

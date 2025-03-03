@@ -1,9 +1,10 @@
 package ru.nsu.abramenko;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import com.google.gson.Gson;
+import java.nio.file.Paths;
 import lombok.Getter;
 
 /** class for configurating pizzeria.

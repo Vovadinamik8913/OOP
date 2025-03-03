@@ -5,24 +5,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import ru.nsu.abramenko.BQueue;
+import ru.nsu.abramenko.Bqueue;
 import ru.nsu.abramenko.PizzeriaConfig;
 
 /** pizzeria.
  *
  */
 public class Pizzeria {
-    private final BQueue<Order> storage;
-    private final BQueue<Order> orders;
+    private final Bqueue<Order> storage;
+    private final Bqueue<Order> orders;
     private final List<Baker> bakers;
     private final List<Deliveryman> deliverymen;
 
+    /** constructor with args.
+     *
+     * @param n bakers
+     * @param m deliverymen
+     * @param t storageCapacity
+     */
     public Pizzeria(int n, int m, int t) {
-        storage = new BQueue<>(t);
+        storage = new Bqueue<>(t);
         bakers = new ArrayList<>();
         deliverymen = new ArrayList<>();
-        orders = new BQueue<>();
+        orders = new Bqueue<>();
         Random random = new Random();
         for (int i = 0; i < n; i++) {
             bakers.add(
@@ -38,14 +43,14 @@ public class Pizzeria {
         }
     }
 
-    /** constructor.
+    /** constructor from config.
      *
      * @throws IOException no such file config
      */
     public Pizzeria() throws IOException {
         PizzeriaConfig config = PizzeriaConfig.loadConfig();
-        storage = new BQueue<>(config.getStorageCapacity());
-        orders = new BQueue<>();
+        storage = new Bqueue<>(config.getStorageCapacity());
+        orders = new Bqueue<>();
         bakers = new ArrayList<>();
         deliverymen = new ArrayList<>();
         Random random = new Random();
@@ -77,7 +82,6 @@ public class Pizzeria {
         }
     }
 
-
     /** end work.
      *
      */
@@ -104,6 +108,23 @@ public class Pizzeria {
         }
     }
 
+    /** number of Orders.
+     *
+     * @return size of orders
+     */
+    public int numberOfOrders() {
+        return orders.size();
+    }
+
+    /** number of Baked.
+     *
+     * @return size of storage
+     */
+    public int numberOfBaked() {
+        return storage.size();
+    }
+
+
     /** add new order.
      *
      * @param order order
@@ -125,20 +146,16 @@ public class Pizzeria {
             System.out.println(e.getMessage());
             return;
         }
-        Scanner scanner = new Scanner(System.in);
         pizzeria.work();
         try {
-            String name = scanner.next();
-            while (!name.equals("end")) {
-                Order order = new Order(name);
+            for (int i = 0; i < 100; i++){
+                Order order = new Order();
                 pizzeria.add(order);
-                name = scanner.next();
             }
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
             pizzeria.close();
-            scanner.close();
         }
     }
 }

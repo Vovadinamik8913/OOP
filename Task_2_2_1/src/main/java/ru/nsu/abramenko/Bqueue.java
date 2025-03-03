@@ -7,18 +7,22 @@ import java.util.Queue;
  *
  * @param <T> Class
  */
-public class BQueue<T> {
+public class Bqueue<T> {
     private final Queue<T> data;
     private int maxSize;
     private final boolean isLimited;
 
-    public BQueue(int maxSize) {
+    /** limited.
+     *
+     * @param maxSize  max size
+     */
+    public Bqueue(int maxSize) {
         this.data = new LinkedList<>();
         this.maxSize = maxSize;
         isLimited = true;
     }
 
-    public BQueue() {
+    public Bqueue() {
         this.data = new LinkedList<>();
         isLimited = false;
     }

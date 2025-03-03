@@ -1,13 +1,22 @@
 package ru.nsu.abramenko.pizzeria;
 
-import ru.nsu.abramenko.BQueue;
+import ru.nsu.abramenko.Bqueue;
 
+/** baker.
+ *
+ */
 public class Baker extends Thread {
     private final int timeForOnePizza;
-    private final BQueue<Order> orders;
-    private final BQueue<Order> storage;
+    private final Bqueue<Order> orders;
+    private final Bqueue<Order> storage;
 
-    public Baker(int timeForOnePizza, BQueue<Order> orders, BQueue<Order> storage) {
+    /** constructor.
+     *
+     * @param timeForOnePizza time
+     * @param orders orders
+     * @param storage storage
+     */
+    public Baker(int timeForOnePizza, Bqueue<Order> orders, Bqueue<Order> storage) {
         this.timeForOnePizza = timeForOnePizza;
         this.storage = storage;
         this.orders = orders;

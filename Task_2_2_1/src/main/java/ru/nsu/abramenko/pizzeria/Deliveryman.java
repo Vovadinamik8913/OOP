@@ -2,15 +2,24 @@ package ru.nsu.abramenko.pizzeria;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import ru.nsu.abramenko.BQueue;
+import ru.nsu.abramenko.Bqueue;
 
+/** deliveryman.
+ *
+ */
 public class Deliveryman extends Thread {
     private final int maxPlace;
     private final int speed;
     private final Queue<Order> orders;
-    private final BQueue<Order> storage;
+    private final Bqueue<Order> storage;
 
-    public Deliveryman(int speed, int maxPlace, BQueue<Order> storage) {
+    /** constructor.
+     *
+     * @param speed speed
+     * @param maxPlace limit of backpack
+     * @param storage storage
+     */
+    public Deliveryman(int speed, int maxPlace, Bqueue<Order> storage) {
         this.speed = speed;
         this.storage = storage;
         this.maxPlace = maxPlace;

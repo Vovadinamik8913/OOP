@@ -1,11 +1,15 @@
 package ru.nsu.abramenko.pizzeria;
 
-import java.time.LocalDateTime;
+
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Synchronized;
 
 
+/** order.
+ *
+ */
 @Getter
 public class Order {
     private final String name;
@@ -19,7 +23,7 @@ public class Order {
     }
 
     public Order() {
-        this.name = String.valueOf(LocalDateTime.now());
+        this.name = UUID.randomUUID().toString();
         this.status = Status.NOTSTARTED;
     }
 }

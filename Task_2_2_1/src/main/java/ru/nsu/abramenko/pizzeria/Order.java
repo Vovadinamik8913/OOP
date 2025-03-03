@@ -4,7 +4,6 @@ package ru.nsu.abramenko.pizzeria;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Synchronized;
 
 
 /** order.
@@ -13,8 +12,7 @@ import lombok.Synchronized;
 @Getter
 public class Order {
     private final String name;
-    @Getter(onMethod_ = {@Synchronized})
-    @Setter(onMethod_ = {@Synchronized})
+    @Setter
     private Status status;
 
     public Order(String name) {

@@ -21,6 +21,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     compileOnly("org.projectlombok:lombok:1.18.32")
     compileOnly("org.jetbrains:annotations:23.0.0")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
     implementation ("org.openjdk.jmh:jmh-core:1.37")
     implementation("com.google.code.gson:gson:2.8.9")

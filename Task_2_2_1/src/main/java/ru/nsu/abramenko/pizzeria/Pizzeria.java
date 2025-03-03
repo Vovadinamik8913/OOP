@@ -148,7 +148,7 @@ public class Pizzeria {
         }
         pizzeria.work();
         try {
-            for (int i = 0; i < 100; i++){
+            for (int i = 0; i < 100; i++) {
                 Order order = new Order();
                 pizzeria.add(order);
             }

@@ -1,9 +1,8 @@
 package ru.nsu.abramenko;
 
-
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;
-import com.google.gson.Gson;
 import java.nio.file.Paths;
 import lombok.Getter;
 

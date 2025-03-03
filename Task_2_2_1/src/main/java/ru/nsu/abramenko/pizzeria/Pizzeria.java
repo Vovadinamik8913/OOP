@@ -32,13 +32,13 @@ public class Pizzeria {
         for (int i = 0; i < n; i++) {
             bakers.add(
                     new Baker(
-                    1000 * (random.nextInt(n) + 1), orders, storage)
+                    100 * (random.nextInt(n) + 1), orders, storage)
             );
         }
         for (int i = 0; i < m; i++) {
             deliverymen.add(
                     new Deliveryman(
-                    1000 * (random.nextInt(n) + 1), (random.nextInt(n) + 1), storage)
+                    100 * (random.nextInt(n) + 1), (random.nextInt(n) + 1), storage)
             );
         }
     }
@@ -57,14 +57,14 @@ public class Pizzeria {
         for (int i = 0; i < config.getBakers(); i++) {
             bakers.add(
                     new Baker(
-                            1000 * (random.nextInt(config.getBakers()) + 1),
+                            100 * (random.nextInt(config.getBakers()) + 1),
                             orders, storage)
             );
         }
         for (int i = 0; i < config.getDeliverymen(); i++) {
             deliverymen.add(
                     new Deliveryman(
-                            1000 * (random.nextInt(config.getDeliverymen()) + 1),
+                            100 * (random.nextInt(config.getDeliverymen()) + 1),
                             (random.nextInt(config.getDeliverymen()) + 1), storage)
             );
         }
@@ -108,23 +108,6 @@ public class Pizzeria {
         }
     }
 
-    /** number of Orders.
-     *
-     * @return size of orders
-     */
-    public int numberOfOrders() {
-        return orders.size();
-    }
-
-    /** number of Baked.
-     *
-     * @return size of storage
-     */
-    public int numberOfBaked() {
-        return storage.size();
-    }
-
-
     /** add new order.
      *
      * @param order order
@@ -156,6 +139,20 @@ public class Pizzeria {
             System.out.println(e.getMessage());
         } finally {
             pizzeria.close();
+        }
+    }
+
+
+    /** completeAll.
+     *
+     *
+     */
+    public void waitAllCompleted() throws InterruptedException {
+        while (orders.size() != 0) {
+            Thread.sleep(1000);
+        }
+        while (storage.size() != 0) {
+            Thread.sleep(1000);
         }
     }
 }

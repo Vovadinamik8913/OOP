@@ -38,19 +38,10 @@ class PizzeriaTest {
                 System.out.println(e.getMessage());
             }
         }
-        while (pizzeria.numberOfOrders() != 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        while (pizzeria.numberOfBaked() != 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            pizzeria.waitAllCompleted();
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
         pizzeria.close();
     }

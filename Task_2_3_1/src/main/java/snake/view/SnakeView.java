@@ -15,7 +15,11 @@ public class SnakeView implements Drawable {
     @Override
     public void draw(GraphicsContext gc) {
         for (Position p : snake.getBody()) {
-            Field.drawCell(gc, p, Color.GREEN);
+            if (snake.getType() == Snake.SnakeType.PLAYER) {
+                Field.drawCell(gc, p, Color.GREEN);
+            } else {
+                Field.drawCell(gc, p, Color.GRAY);
+            }
         }
     }
 }

@@ -1,21 +1,33 @@
 package snake.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@EqualsAndHashCode
 public class Snake {
     @Getter
+    public enum SnakeType {
+        PLAYER,
+        ENEMY
+    }
+
+    @Getter
     private final LinkedList<Position> body;
+    @Getter
     private Direction currentDirection;
     private boolean growing;
+    @Getter
+    private final SnakeType type;
 
-    public Snake(Position startPosition) {
+    public Snake(Position startPosition, SnakeType type) {
         body = new LinkedList<>();
         body.add(startPosition);
         currentDirection = Direction.RIGHT;
         growing = false;
+        this.type = type;
     }
 
     public void move() {
@@ -31,17 +43,40 @@ public class Snake {
         growing = true;
     }
 
-    public void setDirection(Direction direction) {
+    public boolean canMove(Direction direction) {
         if (currentDirection.getVector().add(direction.getVector())
                 .equals(new Position(0, 0))) {
-            return;
+            return false;
         }
-        if (body.size() > 1 &&
-                body.getFirst().add(direction.getVector())
-                .equals(body.get(1))) {
+        return body.size() <= 1 ||
+                !body.getFirst().add(direction.getVector())
+                        .equals(body.get(1));
+    }
+
+    public void setDirection(Direction direction) {
+        if (!canMove(direction)) {
             return;
         }
         currentDirection = direction;
     }
 
+    public Position getHead() {
+        return body.getFirst();
+    }
+
+    public boolean checkSelfCollision() {
+        if (body.size() <= 1) {
+            return false;
+        }
+        Position head = body.getFirst();
+        return body.subList(1, body.size()).contains(head);
+    }
+
+    public boolean collidesWith(Position position) {
+        return body.contains(position);
+    }
+
+    public void destroy() {
+        body.clear();
+    }
 }

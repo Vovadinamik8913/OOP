@@ -2,6 +2,7 @@ package snake.view;
 
 import javafx.scene.canvas.GraphicsContext;
 import snake.controller.GameController;
+import snake.controller.objects.SnakeController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,9 @@ public class GameView {
     public GameView(GraphicsContext gc, GameController gameController) {
         this.gc = gc;
         drawables = new ArrayList<>();
-        drawables.add(new SnakeView(gameController.getSnakeController().getSnake()));
+        for (SnakeController snakeController : gameController.getSnakeControllers()) {
+            drawables.add(new SnakeView(snakeController.getSnake()));
+        }
         drawables.add(new FoodView(gameController.getFoodController().getFoods()));
     }
 

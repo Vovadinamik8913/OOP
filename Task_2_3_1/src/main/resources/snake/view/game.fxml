@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="snake.Game"
+      alignment="CENTER" spacing="10">
+    <Label fx:id="scoreLabel" text="Score: 0"/>
+    <StackPane>
+        <Canvas fx:id="gameCanvas" width="400" height="400"/>
+        <Label fx:id="gameStateLabel" visible="false" style="-fx-font-size: 40px; -fx-text-fill: white;"/>
+    </StackPane>
+</VBox>

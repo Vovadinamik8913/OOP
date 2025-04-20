@@ -8,12 +8,12 @@ import snake.model.Snake;
 
 import java.util.List;
 
-public class SmartAi implements Ai {
+public class SmartestAi implements Ai {
     @Setter
     private Snake snake;
     private final List<Food> foods;
-    
-    public SmartAi(Snake snake, List<Food> foods) {
+
+    public SmartestAi(Snake snake, List<Food> foods) {
         this.snake = snake;
         this.foods = foods;
     }
@@ -31,16 +31,20 @@ public class SmartAi implements Ai {
         int dx = target.getX() - head.getX();
         int dy = target.getY() - head.getY();
 
-        if (dx > 0 && snake.canMove(Direction.RIGHT)) {
+        if (dx > 0 && snake.canMove(Direction.RIGHT)
+                && snake.safeMove(Direction.RIGHT)) {
             return Direction.RIGHT;
         }
-        if (dx < 0 && snake.canMove(Direction.LEFT)) {
+        if (dx < 0 && snake.canMove(Direction.LEFT)
+                && snake.safeMove(Direction.LEFT)) {
             return Direction.LEFT;
         }
-        if (dy > 0 && snake.canMove(Direction.DOWN)) {
+        if (dy > 0 && snake.canMove(Direction.DOWN)
+                && snake.safeMove(Direction.DOWN)) {
             return Direction.DOWN;
         }
-        if (dy < 0 && snake.canMove(Direction.UP)) {
+        if (dy < 0 && snake.canMove(Direction.UP)
+                && snake.safeMove(Direction.UP)) {
             return Direction.UP;
         }
 

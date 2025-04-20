@@ -3,6 +3,7 @@ package snake.view;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import snake.Gameinfo;
+import snake.model.Direction;
 import snake.model.Position;
 
 public class Field {
@@ -26,5 +27,45 @@ public class Field {
                 position.getY() * Gameinfo.CELL_SIZE,
                 Gameinfo.CELL_SIZE - 1,
                 Gameinfo.CELL_SIZE - 1);
+    }
+    
+    public static void drawHead(GraphicsContext gc, Direction direction,
+                                Position position, Color color) {
+        double x = position.getX() * Gameinfo.CELL_SIZE;
+        double y = position.getY() * Gameinfo.CELL_SIZE;
+        double size = Gameinfo.CELL_SIZE - 1;
+
+        gc.setFill(color);
+
+        switch (direction) {
+            case UP -> {
+                gc.fillPolygon(
+                        new double[]{x, x + size/2, x + size},
+                        new double[]{y + size, y, y + size},
+                        3
+                );
+            }
+            case DOWN -> {
+                gc.fillPolygon(
+                        new double[]{x, x + size/2, x + size},
+                        new double[]{y, y + size, y},
+                        3
+                );
+            }
+            case LEFT -> {
+                gc.fillPolygon(
+                        new double[]{x + size, x, x + size},
+                        new double[]{y, y + size/2, y + size},
+                        3
+                );
+            }
+            case RIGHT -> {
+                gc.fillPolygon(
+                        new double[]{x, x + size, x},
+                        new double[]{y, y + size/2, y + size},
+                        3
+                );
+            }
+        }
     }
 }

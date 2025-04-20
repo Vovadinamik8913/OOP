@@ -53,6 +53,18 @@ public class Snake {
                         .equals(body.get(1));
     }
 
+    public boolean safeMove(Direction direction) {
+        Position p = new Position(getHead().getX(), getHead().getY())
+                .add(direction.getVector());
+        for (int i = 1; i < body.size(); i++) {
+            if (p.getX() == body.get(i).getX()
+                    && p.getY() == body.get(i).getY()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void setDirection(Direction direction) {
         if (!canMove(direction)) {
             return;

@@ -12,6 +12,7 @@ import snake.model.Food;
 import snake.model.Position;
 import snake.model.Snake;
 import snake.model.ai.SmartAi;
+import snake.model.ai.SmartestAi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class GameController {
             existingSnakes.add(enemySnake);
             SnakeController enemyController = new SnakeController(
                     enemySnake,
-                    new SmartAi(enemySnake, foodController.getFoods())
+                    new SmartestAi(enemySnake, foodController.getFoods())
             );
             snakeControllers.add(enemyController);
         }

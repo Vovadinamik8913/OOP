@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'antlr'
+}
+
+group = 'ru.nsu.abramenko'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion= JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.13.1'
+
+    implementation 'org.freemarker:freemarker:2.3.32'
+    implementation 'org.gradle:gradle-tooling-api:8.4'
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.9'
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation "org.gradle:gradle-tooling-api:8.1.1"
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.10'
+    implementation 'org.freemarker:freemarker:2.3.30'
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor", "-package", "ru.nsu.abramenko.dsl"]
+    outputDirectory = file("${project.buildDir}/generated-src/antlr/main/ru/nsu/abramenko/dsl")
+}
+
+// Убедимся, что сгенерированные файлы включены в исходники
+sourceSets {
+    main {
+        java {
+            srcDirs += "${project.buildDir}/generated-src/antlr/main"
+        }
+    }
+}
+
+// Зависимость компиляции Java от генерации ANTLR
+compileJava.dependsOn generateGrammarSource
+
+sourceSets.main.java.srcDirs += 'src/main/java/ru/nsu/abramenko/dsl/generated'
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}

@@ -1,62 +1,102 @@
 package ru.nsu.abramenko.dsl;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.SneakyThrows;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-
+import groovy.lang.Binding;
+import groovy.lang.Closure;
+import groovy.lang.GroovyObjectSupport;
+import groovy.lang.GroovyShell;
+import groovy.lang.MetaProperty;
+import groovy.util.DelegatingScript;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.ParameterizedType;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
+import lombok.SneakyThrows;
+import org.codehaus.groovy.control.CompilerConfiguration;
 
-@Getter
-@Setter
-public class Configuration {
-    private URI scriptPath;
-    private List<String> essentials = List.of("tasks", "allStudents", "groups", "settings");
-    private Map<String, Object> parsedConfig;
-    private Path basePath;
+public class Configuration extends GroovyObjectSupport {
+    public URI scriptPath;
+    public List<String> essentials = List.of("tasks", "allStudents");
 
     @SneakyThrows
     public void runFrom(URI uri) {
         this.scriptPath = uri;
-        this.basePath = Path.of(uri).getParent();
-        String input = Files.readString(Path.of(uri));
-
-        ConfigLexer lexer = new ConfigLexer(CharStreams.fromString(input));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        ConfigParser parser = new ConfigParser(tokens);
-
-        ConfigV visitor = new ConfigV(basePath);
-        parsedConfig = (Map<String, Object>) visitor.visit(parser.config());
+        CompilerConfiguration cc = new CompilerConfiguration();
+        cc.setScriptBaseClass(DelegatingScript.class.getName());
+        GroovyShell sh = new GroovyShell(getClass().getClassLoader(), new Binding(), cc);
+        DelegatingScript script = (DelegatingScript) sh.parse(uri);
+        script.setDelegate(this);
+        script.run();
     }
 
     @SneakyThrows
+    public void methodMissing(String name, Object args) {
+        MetaProperty metaProperty = getMetaClass().getMetaProperty(name);
+        if (metaProperty != null) {
+            Closure<?> closure = (Closure<?>) ((Object[]) args)[0];
+            Class<?> type = metaProperty.getType();
+            Constructor<?> constructor = type.getConstructor();
+            Object value = getProperty(name) == null
+                    ? constructor.newInstance() :
+                    getProperty(name);
+            closure.setDelegate(value);
+            closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+            closure.call();
+            setProperty(name, value);
+        } else {
+            throw new IllegalArgumentException("No such field: " + name);
+        }
+    }
+
     public void postProcess() {
-        // First verify we have the config block
-        if (!parsedConfig.containsKey("config")) {
-            throw new IllegalStateException("Missing 'config' block in configuration");
+        for (String propName : essentials) {
+            postProcessSpecific(propName);
         }
+        for (MetaProperty metaProperty : getMetaClass().getProperties()) {
+            postProcessSpecific(metaProperty.getName(), metaProperty);
+        }
+    }
 
-        // Get the config block
-        Map<String, Object> configBlock = (Map<String, Object>) parsedConfig.get("config");
+    public void postProcessSpecific(String propName) {
+        MetaProperty metaProperty = getMetaClass().getMetaProperty(propName);
+        if (metaProperty == null) {
+            return;
+        }
+        postProcessSpecific(propName, metaProperty);
+    }
 
-        // Verify all essentials are present
-        for (String essential : essentials) {
-            if (!configBlock.containsKey(essential)) {
-                throw new IllegalStateException("Missing essential configuration key: " + essential);
+    @SneakyThrows
+    public void postProcessSpecific(String propName, MetaProperty metaProperty) {
+        Object value = getProperty(propName);
+        if (Collection.class.isAssignableFrom(metaProperty.getType())
+                && value instanceof Collection) {
+            java.lang.reflect.Field field;
+            try {
+                field = getClass().getDeclaredField(metaProperty.getName());
+            } catch (NoSuchFieldException e) {
+                field = getClass().getSuperclass().getDeclaredField(metaProperty.getName());
             }
-            if (configBlock.get(essential) == null) {
-                throw new IllegalStateException("Configuration value cannot be null for key: " + essential);
+            ParameterizedType collectionType = (ParameterizedType) field.getGenericType();
+            Class<?> itemClass = (Class<?>) collectionType.getActualTypeArguments()[0];
+            if (Configuration.class.isAssignableFrom(itemClass)) {
+                Collection<?> collection = (Collection<?>) value;
+                @SuppressWarnings("unchecked") Collection<Object> newValue = collection
+                        .getClass().getDeclaredConstructor().newInstance();
+                for (Object o : collection) {
+                    if (o instanceof Closure<?>) {
+                        Object item = itemClass.getDeclaredConstructor().newInstance();
+                        ((Configuration) item).setProperty("scriptPath", scriptPath);
+                        ((Closure<?>) o).setDelegate(item);
+                        ((Closure<?>) o).setResolveStrategy(Closure.DELEGATE_FIRST);
+                        ((Closure<?>) o).call();
+                        ((Configuration) item).postProcess();
+                        newValue.add(item);
+                    } else {
+                        newValue.add(o);
+                    }
+                }
+                setProperty(metaProperty.getName(), newValue);
             }
         }
-
-        // The parsedConfig should now contain all the merged data
-        // You might want to copy everything from configBlock to parsedConfig
-        parsedConfig.putAll(configBlock);
     }
 }

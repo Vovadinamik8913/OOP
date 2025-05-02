@@ -13,38 +13,34 @@ import java.util.Map;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import ru.nsu.abramenko.dsl.Group;
+import ru.nsu.abramenko.dsl.Settings;
 
-/**
- * Utility class for generating HTML table charts using Freemarker templates.
- */
 public class TableBuild {
-
-    /**
-     * The directory where the generated HTML files will be saved.
-     */
     public static final String resultDir = "src/main/resources/results/";
-
-    /**
-     * The path to the Freemarker template file.
-     */
     public static final String templatePath = "template.ftl";
 
-    /**
-     * Generates an HTML table chart based on the provided list of groups.
-     *
-     * @param groups The list of groups to be included in the table.
-     */
     @SneakyThrows
-    public static void generateHtmlTableChart(List<Group> groups) {
-        Configuration configuration =
-                new Configuration(DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
+    public static void generateHtmlTableChart(List<Group> groups, Settings settings) {
+        if (groups == null || groups.isEmpty()) {
+            throw new IllegalArgumentException("Groups list cannot be null or empty");
+        }
+
+        Configuration configuration = new Configuration(DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
         configuration.setClassForTemplateLoading(TableBuild.class, "/");
         configuration.setDefaultEncoding("UTF-8");
+
         File out = new File(resultDir, "output.html");
-        @Cleanup Writer fileWriter = new FileWriter(out);  // With auto-closing
+        if (!out.getParentFile().exists()) {
+            out.getParentFile().mkdirs();
+        }
+
+        @Cleanup Writer fileWriter = new FileWriter(out);
         Template template = configuration.getTemplate(templatePath);
-        Map<String, Object> dataModel = new HashMap<>(); // Data model for the template
+
+        Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("groups", groups);
+        dataModel.put("settings", settings);
+
         template.process(dataModel, fileWriter);
     }
 }

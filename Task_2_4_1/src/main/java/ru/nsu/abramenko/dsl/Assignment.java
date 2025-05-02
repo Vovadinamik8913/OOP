@@ -1,23 +1,18 @@
 package ru.nsu.abramenko.dsl;
 
-import java.time.LocalDate;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
-/**
- * Task Assignment.
- */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskAssignment extends Configuration {
-    TaskInformation info;
-    LocalDate softDeadline;
-    LocalDate hardDeadline;
+public class Assignment extends Configuration {
+    Task task;
     String build = "";
     String docs = "";
+    String style = "";
     int testsTotal;
     int testsPassed;
     int testsIgnored;
-    int points;
+    double points;
+    String deadline = "On time";
 }

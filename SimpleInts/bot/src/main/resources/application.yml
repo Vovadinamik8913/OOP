@@ -1,0 +1,22 @@
+app:
+  telegram-token: ${BOT_TOKEN}
+  scrapper-base-url: ${SCRAPPER_BASE_URL}
+
+spring:
+  application:
+    name: bot
+  jackson:
+    time-zone: UTC
+  data:
+    mongodb:
+      host: "localhost"
+      port: 27017
+      database: "botdb"
+
+server:
+  port: 8090
+
+logging:
+  level:
+    root=DEBUG:
+  config: classpath:log4j2-plain.xml

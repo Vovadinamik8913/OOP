@@ -1,0 +1,55 @@
+package ru.nsu.abramenko.bot.command;
+
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.SendMessage;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import ru.nsu.abramenko.bot.model.ChatState;
+import ru.nsu.abramenko.bot.model.State;
+import ru.nsu.abramenko.bot.service.StateService;
+import ru.nsu.abramenko.bot.service.client.Client;
+
+
+@RequiredArgsConstructor
+public class NumberCommand implements Command {
+    private final StateService stateService;
+    private final Client client;
+
+    @Override
+    public String command() {
+        return "[";
+    }
+
+    @Override
+    public String description() {
+        return "check if numbers are prime";
+    }
+
+    @Override
+    public boolean supports(Update update) {
+        if (update.message() == null || update.message().text() == null) {
+            return false;
+        }
+        return update.message().text().startsWith("[") && update.message().text().endsWith("]");
+    }
+
+    @Override
+    public SendMessage handle(Update update) {
+        String text = update.message().text();
+        try {
+            ChatState chatState = stateService.saveState(
+                    update.message().chat().id(),
+                    State.NOTSTARTED,
+                    text
+            );
+            ResponseEntity<String> result = client.post();
+            if (result.getStatusCode() == HttpStatus.OK) {
+                stateService.updateState(chatState.getId(), State.PROCESSING);
+            }
+            return new SendMessage(update.message().chat().id(), result.getBody());
+        } catch (Exception e) {
+            return new SendMessage(update.message().chat().id(), "Invalid input format. Use: [1,2,3,...]");
+        }
+    }
+}

@@ -2,16 +2,22 @@ package ru.nsu.abramenko.tools;
 
 import lombok.SneakyThrows;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class Installer {
-    public static final String labs = "src/main/resources/labs/";
+    public static final String LABS_DIR;
+
+    static {
+        LABS_DIR = ClassLoader.getSystemResource("").toString() + File.separator + "labs";
+    }
+
 
     @SneakyThrows
     public static boolean download(String repo, String folder, String branch) {
         ProcessBuilder processBuilder = new ProcessBuilder("git",
-                "clone", "-b", branch, repo, labs + folder);
+                "clone", "-b", branch, repo, LABS_DIR + folder);
         Process process = processBuilder.start();
         return process.waitFor() == 0;
     }

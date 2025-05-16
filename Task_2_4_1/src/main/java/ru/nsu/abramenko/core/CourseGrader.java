@@ -13,7 +13,11 @@ import java.util.List;
 public class CourseGrader {
     private static final String TEST_RESULTS = "/build/test-results/test/";
     private static final String DOCS_DIR = "/build/docs/javadoc/";
-    private static final String LABS_DIR = "src/main/resources/labs/";
+    private static final String LABS_DIR;
+
+    static {
+        LABS_DIR = ClassLoader.getSystemResource("").toString() + File.separator + "labs";
+    }
     
     private final Course config;
 

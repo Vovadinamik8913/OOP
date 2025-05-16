@@ -16,8 +16,12 @@ import ru.nsu.abramenko.dsl.model.Group;
 import ru.nsu.abramenko.dsl.config.Settings;
 
 public class TableBuild {
-    public static final String resultDir = "src/main/resources/results/";
-    public static final String templatePath = "template.ftl";
+    public static final String RESULT_DIR;
+    public static final String TEMPLATE_PATH = "template.ftl";
+
+    static {
+        RESULT_DIR = ClassLoader.getSystemResource("").toString() + File.separator + "results";
+    }
 
     @SneakyThrows
     public static void generateHtmlTableChart(List<Group> groups, Settings settings) {
@@ -29,13 +33,13 @@ public class TableBuild {
         configuration.setClassForTemplateLoading(TableBuild.class, "/");
         configuration.setDefaultEncoding("UTF-8");
 
-        File out = new File(resultDir, "output.html");
+        File out = new File(RESULT_DIR, "output.html");
         if (!out.getParentFile().exists()) {
             out.getParentFile().mkdirs();
         }
 
         @Cleanup Writer fileWriter = new FileWriter(out);
-        Template template = configuration.getTemplate(templatePath);
+        Template template = configuration.getTemplate(TEMPLATE_PATH);
 
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("groups", groups);

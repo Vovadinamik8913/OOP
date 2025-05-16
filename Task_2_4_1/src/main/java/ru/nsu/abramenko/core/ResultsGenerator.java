@@ -7,7 +7,12 @@ import ru.nsu.abramenko.tools.TableBuild;
 import java.io.File;
 
 public class ResultsGenerator {
-    private static final String LABS_DIR = "src/main/resources/labs/";
+    private static final String LABS_DIR;
+
+    static {
+        LABS_DIR = ClassLoader.getSystemResource("").toString() + File.separator + "labs";
+    }
+
 
     public void generateResults(Course config) {
         TableBuild.generateHtmlTableChart(config.getGroups(), config.getSettings());

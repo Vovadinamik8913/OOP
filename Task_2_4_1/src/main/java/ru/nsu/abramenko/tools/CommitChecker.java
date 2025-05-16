@@ -1,4 +1,4 @@
-package ru.nsu.abramenko.util;
+package ru.nsu.abramenko.tools;
 
 import lombok.Getter;
 import lombok.Setter;

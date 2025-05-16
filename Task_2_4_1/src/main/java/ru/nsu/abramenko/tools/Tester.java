@@ -1,17 +1,15 @@
-package ru.nsu.abramenko.util;
+package ru.nsu.abramenko.tools;
 
 import java.io.File;
-import lombok.Cleanup;
-import lombok.SneakyThrows;
+
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProjectConnection;
 
-public class Run {
-    @SneakyThrows
+public class Tester {
     public static boolean run(String labDir) {
         GradleConnector connector = GradleConnector.newConnector();
         connector.forProjectDirectory(new File(labDir));
-        @Cleanup ProjectConnection connection = connector.connect();
+        ProjectConnection connection = connector.connect();
         connection.newBuild()
                 .forTasks("test", "javadoc")
                 .run();

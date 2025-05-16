@@ -1,4 +1,4 @@
-package ru.nsu.abramenko.dsl;
+package ru.nsu.abramenko.dsl.config;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

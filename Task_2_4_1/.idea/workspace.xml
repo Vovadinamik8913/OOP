@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b56e3ca7-b5b8-4297-aeda-4cd5e73a03ad" name="Changes" comment="save" />
+    <list default="true" id="b56e3ca7-b5b8-4297-aeda-4cd5e73a03ad" name="Changes" comment="save">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/core/CourseGrader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/core/ResultsGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/Installer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/task/Assignment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/config/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/config/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Deadline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/task/Deadline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/config/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/dsl/task/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/CommitChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/CommitChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/Download.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/Run.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/Tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/StyleChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/TableBuild.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/TableBuild.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/util/TestsAndDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko/tools/TestsAndDocs.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,22 +54,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Task_2_4_1 [:App.main()].executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Task__2__4__1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/abrikosjr/Desktop/OOP/Task_2_4_1/src/main/java/ru/nsu/abramenko&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Task_2_4_1 [:App.main()].executor": "Run",
+    "Gradle.Task_2_4_1 [:GraderApp.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Task__2__4__1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/abrikosjr/Desktop/OOP/Task_2_4_1/src/main/java/ru/nsu/abramenko"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/ru/nsu/abramenko" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.nsu.abramenko" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GraderApp">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.nsu.abramenko.App" />
       <module name="Task_2_4_1.main" />
@@ -62,8 +87,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GraderApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.abramenko.GraderApp" />
+      <module name="Task_2_4_1.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nsu.abramenko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GraderApp" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>

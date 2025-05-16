@@ -1,4 +1,4 @@
-package ru.nsu.abramenko.util;
+package ru.nsu.abramenko.tools;
 
 import static freemarker.template.Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS;
 
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
-import ru.nsu.abramenko.dsl.Group;
-import ru.nsu.abramenko.dsl.Settings;
+import ru.nsu.abramenko.dsl.model.Group;
+import ru.nsu.abramenko.dsl.config.Settings;
 
 public class TableBuild {
     public static final String resultDir = "src/main/resources/results/";

@@ -1,4 +1,4 @@
-package ru.nsu.abramenko.dsl;
+package ru.nsu.abramenko.dsl.config;
 
 import groovy.lang.Binding;
 import groovy.lang.Closure;
@@ -80,7 +80,7 @@ public class Configuration extends GroovyObjectSupport {
             Class<?> itemClass = (Class<?>) collectionType.getActualTypeArguments()[0];
             if (Configuration.class.isAssignableFrom(itemClass)) {
                 Collection<?> collection = (Collection<?>) value;
-                @SuppressWarnings("unchecked") Collection<Object> newValue = collection
+                Collection<Object> newValue = collection
                         .getClass().getDeclaredConstructor().newInstance();
                 for (Object o : collection) {
                     if (o instanceof Closure<?>) {

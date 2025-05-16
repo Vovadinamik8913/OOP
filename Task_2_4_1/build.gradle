@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'groovy'
+    id 'checkstyle'
+}
+
+group 'ru.nsu.abramenko'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.apache.groovy:groovy:4.0.15'
+    implementation "org.gradle:gradle-tooling-api:8.5"
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.10'
+    implementation 'org.freemarker:freemarker:2.3.30'
+    implementation 'commons-io:commons-io:2.11.0'
+}
+
+checkstyle {
+    toolVersion = '10.12.1'
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    maxWarnings = 0
+}
+
+tasks.register('checkStudentStyle', Checkstyle) {
+    source = fileTree(project.projectDir)
+    include '**/*.java'
+    classpath = files()
+    showViolations = true
+    ignoreFailures = true
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}

@@ -38,7 +38,7 @@ public class Coordinator {
                 socket.receive(packet);
                 String message = new String(packet.getData(), 0, packet.getLength());
 
-                if ("WORKER_REGISTER".equals(message)) {
+                if (message.contains("WORKER_REGISTER")) {
                     String workerAddress = packet.getAddress().getHostAddress();
                     workerAddresses.put(workerAddress, System.currentTimeMillis());
                     System.out.println("Registered worker: " + workerAddress);
@@ -215,8 +215,12 @@ public class Coordinator {
 
     private boolean sendTaskToWorker(String workerAddress, List<Long> numbers) throws IOException {
         System.out.println(workerAddress);
+        String[] part = workerAddress.split(":");
+        int port = 8081;
+        if (part.length > 1) {
+            port = Integer.parseInt(workerAddress.split(":")[1]);
+        }
         String host = workerAddress.split(":")[0];
-        int port = Integer.parseInt(workerAddress.split(":")[1]);
         
         try (Socket socket = new Socket(host, port);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

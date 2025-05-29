@@ -2,7 +2,7 @@ package ru.nsu.abramenko;
 
 public class Main {
     public static void main(String[] args) {
-        Worker worker = new Worker();
+        Worker worker = new Worker("coordinator");
         worker.start();
     }
 }

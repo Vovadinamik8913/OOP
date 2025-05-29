@@ -4,31 +4,37 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Worker {
-    private static final int WORKER_PORT = 8081;
+    private int workerPort = 8081;
     private static final int DISCOVERY_PORT = 8082;
-    private static final ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
+    private static final ObjectMapper mapper = new ObjectMapper()
+            .configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
     private DatagramSocket registrationSocket;
     private volatile boolean isRunning = true;
+    private final String hostname;
+
+    public Worker(String hostname) {
+        this.hostname = hostname;
+    }
 
     public void start() {
         try {
             registrationSocket = new DatagramSocket();
-            new Thread(this::registerWithCoordinator).start();
-            
-            try (ServerSocket serverSocket = new ServerSocket(WORKER_PORT)) {
-                System.out.println("Worker started on port " + WORKER_PORT);
+            try (ServerSocket serverSocket = findFreePort()) {
+                workerPort = serverSocket.getLocalPort();
+                System.out.println("Worker started on port " + workerPort);
+                new Thread(() -> registerWithCoordinator(workerPort)).start();
 
                 while (isRunning) {
                     Socket clientSocket = serverSocket.accept();
                     new Thread(() -> handleClientRequest(clientSocket)).start();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         } finally {
             if (registrationSocket != null && !registrationSocket.isClosed()) {
                 registrationSocket.close();
@@ -36,10 +42,25 @@ public class Worker {
         }
     }
 
-    private void registerWithCoordinator() {
+    private ServerSocket findFreePort() throws IOException {
+        for (int port = 8081; port <= 9000; port++) {
+            if (port == 8082) {
+                continue;
+            }
+            try {
+                return new ServerSocket(port);
+            } catch (IOException ignored) {
+            }
+        }
+        throw new IOException("No free port found in range 8081-9000");
+    }
+
+
+    private void registerWithCoordinator(int port) {
         try {
-            InetAddress coordinatorAddress = InetAddress.getByName("coordinator");
-            byte[] buffer = "WORKER_REGISTER".getBytes();
+            InetAddress coordinatorAddress = InetAddress.getByName(hostname);
+            String registrationMessage = "WORKER_REGISTER:" + port;
+            byte[] buffer = registrationMessage.getBytes();
             DatagramPacket packet = new DatagramPacket(
                     buffer, buffer.length, coordinatorAddress, DISCOVERY_PORT);
 
@@ -74,7 +95,6 @@ public class Worker {
                     break;
                 }
             }
-            System.out.println(hasNonPrime + " - result for: " + numbers);
             Map<String, Boolean> response = new HashMap<>();
             response.put("hasNonPrime", hasNonPrime);
             out.println(mapper.writeValueAsString(response));
@@ -94,7 +114,7 @@ public class Worker {
         if (num <= 3) return true;
         if (num % 2 == 0) return false;
 
-        for (long i = 5; i * i <= num; i += 2) {
+        for (long i = 5; i <= Math.sqrt(num); i += 2) {
             if (num % i == 0) {
                 return false;
             }

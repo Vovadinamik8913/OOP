@@ -1,0 +1,26 @@
+services:
+  coordinator:
+    build:
+      context: .
+      dockerfile: Dockerfile.coordinator
+    ports:
+      - "8080:8080"
+    networks:
+      - prime-net
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    deploy:
+      replicas: 5
+    restart: unless-stopped
+    networks:
+      - prime-net
+    depends_on:
+      - coordinator
+
+networks:
+  prime-net:
+    driver: bridge

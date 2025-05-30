@@ -1,12 +1,24 @@
 package ru.nsu.abramenko;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Worker class that handles prime number calculations.
+ */
 public class Worker {
     private int workerPort = 8081;
     private static final int DISCOVERY_PORT = 8082;
@@ -16,10 +28,18 @@ public class Worker {
     private volatile boolean isRunning = true;
     private final String hostname;
 
+    /**
+     * Creates a new Worker instance.
+     *
+     * @param hostname hostname of the coordinator
+     */
     public Worker(String hostname) {
         this.hostname = hostname;
     }
 
+    /**
+     * Starts the worker service.
+     */
     public void start() {
         try {
             registrationSocket = new DatagramSocket();
@@ -34,6 +54,7 @@ public class Worker {
                 }
             }
         } catch (Exception ignored) {
+            // Ignore exceptions during shutdown
         } finally {
             if (registrationSocket != null && !registrationSocket.isClosed()) {
                 registrationSocket.close();

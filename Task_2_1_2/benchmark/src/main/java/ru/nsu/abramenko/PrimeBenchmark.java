@@ -1,17 +1,8 @@
 package ru.nsu.abramenko;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -24,9 +15,19 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 
 /**
- * Class for Benchmark.
+ * Benchmark class for testing prime number calculations.
  */
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
@@ -35,18 +36,18 @@ import org.openjdk.jmh.infra.Blackhole;
 @Measurement(iterations = 20, time = 3)
 @Fork(1)
 public class PrimeBenchmark {
-    int[] mid;
-    Coordinator coordinator;
-    URL url;
-    ObjectMapper objectMapper;
+    private int[] numbers;
+    private Coordinator coordinator;
+    private URL url;
+    private ObjectMapper objectMapper;
 
     /**
      * Method to create array of primes.
      */
     @Setup
     public void setup() throws InterruptedException, MalformedURLException {
-        mid = new int[10000];
-        Arrays.fill(mid, 999999937);
+        numbers = new int[10000];
+        Arrays.fill(numbers, 999999937);
 
         coordinator = new Coordinator();
         new Thread(() -> coordinator.start()).start();
@@ -59,7 +60,7 @@ public class PrimeBenchmark {
 
     private int sendMid(int power) throws IOException {
         Map<String, Object> requestData = new HashMap<>();
-        requestData.put("numbers", mid);
+        requestData.put("numbers", numbers);
         requestData.put("workingPower", power);
 
         ObjectMapper objectMapper = new ObjectMapper();

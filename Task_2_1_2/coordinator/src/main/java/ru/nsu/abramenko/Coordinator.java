@@ -1,15 +1,34 @@
 package ru.nsu.abramenko;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicLong;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
+
+/**
+ * Coordinator class that manages worker nodes and distributes tasks.
+ */
 public class Coordinator {
     private static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
@@ -21,9 +40,10 @@ public class Coordinator {
     private static final int RETRY_INTERVAL_MS = 500;
     private static final int MIN_POWER = 1;
     private static final int MAX_POWER = 10;
+
     private final ConcurrentHashMap<String, Long> workerAddresses = new ConcurrentHashMap<>();
     private final ExecutorService executor = Executors.newCachedThreadPool();
-    private final int TEST = 1;
+    private final int testCount = 1;
     private final AtomicLong totalExecutionTime = new AtomicLong(0);
 
     public void start() {
@@ -223,17 +243,17 @@ public class Coordinator {
                 List<Long> numbers = (List<Long>) input.get("numbers");
                 int workingPower = ((Number) input.get("workingPower")).intValue();
                 boolean hasNonPrime = false;
-                for (int z = 0; z < TEST; z++) {
+                for (int z = 0; z < testCount; z++) {
                     long startTime = System.nanoTime();
                     hasNonPrime = distributeTasks(numbers, workingPower);
                     long end = System.nanoTime() - startTime;
                     totalExecutionTime.addAndGet(end);
                     System.out.println(end);
                 }
-                System.out.println("Average Time - " + totalExecutionTime.get()/TEST*1.0);
+                System.out.println("Average Time - " + totalExecutionTime.get()/testCount*1.0);
                 Map<String, Object> response = new HashMap<>();
                 response.put("hasNonPrime", hasNonPrime);
-                response.put("averageTime", totalExecutionTime.get()/TEST*1.0);
+                response.put("averageTime", totalExecutionTime.get()/testCount*1.0);
                 out.println("HTTP/1.1 200 OK");
                 out.println("Content-Type: application/json");
                 out.println("Connection: close");
@@ -275,7 +295,7 @@ public class Coordinator {
             port = Integer.parseInt(workerAddress.split(":")[1]);
         }
         String host = workerAddress.split(":")[0];
-        
+
         try (Socket socket = new Socket(host, port);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {

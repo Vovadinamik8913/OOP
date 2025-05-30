@@ -4,8 +4,9 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,13 +16,15 @@ public class Coordinator {
     private static final int COORDINATOR_PORT = 8080;
     private static final int DISCOVERY_PORT = 8082;
     private static final int WORKER_TIMEOUT = 5000;
-    private static final int WORKING_POWER = 10;
+    private static final int WORKING_POWER = 500;
     private static final int MAX_RETRY_TIME_MS = 5000;
     private static final int RETRY_INTERVAL_MS = 500;
     private static final int MIN_POWER = 1;
     private static final int MAX_POWER = 10;
     private final ConcurrentHashMap<String, Long> workerAddresses = new ConcurrentHashMap<>();
     private final ExecutorService executor = Executors.newCachedThreadPool();
+    private final int TEST = 1;
+    private final AtomicLong totalExecutionTime = new AtomicLong(0);
 
     public void start() {
         new Thread(this::startDiscoveryService).start();
@@ -86,47 +89,91 @@ public class Coordinator {
             return false;
         }
 
-        List<Future<Boolean>> futures = new ArrayList<>();
         List<Long> shuffled = shuffle(numbers);
+        List<List<Long>> chunks = splitIntoChunks(shuffled, workingPower);
+        Map<Integer, List<Long>> failedChunks = new ConcurrentHashMap<>();
+        AtomicBoolean hasNonPrime = new AtomicBoolean(false);
 
-        if (shuffled.size() <= workingPower) {
-            int workersToUse = Math.min(activeWorkers.size(), shuffled.size());
+        List<Future<?>> initialFutures = new ArrayList<>();
+        for (int i = 0; i < chunks.size(); i++) {
+            List<Long> chunk = chunks.get(i);
+            final int chunkIndex = i;
+            String workerAddress = activeWorkers.get(i % activeWorkers.size());
 
-            for (int i = 0; i < workersToUse; i++) {
-                List<Long> subList = Collections.singletonList(shuffled.get(i));
-                String workerAddress = activeWorkers.get(i % activeWorkers.size());
-                futures.add(executor.submit(() -> sendTaskToWorkerWithRetry(workerAddress, subList)));
-            }
-        } else {
-            int chunkSize = shuffled.size() / workingPower;
-            int remainder = shuffled.size() % workingPower;
+            initialFutures.add(executor.submit(() -> {
+                try {
+                    boolean result = sendTaskToWorkerWithRetry(workerAddress, chunk);
+                    if (result) {
+                        hasNonPrime.set(true);
+                    }
+                } catch (Exception e) {
+                    failedChunks.put(chunkIndex, chunk);
+                }
+            }));
+        }
 
-            int currentIndex = 0;
-            for (int i = 0; i < workingPower; i++) {
-                int thisChunkSize = chunkSize + (i < remainder ? 1 : 0);
-                if (thisChunkSize == 0) break;
-
-                List<Long> subList = shuffled.subList(currentIndex, currentIndex + thisChunkSize);
-                currentIndex += thisChunkSize;
-
-                String workerAddress = activeWorkers.get(i % activeWorkers.size());
-                futures.add(executor.submit(() -> sendTaskToWorkerWithRetry(workerAddress, subList)));
+        for (Future<?> future : initialFutures) {
+            try {
+                future.get(WORKER_TIMEOUT * 2, TimeUnit.MILLISECONDS);
+            } catch (Exception ignored) {
             }
         }
 
-        for (Future<Boolean> future : futures) {
-            try {
-                if (future.get(WORKER_TIMEOUT, TimeUnit.MILLISECONDS)) {
-                    return true;
+        if (hasNonPrime.get()) {
+            return true;
+        }
+
+        while (!failedChunks.isEmpty() && !hasNonPrime.get()) {
+            List<Future<?>> retryFutures = new ArrayList<>();
+            Iterator<Map.Entry<Integer, List<Long>>> iterator = failedChunks.entrySet().iterator();
+
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, List<Long>> entry = iterator.next();
+                List<Long> chunk = entry.getValue();
+                String workerAddress = activeWorkers.get(ThreadLocalRandom.current().nextInt(activeWorkers.size()));
+
+                retryFutures.add(executor.submit(() -> {
+                    try {
+                        boolean result = sendTaskToWorkerWithRetry(workerAddress, chunk);
+                        if (result) {
+                            hasNonPrime.set(true);
+                        }
+                        iterator.remove();
+                    } catch (Exception ignored) {
+                    }
+                }));
+            }
+
+            for (Future<?> future : retryFutures) {
+                try {
+                    future.get(WORKER_TIMEOUT * 2, TimeUnit.MILLISECONDS);
+                } catch (Exception ignored) {
                 }
-            } catch (TimeoutException e) {
-                System.err.println("Worker timeout, trying another worker...");
-            } catch (Exception e) {
-                e.printStackTrace();
+            }
+
+            if (hasNonPrime.get()) {
+                return true;
             }
         }
 
         return false;
+    }
+
+    private List<List<Long>> splitIntoChunks(List<Long> numbers, int workingPower) {
+        List<List<Long>> chunks = new ArrayList<>();
+        int chunkSize = Math.max(1, numbers.size() / workingPower);
+        int remainder = numbers.size() % workingPower;
+        int currentIndex = 0;
+
+        for (int i = 0; i < workingPower; i++) {
+            int thisChunkSize = chunkSize + (i < remainder ? 1 : 0);
+            if (thisChunkSize == 0 || currentIndex >= numbers.size()) break;
+
+            chunks.add(numbers.subList(currentIndex, currentIndex + thisChunkSize));
+            currentIndex += thisChunkSize;
+        }
+
+        return chunks;
     }
 
     private boolean sendTaskToWorkerWithRetry(String workerAddress, List<Long> numbers) {
@@ -175,11 +222,18 @@ public class Coordinator {
                 Map<String, Object> input = mapper.readValue(jsonInput, Map.class);
                 List<Long> numbers = (List<Long>) input.get("numbers");
                 int workingPower = ((Number) input.get("workingPower")).intValue();
-
-                boolean hasNonPrime = distributeTasks(numbers, workingPower);
-
-                Map<String, Boolean> response = new HashMap<>();
+                boolean hasNonPrime = false;
+                for (int z = 0; z < TEST; z++) {
+                    long startTime = System.nanoTime();
+                    hasNonPrime = distributeTasks(numbers, workingPower);
+                    long end = System.nanoTime() - startTime;
+                    totalExecutionTime.addAndGet(end);
+                    System.out.println(end);
+                }
+                System.out.println("Average Time - " + totalExecutionTime.get()/TEST*1.0);
+                Map<String, Object> response = new HashMap<>();
                 response.put("hasNonPrime", hasNonPrime);
+                response.put("averageTime", totalExecutionTime.get()/TEST*1.0);
                 out.println("HTTP/1.1 200 OK");
                 out.println("Content-Type: application/json");
                 out.println("Connection: close");

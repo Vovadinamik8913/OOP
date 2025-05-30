@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -36,7 +35,7 @@ import org.openjdk.jmh.infra.Blackhole;
 @Measurement(iterations = 20, time = 3)
 @Fork(1)
 public class PrimeBenchmark {
-    long[] mid;
+    int[] mid;
     Coordinator coordinator;
     URL url;
     ObjectMapper objectMapper;
@@ -46,8 +45,8 @@ public class PrimeBenchmark {
      */
     @Setup
     public void setup() throws InterruptedException, MalformedURLException {
-        mid = new long[1000];
-        Arrays.fill(mid, 999999937L);
+        mid = new int[10000];
+        Arrays.fill(mid, 999999937);
 
         coordinator = new Coordinator();
         new Thread(() -> coordinator.start()).start();

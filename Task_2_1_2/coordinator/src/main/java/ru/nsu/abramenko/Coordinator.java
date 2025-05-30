@@ -46,12 +46,18 @@ public class Coordinator {
     private final int testCount = 1;
     private final AtomicLong totalExecutionTime = new AtomicLong(0);
 
+    /**
+     * Starts the coordinator service.
+     */
     public void start() {
         new Thread(this::startDiscoveryService).start();
         startHttpServer();
         new Thread(this::checkWorkersHealth).start();
     }
 
+    /**
+     * Starts the discovery service for worker registration.
+     */
     private void startDiscoveryService() {
         try (DatagramSocket socket = new DatagramSocket(DISCOVERY_PORT)) {
             byte[] buffer = new byte[1024];
@@ -72,6 +78,9 @@ public class Coordinator {
         }
     }
 
+    /**
+     * Checks the health of registered workers and removes unresponsive ones.
+     */
     private void checkWorkersHealth() {
         while (true) {
             try {
@@ -88,6 +97,9 @@ public class Coordinator {
         }
     }
 
+    /**
+     * Starts the HTTP server to handle client requests.
+     */
     private void startHttpServer() {
         try (ServerSocket serverSocket = new ServerSocket(COORDINATOR_PORT)) {
             System.out.println("Coordinator started on port " + COORDINATOR_PORT);
@@ -101,6 +113,13 @@ public class Coordinator {
         }
     }
 
+    /**
+     * Distributes tasks among available workers.
+     *
+     * @param numbers      The list of numbers to be processed.
+     * @param workingPower The initial working power.
+     * @return True if a non-prime number is found, false otherwise.
+     */
     private boolean distributeTasks(List<Long> numbers, int workingPower) {
         workingPower = Math.max(MIN_POWER, Math.min(workingPower, MAX_POWER)) * WORKING_POWER;
 
@@ -150,7 +169,8 @@ public class Coordinator {
             while (iterator.hasNext()) {
                 Map.Entry<Integer, List<Long>> entry = iterator.next();
                 List<Long> chunk = entry.getValue();
-                String workerAddress = activeWorkers.get(ThreadLocalRandom.current().nextInt(activeWorkers.size()));
+                String workerAddress = activeWorkers.get(
+                    ThreadLocalRandom.current().nextInt(activeWorkers.size()));
 
                 retryFutures.add(executor.submit(() -> {
                     try {
@@ -179,6 +199,13 @@ public class Coordinator {
         return false;
     }
 
+    /**
+     * Splits the list of numbers into smaller chunks based on the working power.
+     *
+     * @param numbers      The list of numbers to be split.
+     * @param workingPower The working power determining the number of chunks.
+     * @return A list of chunks, each containing a sublist of numbers.
+     */
     private List<List<Long>> splitIntoChunks(List<Long> numbers, int workingPower) {
         List<List<Long>> chunks = new ArrayList<>();
         int chunkSize = Math.max(1, numbers.size() / workingPower);
@@ -196,6 +223,13 @@ public class Coordinator {
         return chunks;
     }
 
+    /**
+     * Sends a task to a worker with retry mechanism in case of failure.
+     *
+     * @param workerAddress The address of the worker.
+     * @param numbers       The list of numbers to be processed.
+     * @return True if the task was successfully processed, false otherwise.
+     */
     private boolean sendTaskToWorkerWithRetry(String workerAddress, List<Long> numbers) {
         long startTime = System.currentTimeMillis();
 
@@ -217,6 +251,11 @@ public class Coordinator {
         return false;
     }
 
+    /**
+     * Handles incoming client requests.
+     *
+     * @param clientSocket The socket connected to the client.
+     */
     private void handleClientRequest(Socket clientSocket) {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
@@ -250,10 +289,10 @@ public class Coordinator {
                     totalExecutionTime.addAndGet(end);
                     System.out.println(end);
                 }
-                System.out.println("Average Time - " + totalExecutionTime.get()/testCount*1.0);
+                System.out.println("Average Time - " + totalExecutionTime.get() / testCount * 1.0);
                 Map<String, Object> response = new HashMap<>();
                 response.put("hasNonPrime", hasNonPrime);
-                response.put("averageTime", totalExecutionTime.get()/testCount*1.0);
+                response.put("averageTime", totalExecutionTime.get() / testCount * 1.0);
                 out.println("HTTP/1.1 200 OK");
                 out.println("Content-Type: application/json");
                 out.println("Connection: close");
@@ -275,6 +314,12 @@ public class Coordinator {
         }
     }
 
+    /**
+     * Shuffles the list of numbers randomly.
+     *
+     * @param numbers The list of numbers to be shuffled.
+     * @return A new list containing the shuffled numbers.
+     */
     private List<Long> shuffle(List<Long> numbers) {
         Random random = new Random();
         List<Long> res = new ArrayList<>(numbers);
@@ -287,6 +332,14 @@ public class Coordinator {
         return res;
     }
 
+    /**
+     * Sends a task to the specified worker.
+     *
+     * @param workerAddress The address of the worker.
+     * @param numbers       The list of numbers to be processed.
+     * @return True if the task was successfully processed, false otherwise.
+     * @throws IOException If an I/O error occurs while communicating with the worker.
+     */
     private boolean sendTaskToWorker(String workerAddress, List<Long> numbers) throws IOException {
         System.out.println(workerAddress);
         String[] part = workerAddress.split(":");

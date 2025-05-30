@@ -8,7 +8,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Main class for starting the coordinator.
+ */
 public class Main {
+    /**
+     * Main method for starting the coordinator.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         /*int[] mid = new int[1000000];
         Arrays.fill(mid, 999999937);

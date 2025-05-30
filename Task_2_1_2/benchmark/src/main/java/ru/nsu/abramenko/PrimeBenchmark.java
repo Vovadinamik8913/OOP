@@ -2,7 +2,15 @@ package ru.nsu.abramenko;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -14,16 +22,6 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -39,7 +37,6 @@ public class PrimeBenchmark {
     private int[] numbers;
     private Coordinator coordinator;
     private URL url;
-    private ObjectMapper objectMapper;
 
     /**
      * Method to create array of primes.
@@ -53,9 +50,6 @@ public class PrimeBenchmark {
         new Thread(() -> coordinator.start()).start();
         Thread.sleep(2000);
         url = new URL("http://localhost:8080");
-
-        objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
     }
 
     private int sendMid(int power) throws IOException {
@@ -63,7 +57,8 @@ public class PrimeBenchmark {
         requestData.put("numbers", numbers);
         requestData.put("workingPower", power);
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper()
+                .configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
         String jsonInput = objectMapper.writeValueAsString(requestData);
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

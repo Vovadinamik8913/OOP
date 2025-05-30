@@ -1,13 +1,5 @@
 package ru.nsu.abramenko;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Main class for starting the coordinator.
  */

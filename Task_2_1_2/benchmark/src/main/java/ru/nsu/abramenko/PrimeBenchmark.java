@@ -74,6 +74,11 @@ public class PrimeBenchmark {
         return connection.getResponseCode();
     }
 
+    /** two.
+     *
+     * @param blackhole hole
+     * @throws IOException error
+     */
     @Benchmark
     public void twoWorkersMid(Blackhole blackhole) throws IOException {
         Worker worker1 = new Worker("localhost");
@@ -86,6 +91,11 @@ public class PrimeBenchmark {
         blackhole.consume(responseCode);
     }
 
+    /** four.
+     *
+     * @param blackhole hole
+     * @throws IOException error
+     */
     @Benchmark
     public void fourWorkersMid(Blackhole blackhole) throws IOException {
         Worker worker1 = new Worker("localhost");
@@ -103,6 +113,11 @@ public class PrimeBenchmark {
     }
 
 
+    /** eight.
+     *
+     * @param blackhole hole
+     * @throws IOException error
+     */
     @Benchmark
     public void eightWorkersMid(Blackhole blackhole) throws IOException {
         Worker worker1 = new Worker("localhost");

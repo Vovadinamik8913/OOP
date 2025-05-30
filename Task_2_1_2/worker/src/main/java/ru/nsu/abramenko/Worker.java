@@ -2,7 +2,6 @@ package ru.nsu.abramenko;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,7 +68,8 @@ public class Worker {
             }
             try {
                 return new ServerSocket(port);
-            } catch (IOException ignored) {
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         throw new IOException("No free port found in range 8081-9000");
@@ -101,7 +101,8 @@ public class Worker {
     }
 
     private void handleClientRequest(Socket clientSocket) {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
             String jsonInput = in.readLine();
@@ -130,9 +131,15 @@ public class Worker {
     }
 
     private boolean isPrime(long num) {
-        if (num <= 1) return false;
-        if (num <= 3) return true;
-        if (num % 2 == 0) return false;
+        if (num <= 1) {
+            return false;
+        }
+        if (num <= 3) {
+            return true;
+        }
+        if (num % 2 == 0) {
+            return false;
+        }
 
         for (long i = 5; i <= Math.sqrt(num); i += 2) {
             if (num % i == 0) {

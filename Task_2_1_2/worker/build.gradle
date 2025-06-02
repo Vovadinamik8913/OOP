@@ -1,0 +1,17 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'ru.nsu.abramenko.Main'  // Полное имя класса с пакетом
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.nsu.abramenko.Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
